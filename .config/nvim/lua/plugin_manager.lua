@@ -16,3 +16,4 @@ end
 -- ランタイムパスの先頭にプラグインのパスを追加
 vim.opt.rtp:prepend(lazypath)
 
+require("lazy").setup({})
