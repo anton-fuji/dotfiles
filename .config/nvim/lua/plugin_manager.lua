@@ -1,7 +1,7 @@
--- プラグインの保存パスを設定
+-- Set the path for the plugin
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
--- 指定されたパスにプラグインが存在しない場合, Gitを使ってプラグインをクローン
+-- If the plugin does not exist at the specified path, clone it using Git
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         "git",
@@ -13,7 +13,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     })
 end
 
--- ランタイムパスの先頭にプラグインのパスを追加
+-- Add the plugin path to the beginning of the runtime path
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({})
+require('plugins')
