@@ -15,8 +15,8 @@ To apply this configuration, place the files in the following directory
     ```
     local background_image = "/Users/<your-username>/.config/wezterm/<image-file>"
     ```
-- `Powerlevel10k` integration (if applicable)
+- `Powerlevel10k` or `starship` integration (if applicable)
 - Other tweaks and enhancements
 
 ### My WezTerm Overview
-![Onerview](img/my-wezterm.png) 
+![Onerview](img/nvim-wez.png) 
