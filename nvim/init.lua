@@ -4,3 +4,5 @@
 vim.loader.enable()
 require 'options'
 require 'extensions'
+require 'keybinds'
+require 'lsp'
