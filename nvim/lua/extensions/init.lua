@@ -5,7 +5,6 @@ local plugins = {
   require("extensions.gitsigns"),
   require("extensions.nvim-tree"),
 
-
 -- Telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -23,8 +22,54 @@ local plugins = {
       "MattesGroeger/vim-bookmarks",
     },
   },
-}
 
+-- LSP
+    { 
+      "neovim/nvim-lspconfig",
+      lazy = false,
+      config = function()
+        require("lsp")
+    end,
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      },
+    },
+    {
+    "williamboman/mason.nvim",
+    config = function()
+      require("extensions.mason")
+    end,
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "jay-babu/mason-null-ls.nvim",
+      "nvimtools/none-ls.nvim",
+      "neovim/nvim-lspconfig",
+    },
+  },
+
+
+-- 補完
+  {
+    "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = function()
+      require("extensions.nvim-cmp")
+    end,
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "onsails/lspkind-nvim",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-nvim-lsp-document-symbol",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
+    },
+  },
+}
 
 -- Lazy.nvim オプション
 local opts = {
