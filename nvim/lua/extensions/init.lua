@@ -5,7 +5,7 @@ local plugins = {
   require("extensions.gitsigns"),
   require("extensions.nvim-tree"),
 
--- Telescope
+  -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
@@ -23,19 +23,19 @@ local plugins = {
     },
   },
 
--- LSP
-    { 
-      "neovim/nvim-lspconfig",
-      lazy = false,
-      config = function()
-        require("lsp")
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    config = function()
+      require("lsp")
     end,
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      },
     },
-    {
+  },
+  {
     "williamboman/mason.nvim",
     config = function()
       require("extensions.mason")
@@ -49,7 +49,7 @@ local plugins = {
   },
 
 
--- 補完
+  -- 補完
   {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
@@ -69,12 +69,22 @@ local plugins = {
       "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
     },
   },
+
+-- Sonictemplate
+  {
+    "mattn/vim-sonictemplate",
+    lazy = false,
+    config = function()
+      vim.g.sonictemplate_vim_template_dir = "~/.config/nvim/lua/template"
+      vim.g.sonictemplate_postfix_key = "<C-j>"
+    end,
+  },
 }
 
 -- Lazy.nvim オプション
 local opts = {
-  defaults = { lazy = true },
-  checker  = { enabled = true },
+  defaults    = { lazy = true },
+  checker     = { enabled = true },
   performance = {
     cache = { enabled = true },
     reset_packpath = true,
@@ -90,7 +100,7 @@ local opts = {
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git","clone","--filter=blob:none",
+    "git", "clone", "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable",
     lazypath,
@@ -99,5 +109,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(plugins, opts)
-
-
