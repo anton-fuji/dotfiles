@@ -15,6 +15,10 @@ vim.keymap.set("i", "jj", "<ESC>:<C-u>w<CR>")
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 
+-- スクロール
+vim.keymap.set('n', '<C-j>', '20j', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', '20k', { noremap = true, silent = true })
+
 
 -- 新規タブでterminalを開く
 vim.keymap.set("n", "tt", function()
