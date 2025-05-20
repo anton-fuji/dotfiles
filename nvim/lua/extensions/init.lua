@@ -92,6 +92,9 @@ local plugins = {
     config = function()
       require("extensions.comments")
     end,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
   },
 
   -- Sonictemplate
