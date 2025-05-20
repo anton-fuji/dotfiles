@@ -15,10 +15,15 @@ vim.keymap.set("i", "jj", "<ESC>:<C-u>w<CR>")
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 
+-- leader設定
+vim.api.nvim_set_var("mapleader", ",")
+vim.api.nvim_set_var("maplocalleader", "\\")
+
 
 -- 選択系
 vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-a>', '<Esc>ggVG', { noremap = true, silent = true })
+
 
 -- スクロール
 vim.keymap.set("n", "<C-j>", "20j", { noremap = true, silent = true })
