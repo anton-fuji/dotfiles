@@ -70,7 +70,22 @@ local plugins = {
     },
   },
 
--- Sonictemplate
+  -- UI
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("extensions.lualine")
+    end,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "bluz71/vim-nightfly-colors",
+      "lewis6991/gitsigns.nvim",
+      --  "SmiteshP/nvim-navic"
+    },
+  },
+
+  -- Sonictemplate
   {
     "mattn/vim-sonictemplate",
     lazy = false,
