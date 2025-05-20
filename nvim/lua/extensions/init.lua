@@ -85,6 +85,15 @@ local plugins = {
     },
   },
 
+  -- コーディング系
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+    config = function()
+      require("extensions.comments")
+    end,
+  },
+
   -- Sonictemplate
   {
     "mattn/vim-sonictemplate",
