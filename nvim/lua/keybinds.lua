@@ -12,8 +12,10 @@ vim.keymap.set("n", "X", '"_X')
 vim.keymap.set("n", "s", '"_s')
 
 vim.keymap.set("i", "jj", "<ESC>:<C-u>w<CR>")
-vim.keymap.set("n", "H", "^")
-vim.keymap.set("n", "L", "$")
+
+-- カーソル移動
+vim.keymap.set("n", "gh", "^")
+vim.keymap.set("n", "gl", "$")
 
 -- leader設定
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -45,7 +47,7 @@ vim.keymap.set("n", "tt", function()
 end, { silent = true })
 
 -- 下部にterminalを表示
-vim.keymap.set("n", "tx", function()
+vim.keymap.set("n", "te", function()
   vim.cmd("belowright split | terminal")
   vim.cmd("resize 15")
 end, { silent = true })

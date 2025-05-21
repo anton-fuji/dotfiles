@@ -84,6 +84,14 @@ local plugins = {
       --  "SmiteshP/nvim-navic"
     },
   },
+  {
+    "folke/which-key.nvim",
+    lazy = false,
+    priority = 2000,
+    config = function()
+      require("extensions.which-key")
+    end,
+  },
 
   -- コーディング系
   {
