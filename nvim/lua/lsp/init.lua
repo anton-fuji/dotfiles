@@ -87,8 +87,14 @@ vim.lsp.config['yamlls'] = {
   },
 }
 
+vim.lsp.config['clangd'] = {
+  cmd = { 'clangd', '--background-index' },
+  filetypes = { 'c', 'cpp', 'objcpp' },
+  root_markers = { 'compile_commands.json', '.git', 'compile_flags.txt' }
+}
+
 -- Enable all Language Servers
-vim.lsp.enable({ 'gopls', 'lua_ls', 'pyright', 'dockerls', 'tsserver', 'yamlls' })
+vim.lsp.enable({ 'gopls', 'lua_ls', 'pyright', 'dockerls', 'tsserver', 'yamlls', 'clangd' })
 
 -- Keymaps of LSP
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -149,4 +155,3 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
-
