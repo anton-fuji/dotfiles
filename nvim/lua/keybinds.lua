@@ -12,6 +12,7 @@ vim.keymap.set("n", "X", '"_X')
 vim.keymap.set("n", "s", '"_s')
 
 vim.keymap.set("i", "jj", "<ESC>:<C-u>w<CR>")
+vim.keymap.set({ "i", "c" }, "<M-k>", "\\", { noremap = true, silent = true })
 
 -- カーソル移動
 vim.keymap.set("n", "gh", "^")
