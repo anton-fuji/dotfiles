@@ -63,6 +63,8 @@ alias src='source ~/.zshrc'
 alias path="echo $PATH | tr ':' '\n'"
 alias cat='bat'
 alias clip='pbcopy'
+alias gcc='gcc-14'
+alias g++='g++-14'
 
 ### Neovim
 alias v='nvim'
