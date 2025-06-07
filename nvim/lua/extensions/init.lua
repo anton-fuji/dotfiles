@@ -66,6 +66,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
       "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
     },
   },
