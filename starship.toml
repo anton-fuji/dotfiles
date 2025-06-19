@@ -1,9 +1,13 @@
+# format="""$directory $git_branch$git_status$fill$cmd_duration$username$time\n$character
+# """
+
 format = """
 $directory\
-[ ](fg:#88C0D0 bg:#1d2230)\
+[󰣇 ](fg:#88C0D0)\
 $git_branch\
 $git_status\
-[ ](fg:#1d2230)\
+$fill \
+[ ](fg:#1d2230)\
 \n$character
 """
 
@@ -29,7 +33,7 @@ disabled = false
 symbol = ' '
 
 [directory]
-style = "fg:#2E3440 bg:#88C0D0 bold"
+style = "fg:#88C0D0"
 # format = "[ $path ]($style)"
 truncation_length = 10
 truncate_to_repo = false
@@ -38,7 +42,7 @@ truncation_symbol = "…/"
 # truncate_to_repo = false
 # style = 'fg:#7aa2f7 bg:#1a1b26'
 read_only = ' 󰌾 ' # nf-md-lock
-read_only_style = 'fg:#f7768e bg:#1a1b26'
+read_only_style = 'fg:#f7768e bg:#0a0a0a'
 format = '[ $path ]($style)[$read_only]($read_only_style)'
 
 
@@ -70,12 +74,12 @@ format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#1d2230"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#1d2230)]($style)'
+style = "fg:#1d2230"
+format = '[[ $symbol $branch ](fg:#769ff0)]($style)'
 
 [git_status]
-style = "bg:#1d2230"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#1d2230)]($style)'
+style = "fg:#1d2230"
+format = '[[($all_status$ahead_behind )](fg:#769ff0)]($style)'
 
 [cmd_duration]
 min_time = 1
@@ -85,8 +89,11 @@ format = "[$duration]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-# style = "bg:#1d2230"
+style = "fg:#a0a9cb"
 format = '[[   $time ](fg:#a0a9cb)]($style)'
 
 [character]
+success_symbol = "[❯](bold fg:#88C0D0)" # Nordの明るい青
+error_symbol = "[❯](bold fg:#BF616A)" # Nordの赤
 vimcmd_symbol = '[V](bold green) '
+
