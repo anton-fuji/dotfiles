@@ -7,7 +7,7 @@ return {
   -- 最初のレイヤー (単色背景)
   {
     source = { Color = "#0a0a0a" },
-    opacity = 0.1,
+    opacity = 0.7,
     width = "100%",  -- 幅
     height = "100%", -- 高さ
   },
