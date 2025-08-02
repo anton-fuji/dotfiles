@@ -5,6 +5,7 @@ local plugins = {
   require("extensions.gitsigns"),
   require("extensions.nvim-tree"),
   require("extensions.alpha"),
+  require("extensions.autopairs"),
 
   -- Telescope
   {
