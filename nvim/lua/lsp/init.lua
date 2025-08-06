@@ -1,4 +1,4 @@
--- LSP Configuration (Unified in init.lua)
+-- LSP Configuration
 vim.lsp.config['gopls'] = {
   cmd = { 'gopls' },
   root_markers = { 'go.mod', '.git', 'go.work' },
@@ -10,6 +10,64 @@ vim.lsp.config['gopls'] = {
     },
   },
 }
+
+vim.lsp.config['rust_analyzer'] = {
+  cmd = { 'rust-analyzer' },
+  root_markers = { 'Cargo.toml', 'rust-project.json', '.git' },
+  filetypes = { 'rust' },
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = true,
+      check = {
+        command = "check",
+        extraArgs = { "--target-dir", "/tmp/rust-analyzer-check" },
+      },
+      cargo = {
+        allFeatures = true,
+        loadOutDirsFromCheck = true,
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+      inlayHints = {
+        bindingModeHints = {
+          enable = false,
+        },
+        chainingHints = {
+          enable = true,
+        },
+        closingBraceHints = {
+          enable = true,
+          minLines = 25,
+        },
+        closureReturnTypeHints = {
+          enable = "never",
+        },
+        lifetimeElisionHints = {
+          enable = "never",
+          useParameterNames = false,
+        },
+        maxLength = 25,
+        parameterHints = {
+          enable = true,
+        },
+        reborrowHints = {
+          enable = "never",
+        },
+        renderColons = true,
+        typeHints = {
+          enable = true,
+          hideClosureInitialization = false,
+          hideNamedConstructor = false,
+        },
+      },
+    },
+  },
+}
+
 
 vim.lsp.config['lua_ls'] = {
   cmd = { 'lua-language-server' },
@@ -93,8 +151,9 @@ vim.lsp.config['clangd'] = {
   root_markers = { 'compile_commands.json', '.git', 'compile_flags.txt' }
 }
 
+
 -- Enable all Language Servers
-vim.lsp.enable({ 'gopls', 'lua_ls', 'pyright', 'dockerls', 'tsserver', 'yamlls', 'clangd' })
+vim.lsp.enable({ 'gopls', 'rust_analyzer', 'lua_ls', 'pyright', 'dockerls', 'tsserver', 'yamlls', 'clangd' })
 
 -- Keymaps of LSP
 vim.api.nvim_create_autocmd('LspAttach', {
