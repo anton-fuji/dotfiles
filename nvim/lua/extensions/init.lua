@@ -7,6 +7,7 @@ local plugins = {
   require("extensions.alpha"),
   require("extensions.autopairs"),
   require("extensions.markdown"),
+  require("extensions.bufferline"),
 
   -- Telescope
   {
