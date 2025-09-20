@@ -1,0 +1,5 @@
+[keymap]
+"g" = "go_to_top"
+"G" = "go_to_bottom"
+"Ctrl+f" = "search"
+"Ctrl+r" = "refresh"
