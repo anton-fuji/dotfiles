@@ -10,6 +10,7 @@ local plugins = {
   require("extensions.bufferline"),
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
+  require("extensions.toggleterm"),
 
   -- Telescope
   {
