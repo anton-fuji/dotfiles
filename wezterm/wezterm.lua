@@ -4,15 +4,15 @@ local background = require 'background'
 local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
-config.font_size = 12.0
+config.font_size = 13.7
 config.use_ime = true
 config.window_background_opacity = 0.55
 config.macos_window_background_blur = 20
 config.background = background
 
 -- ウィンドウサイズ
-config.initial_rows = 60
-config.initial_cols = 150
+config.initial_rows = 90
+config.initial_cols = 220
 
 ----------------------------------------------------
 -- Tab
@@ -34,7 +34,7 @@ config.window_frame = {
 
 -- タブバーを背景色に合わせる
 config.window_background_gradient = {
-  colors = { "#000000" },
+  colors = { "#0a0a0a" },
 }
 
 -- タブの追加ボタンを非表示
@@ -48,6 +48,8 @@ config.colors = {
   tab_bar = {
     inactive_tab_edge = "none",
   },
+
+  cursor_bg = "#F1009A",
 }
 
 -- タブの形をカスタマイズ
@@ -57,11 +59,11 @@ local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local background = "#5c6d74"
+  local background = "#00152B"
   local foreground = "#FFFFFF"
   local edge_background = "none"
   if tab.is_active then
-    background = "#29A7FF"
+    background = "#175DAF"
     foreground = "#FFFFFF"
   end
   local edge_foreground = background
