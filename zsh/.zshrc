@@ -12,7 +12,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 #Setting zsh-autosuggestions
-plugins=( 
+plugins=(
     git
     zsh-autosuggestions
 )
@@ -40,6 +40,7 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 ##Setting Golang
 export GOROOT=/usr/local/go
