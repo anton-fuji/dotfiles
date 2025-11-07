@@ -48,8 +48,11 @@ export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
-##Starship
+## Starship
 eval "$(starship init zsh)"
+
+## Eza Theme
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 
 ##Setting Alias
@@ -78,3 +81,12 @@ alias tf='terraform'
 alias d='docker'
 alias dc='docker compose'
 
+# Setup Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
