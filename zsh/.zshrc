@@ -51,6 +51,9 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 ## Starship
 eval "$(starship init zsh)"
 
+## Mise Setup
+eval "$(mise activate bash)"
+
 ## Eza Theme
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 
