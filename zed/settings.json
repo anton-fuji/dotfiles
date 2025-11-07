@@ -1,0 +1,74 @@
+{
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always"
+  },
+  "base_keymap": "VSCode",
+  "relative_line_numbers": true,
+  "gutter": {
+    "line_numbers": true
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "auto_indent_on_paste": true,
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "ui_font_size": 15,
+  "buffer_font_size": 15,
+  "buffer_font_weight": 400,
+  "buffer_line_height": "comfortable",
+  "theme": {
+    "mode": "system",
+    "light": "Iceberg",
+    "dark": "Iceberg"
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+  "languages": {
+    "TypeScript": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TSX": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    }
+  },
+  "file_types": {
+    "JSONC": [
+      "biome.json",
+      "tsconfig*.json",
+      "**/.zed/**/*.json",
+      "**/.vscode/**/*.json",
+      "*.json",
+      "*.jsonc"
+    ]
+  }
+}

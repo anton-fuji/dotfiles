@@ -1,0 +1,53 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j j": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "x": [
+        "workspace::SendKeystrokes",
+        "\" _ x"
+      ],
+      "d": [
+        "workspace::SendKeystrokes",
+        "\" _ d"
+      ],
+      "ctrl-l": [
+        "workspace::SendKeystrokes",
+        "escase : nohlsearch enter"
+      ]
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-g h": "workspace::ActivatePaneLeft",
+      "ctrl-g j": "workspace::ActivatePaneDown",
+      "ctrl-g k": "workspace::ActivatePaneUp",
+      "ctrl-g l": "workspace::ActivatePaneRight",
+      "ctrl-g s": "pane::SplitDown",
+      "ctrl-g v": "pane::SplitRight",
+      "ctrl-w q": "pane::CloseActiveItem",
+      "ctrl-w w": "workspace::Save",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-g h": "workspace::ActivatePaneLeft",
+      "ctrl-g l": "workspace::ActivatePaneRight"
+    }
+  }
+]
