@@ -1,0 +1,186 @@
+{
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "workbench.startupEditor": "none",
+    "git.autofetch": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    // "terminal.integrated.enableMultiLinePasteWarning": false,
+    "rust-analyzeer.check.command": "clippy",
+    "go.goroot": "/usr/local/go",
+    "go.toolsManagement.autoUpdate": true,
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "golang.go"
+    },
+    "files.trimTrailingWhitespace" :true,
+    "workbench.colorTheme": "Bearded Theme Arc Reversed",
+    "workbench.iconTheme": "ayu-mirage-zed",
+    "git.confirmSync": false,
+    "material-icon-theme.folders.theme": "specific",
+    "workbench.colorCustomizations": {
+        "terminal.background": "#00000000"
+    },
+    "workbench.settings.applyToAllProfiles": [
+        "workbench.colorCustomizations"
+    ],
+
+    // Settings Vim
+    "editor.lineNumbers": "relative",
+    "keyboard.dispatch": "keyCode",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.statusBarColors.commandlineinprogress": "",
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j","j"],
+            "after": ["<Esc>"]
+        },
+        {
+            "before": ["っ","j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "d"],
+            "after": ["d", "d"]
+        },
+        {
+            "before": ["x"],
+            "after": ["\"_", "x"]
+        },
+        {
+            "before": ["<C-h>"],
+            "commands": ["workbench.action.focusLeftGroup"]
+        },
+        {
+            "before": ["<C-l>"],
+            "commands": ["workbench.action.focusRightGroup"]
+        },
+        {
+            "before": ["t", "t"],
+            "commands": ["workbench.action.createTerminalEditor"]
+        },
+        {
+            "before": ["t", "e"],
+            "commands": ["workbench.action.togglePanel"],
+            "args": "terminal"
+        }
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<D-c>"],
+            "commands": ["editor.action.clipboardCopyAction"]
+        }
+    ],
+
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<D-c>"],
+            "commands": [
+                "editor.action.clipboardCopyAction"
+            ]
+        }
+    ],
+
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1,
+        "asvetliakov.vscode-neovim": 1
+    },
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+
+    "files.associations": {},
+    "files.autoGuessEncoding": true,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    // --- VSCode Animations の設定 ---
+    "animations.Install-Method": "Custom CSS and JS",
+    "biome.suggestInstallingGlobally": false,
+    "apc.imports": [
+        "file://${userHome}/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+    ],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "apc.electron": {
+        "titleBarStyle": "hiddenInset",
+        "trafficLightPosition": {
+        "x": 7,
+        "y": 5
+        }
+    },
+    "apc.stylesheet": {
+        ".quick-input-widget": {
+            "position": "absolute !important",
+            "top": "200px !important",
+            "left": "50%",
+            "border-radius": "10px",
+            "border": "1px solid var(--vscode-textSeparator-foreground) !important",
+            "box-shadow": "0 0 60px 0 rgba(0,0,0,0.2) !important"
+        },
+        // left title bar (controls)
+        ".titlebar-left": {
+        "max-width": "70px !important"
+        },
+        // center title bar
+        ".titlebar-center": {
+        "margin": "0 !important"
+        },
+        // arrow buttons
+        ".action-item.menu-entry": {
+        "display": "none !important"
+        },
+        // actual input element
+        ".quick-input-header > .quick-input-and-message > .quick-input-filter > .quick-input-box input": {
+        "padding": "8px 10px !important"
+        },
+        // status bar set height
+        "div:has(> .statusbar)": {
+        "height": "25px !important",
+        "top": "auto !important",
+        "bottom": "0 !important"
+        },
+        // hides search icon
+        ".codicon.codicon-search.search-icon": {
+        "display": "none !important"
+        },
+        "workbench.iconTheme": "ayu-mirage-zed",
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
+    },
+    "editor.formatOnPaste": true
+    },
+    "terminal.integrated.smoothScrolling": true,
+    // This section requires you to install the following extension and configure it yourself.
+    // https://marketplace.visualstudio.com/items?itemName=Katsute.code-background
+    "vscode_custom_css.imports": [
+    ],
+    "background.editorBackgrounds": [],
+    "background.windowBackgrounds": [
+    ],
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "editor.minimap.enabled": false
+}
