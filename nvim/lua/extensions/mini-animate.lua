@@ -22,11 +22,7 @@ return {
             duration = 200,
             unit = "total",
           }),
-          subscroll = animate.gen_subscroll.equal({
-            predicate = function(total_scroll)
-              return math.abs(total_scroll) > 1
-            end,
-          }),
+          subscroll = nil,
         },
         resize = { enable = false },
         open = { enable = true },
