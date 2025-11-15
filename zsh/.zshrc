@@ -93,3 +93,33 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Zellij Session exchange func
+zs() {
+  local session
+  session=$(zellij list-sessions | awk '{print $1}' | fzf --reverse --exit-0)
+
+  if [[ -n "$session" ]]; then
+    zellij attach "$session"
+  fi
+}
+
+## pane, tab settings
+zellij_names_update() {
+    if [[ -n $ZELLIJ ]]; then
+        local full_path=$PWD
+        local path_with_tilde=${full_path/#$HOME/"~"}
+
+        local dir_name=${full_path##*/}
+        if [[ $full_path == $HOME ]]; then
+            dir_name="~"
+        fi
+
+        command nohup zellij action rename-tab -- "$dir_name" >/dev/null 2>&1
+        command nohup zellij action rename-pane -- "$path_with_tilde" >/dev/null 2>&1
+    fi
+}
+
+zellij_names_update
+chpwd_functions+=(zellij_names_update)
+
