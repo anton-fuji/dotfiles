@@ -33,14 +33,11 @@ local plugins = {
   -- LSP
   {
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
     lazy = false,
     config = function()
       require("lsp")
     end,
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
   },
   {
     "williamboman/mason.nvim",
