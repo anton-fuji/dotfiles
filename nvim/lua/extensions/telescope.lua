@@ -34,7 +34,7 @@ require("telescope").setup({
       preview_cutoff = 120,
     },
   },
-  extensions = { 
+  extensions = {
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -62,17 +62,10 @@ require("telescope").setup({
     project = {
       base_dirs = {
         { path = "~/work/workspace", max_depth = 2 },
-        { path = "~/.config/nvim", max_depth = 2 },
+        { path = "~/.config/nvim",   max_depth = 2 },
       },
-      hidden_files = true, 
+      hidden_files = true,
       theme = "dropdown",
     },
   },
 })
-
-
--- Loading Extensions
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("project")
-require("telescope").load_extension("vim_bookmarks")
