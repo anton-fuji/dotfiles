@@ -123,3 +123,58 @@ zellij_names_update() {
 zellij_names_update
 chpwd_functions+=(zellij_names_update)
 
+# fzf Config
+export FZF_DEFAULT_OPTS="
+  --height 60%
+  --layout=reverse
+  --border=rounded
+  --info=inline
+  --prompt='❯ '
+  --pointer='▶'
+  --marker='✓'
+  --ansi
+  --color='fg:#c0caf5,bg:#1a1b26,hl:#7aa2f7'
+  --color='fg+:#c0caf5,bg+:#283457,hl+:#7dcfff'
+  --color='info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff'
+  --color='marker:#9ece6a,spinner:#bb9af7,header:#7aa2f7'
+  --color='border:#3b4261,label:#7aa2f7,query:#c0caf5'
+  --color='preview-bg:#1f2335,preview-border:#3b4261'
+  --bind='ctrl-/:toggle-preview'
+  --bind='ctrl-u:preview-half-page-up'
+  --bind='ctrl-d:preview-half-page-down'
+  --preview-window='right:50%:border-left'
+"
+
+# ファイル/ディレクトリ検索
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target,.cache
+  --preview 'bat --color=always --style=numbers --line-range=:500 {} 2>/dev/null || tree -C {} 2>/dev/null || cat {}'
+  --header 'CTRL-T: Files & Directories | CTRL-/: Toggle Preview'
+"
+
+# コマンド履歴検索
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {2..}' 
+  --preview-window down:3:wrap
+  --header 'CTRL-R: Command History | CTRL-/: Toggle Preview'
+  --color header:italic
+"
+
+export FZF_COMPLETION_TRIGGER='**'
+
+export FZF_COMPLETION_OPTS='
+  --border 
+  --info=inline
+  --preview-window=right:50%:border-left
+'
+
+fzf-file-edit() {
+  local file
+  file=$(fd --type f --hidden --follow --exclude .git | 
+         fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
+             --header 'Select file to edit') &&
+  ${EDITOR:-nvim} "$file"
+}
+alias fz='fzf-file-edit'
+
+source <(fzf --zsh)
