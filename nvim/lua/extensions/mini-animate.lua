@@ -6,14 +6,7 @@ return {
       local animate = require("mini.animate")
       animate.setup({
         cursor = {
-          timing = animate.gen_timing.exponential({
-            easing = "out",
-            duration = 100,
-            unit = "total",
-          }),
-          path = animate.gen_path.angle({
-            predicate = function() return true end,
-          }),
+          enable = false,
         },
         scroll = {
           enable = true,
@@ -22,10 +15,9 @@ return {
             duration = 200,
             unit = "total",
           }),
-          subscroll = nil,
         },
         resize = { enable = false },
-        open = { enable = true },
+        open = { enable = false },
         close = { enable = false },
       })
     end
