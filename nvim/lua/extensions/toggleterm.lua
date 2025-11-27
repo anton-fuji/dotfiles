@@ -25,25 +25,25 @@ return {
       lazygit:toggle()
     end
 
-    vim.keymap.set("n", "lg", _LAZYGIT_TOGGLE, {
+    vim.keymap.set("n", "<leader>lg", _LAZYGIT_TOGGLE, {
       silent = true,
       desc = "Toggleterm: lazygit",
     })
 
     -- Lazydocker
-    local lazydocker = Terminal:new({
-      cmd = "lazydocker",
-      hidden = true,
-      direction = "float",
-    })
+    -- local lazydocker = Terminal:new({
+    --   cmd = "lazydocker",
+    --   hidden = true,
+    --   direction = "float",
+    -- })
 
-    function _LAZYDOCKER_TOGGLE()
-      lazydocker:toggle()
-    end
+    -- function _LAZYDOCKER_TOGGLE()
+    --   lazydocker:toggle()
+    -- end
 
-    vim.keymap.set("n", "ld", _LAZYDOCKER_TOGGLE, {
-      silent = true,
-      desc = "Toggleterm: lazydocker",
-    })
+    -- vim.keymap.set("n", "ld", _LAZYDOCKER_TOGGLE, {
+    --   silent = true,
+    --   desc = "Toggleterm: lazydocker",
+    -- })
   end,
 }
