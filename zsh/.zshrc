@@ -150,6 +150,7 @@ export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target,.cache
   --preview 'bat --color=always --style=numbers --line-range=:500 {} 2>/dev/null || tree -C {} 2>/dev/null || cat {}'
   --header 'CTRL-T: Files & Directories | CTRL-/: Toggle Preview'
+  --bind 'ctrl-u:clear-query'
 "
 
 # コマンド履歴検索
@@ -158,6 +159,7 @@ export FZF_CTRL_R_OPTS="
   --preview-window down:3:wrap
   --header 'CTRL-R: Command History | CTRL-/: Toggle Preview'
   --color header:italic
+  --bind 'ctrl-u:clear-query'
 "
 
 export FZF_COMPLETION_TRIGGER='**'
