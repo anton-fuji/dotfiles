@@ -180,3 +180,16 @@ fzf-file-edit() {
 alias fz='fzf-file-edit'
 
 source <(fzf --zsh)
+
+# ghq + peco
+function peco-sd () {
+  local selected_dir=$(ghq list -p | peco --prompt="Repositories >" --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}&& la"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-sd
+bindkey '^]' peco-sd
+
