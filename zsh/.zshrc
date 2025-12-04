@@ -151,6 +151,7 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat --color=always --style=numbers --line-range=:500 {} 2>/dev/null || tree -C {} 2>/dev/null || cat {}'
   --header 'CTRL-T: Files & Directories | CTRL-/: Toggle Preview'
   --bind 'ctrl-u:clear-query'
+  --preview-window='right:50%:border-left'
 "
 
 # コマンド履歴検索
@@ -160,6 +161,7 @@ export FZF_CTRL_R_OPTS="
   --header 'CTRL-R: Command History | CTRL-/: Toggle Preview'
   --color header:italic
   --bind 'ctrl-u:clear-query'
+  --preview-window='right:50%:border-left'
 "
 
 export FZF_COMPLETION_TRIGGER='**'
@@ -181,15 +183,24 @@ alias fz='fzf-file-edit'
 
 source <(fzf --zsh)
 
-# ghq + peco
-function peco-sd () {
-  local selected_dir=$(ghq list -p | peco --prompt="Repositories >" --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}&& la"
+# ghq + fzf
+function fzf-sd() {
+  local dir=$(ghq list -p | fzf \
+    --prompt="Repositories > " \
+    --preview '
+      if [ -d {} ]; then
+        eza --icons -T -L 3 {} 2>/dev/null
+      else
+        bat --color=always --style=numbers {} 2>/dev/null || cat {}
+      fi
+    ' \
+    --bind "ctrl-/:toggle-preview"
+  )
+
+  if [ -n "$dir" ]; then
+    BUFFER="cd ${dir}"
     zle accept-line
   fi
-  zle clear-screen
 }
-zle -N peco-sd
-bindkey '^]' peco-sd
-
+zle -N fzf-sd
+bindkey '^]' fzf-sd
