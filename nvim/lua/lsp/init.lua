@@ -81,7 +81,7 @@ vim.lsp.config['lua_ls'] = {
         path = { "?.lua", "?/init.lua" },
       },
       diagnostics = {
-        globals = { 'vim' },
+        globals = { 'nvim' },
       },
       workspace = {
         library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
@@ -151,9 +151,30 @@ vim.lsp.config['clangd'] = {
   root_markers = { 'compile_commands.json', '.git', 'compile_flags.txt' }
 }
 
+vim.lsp.config['marksman'] = {
+  cmd = { 'marksman', 'server' },
+  filetypes = { 'markdown', 'md' },
+  root_markers = { '.git', '.marksman.toml' },
+  handlers = {
+    ['textDocument/publishDiagnostics'] = function() end,
+  },
+}
 
+vim.lsp.config['terraformls'] = {
+  cmd = { 'terraform-ls', 'serve' },
+  filetypes = { 'terraform', 'tf', 'terraform-vars' },
+  root_markers = { '.terraform', '.git', 'terraform.tfvars' },
+  settings = {
+    terraform = {
+      validation = {
+        enableEnhancedValidation = true,
+      },
+    },
+  },
+}
 -- Enable all Language Servers
-vim.lsp.enable({ 'gopls', 'rust_analyzer', 'lua_ls', 'pyright', 'dockerls', 'tsserver', 'yamlls', 'clangd' })
+vim.lsp.enable({ 'gopls', 'rust_analyzer', 'lua_ls', 'pyright', 'dockerls', 'tsserver', 'yamlls', 'terraformls', 'clangd',
+  'marksman' })
 
 -- Keymaps of LSP
 vim.api.nvim_create_autocmd('LspAttach', {
