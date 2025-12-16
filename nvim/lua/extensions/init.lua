@@ -11,6 +11,7 @@ local plugins = {
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
   require("extensions.toggleterm"),
+  require("extensions.oil"),
 
   -- Telescope
   {
