@@ -1,10 +1,14 @@
 {
+  "project_panel": {
+    "dock": "left"
+  },
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always"
   },
+  "cursor_blink": false,
   "base_keymap": "VSCode",
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "gutter": {
     "line_numbers": true
   },
@@ -21,16 +25,49 @@
   "buffer_font_size": 15,
   "buffer_font_weight": 400,
   "buffer_line_height": "comfortable",
-  "theme": {
-    "mode": "system",
-    "light": "Iceberg",
-    "dark": "Iceberg"
-  },
+  "theme": "Nstlgy Glass Dark",
   "tabs": {
     "file_icons": true,
     "git_status": true
   },
+  "experimental.theme_overrides": {
+    "background.appearance": "blurred",
+    "background": "#0a0a1880",
+    "editor.background": "#0d0d1e25",
+    "editor.gutter.background": "#12122818",
+    "terminal.background": "#00000000",
+    "tab_bar.background": "#0f0f2035",
+    "toolbar.background": "#0f0f2035",
+    "tab.active_background": "#1a1a3555",
+    "tab.inactive_background": "#00000008",
+    "status_bar.background": "#0f0f2080",
+    "title_bar.background": "#0f0f2038",
+    "panel.background": "#0d0d1e28",
+    "border.variant": "#4a4a7a12",
+    "border": "#5a5a8a18",
+    "scrollbar.track.border": "#00000000",
+    "scrollbar.thumb.background": "#3a3a6a30",
+    "editor.active_line.background": "#1a1a3515",
+    "editor.line_number": "#6a6a9a60",
+    "editor.active_line_number": "#8a8aba"
+  },
+  // LSP
   "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "inlayHints": {
+          "maxLength": null,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    },
     "biome": {
       "settings": {
         "require_config_file": true
@@ -70,5 +107,19 @@
       "*.json",
       "*.jsonc"
     ]
-  }
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/node_modules",
+    "**/target",
+    "**/dist",
+    "**/build"
+  ]
 }
