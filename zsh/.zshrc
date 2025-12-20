@@ -156,7 +156,7 @@ export FZF_CTRL_T_OPTS="
 
 # コマンド履歴検索
 export FZF_CTRL_R_OPTS="
-  --preview 'echo {2..}' 
+  --preview 'echo {2..}'
   --preview-window down:3:wrap
   --header 'CTRL-R: Command History | CTRL-/: Toggle Preview'
   --color header:italic
@@ -167,14 +167,14 @@ export FZF_CTRL_R_OPTS="
 export FZF_COMPLETION_TRIGGER='**'
 
 export FZF_COMPLETION_OPTS='
-  --border 
+  --border
   --info=inline
   --preview-window=right:50%:border-left
 '
 
 fzf-file-edit() {
   local file
-  file=$(fd --type f --hidden --follow --exclude .git | 
+  file=$(fd --type f --hidden --follow --exclude .git |
          fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
              --header 'Select file to edit') &&
   ${EDITOR:-nvim} "$file"
@@ -204,3 +204,9 @@ function fzf-sd() {
 }
 zle -N fzf-sd
 bindkey '^]' fzf-sd
+
+# Setup Ascii
+if [[ -z "$WEZTERM_EXECUTING" ]]; then
+  export WEZTERM_EXECUTING=1
+  fastfetch --config "$HOME/.config/fastfetch/config.json"
+fi
