@@ -1,7 +1,7 @@
-{ pkgs, username, ...}
+{ pkgs, username, ... }:
 
 {
-  environment.systemPackages = with pkg; [
+  environment.systemPackages = with pkgs; [
     vim
     git
   ];
@@ -11,53 +11,51 @@
     warn-dirty = false;
   };
 
-  services.nix-daemon.enable = true;
+  system.primaryUser = username;
 
   users.users.${username} = {
     name = username;
-    home = "Users/${username}";
+    home = "/Users/${username}";
   };
 
-  system = {
-    stateVersion = 5;
+  system.stateVersion = 5;
 
-    default = {
-      dock = {
-        autohide = true;
-        show-recents = false;
-        tilesize = 45;
-        show-process-indicators = true;
-      };
+  system.defaults = {
+    dock = {
+      autohide = true;
+      show-recents = false;
+      tilesize = 45;
+      show-process-indicators = true;
+    };
 
-      finder = {
-        AppleShowAllExtensions = true;
-        ShowPathbar = true;
-        FXEnableExtensionChangeWarning = false;
-        NewWindowTarget = "PfHm";
-       };
+    finder = {
+      AppleShowAllExtensions = true;
+      ShowPathbar = true;
+      FXEnableExtensionChangeWarning = false;
+      NewWindowTarget = "Home";
+    };
 
-      NSGlobalDomain = {
-        AppleShowAllExtensions = true;
-        AppleInterfaceStyle = "Dark";
+    NSGlobalDomain = {
+      AppleShowAllExtensions = true;
+      AppleInterfaceStyle = "Dark";
+      # Keyboard
+      InitialKeyRepeat = 15;
+      KeyRepeat = 2;
 
-        # Keybord
-        InitialKeyRepeat = 15;
-        KeyRepeat = 2;
+      # Trackpad
+      "com.apple.trackpad.scaling" = 2.0;
+      NSNavPanelExpandedStateForSaveMode = true;
+      AppleShowScrollBars = "Always";
+    };
 
-       #Tracjpad
-       "com.apple.trackpad.scaling" = 2.0;
+    # Trackpad settings
+    trackpad = {
+      Clicking = false;
+      TrackpadRightClick = true;
+      TrackpadThreeFingerDrag = false;
+    };
+  };
 
-        NSNavPanelExpandedStateForSaveMode = true;
-
-        AppleShowScrollBars = "Always";
-      };
-
-       # Trackpad settings
-       trackpad = {
-          Clicking = false; # Tap to click disabled
-          TrackpadRightClick = true; # Two-finger secondary click
-          TrackpadThreeFingerDrag = false; # Disable three-finger drag
-        };
-     };
-   }
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
 }

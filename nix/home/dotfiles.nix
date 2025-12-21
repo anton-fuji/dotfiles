@@ -5,7 +5,7 @@ let
   dotfilesDir = "${homeDir}/.config";
   configHome = "${homeDir}/.config";
 
-  helpers = import ./lib/helpers.nix { inherit lib; };
+  helpers = import ./lib/helper/helpers.nix { inherit lib; };
 in
 {
   home.activation.linkDotfiles = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
