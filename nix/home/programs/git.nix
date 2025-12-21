@@ -4,7 +4,7 @@
   programs.git = {
     enable = true;
     userName = "Fuji";
-    userEmail = "anton-fuji@users.noreply.github.com";
+    userEmail = "164746053+anton-fuji@users.noreply.github.com";
 
     extraConfig = {
       init.defaultBranch = "main";
@@ -15,6 +15,7 @@
     # delta (diff viewer)
     delta = {
       enable = true;
+      enableGitIntegration = true;
       options = {
         navigate = true;
         line-numbers = true;
@@ -33,3 +34,4 @@
     };
   };
 }
+

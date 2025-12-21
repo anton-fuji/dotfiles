@@ -43,6 +43,7 @@
     btop
     httpie
     wget
+    fastfetch
     jq
 
     # Other

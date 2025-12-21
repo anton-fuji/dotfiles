@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, lib, username, config, ... }:
 
 let
   homedir = "/Users/${username}";

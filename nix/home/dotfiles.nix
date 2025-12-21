@@ -3,6 +3,7 @@
 let
   homeDir = config.home.homeDirectory;
   dotfilesDir = "${homeDir}/.config";
+  configHome = "${homeDir}/.config";
 
   helpers = import ./lib/helpers.nix { inherit lib; };
 in
