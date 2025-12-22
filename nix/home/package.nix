@@ -7,7 +7,6 @@
     git
     gh
     ghq
-    tig
     lazygit
 
     starship
