@@ -1,3 +1,4 @@
+-- check this repo : https://github.com/oxalica/nil
 vim.lsp.config['nil_ls'] = {
   cmd = { 'nil' },
   filetypes = { 'nix' },
