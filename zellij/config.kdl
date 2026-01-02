@@ -274,4 +274,13 @@ web_client {
     font "monospace"
 }
 
+ui {
+  pane_frames {
+    hide_session_name true
+  }
+}
+
 theme "ao"
+
+default_layout "compact"
+

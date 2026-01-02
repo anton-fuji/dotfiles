@@ -22,6 +22,7 @@ config.initial_cols = 220
 config.window_decorations = "RESIZE"
 -- タブバーの表示
 config.show_tabs_in_tab_bar = true
+config.tab_bar_at_bottom = true
 -- タブが一つの時は非表示
 config.hide_tab_bar_if_only_one_tab = true
 -- falseにするとタブバーの透過が効かなくなる
