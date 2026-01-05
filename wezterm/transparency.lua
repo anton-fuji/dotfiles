@@ -26,4 +26,4 @@ M.key = {
   action = wezterm.action.EmitEvent("toggle-transparency"),
 }
 
-return M  -- ← これが必須
+return M
