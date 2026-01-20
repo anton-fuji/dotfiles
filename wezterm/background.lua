@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 -- 背景画像のパスを設定
-local background_image = "/Users/fujimotoikki/.config/wezterm/Gopher.jpeg"
+local background_image = "/Users/${Username}/.config/wezterm/Gopher.jpeg"
 
 return {
   -- 最初のレイヤー (単色背景)
