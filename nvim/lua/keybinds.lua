@@ -27,17 +27,6 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-a>', '<Esc>ggVG', { noremap = true, silent = true })
 
--- スプリット (非leader系)
-vim.keymap.set("n", "<S-j>", ":split<CR>", { silent = true })
-vim.keymap.set("n", "<S-l>", ":vsplit<CR>", { silent = true })
-
--- ウィンドウ移動
-vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
-
-
 -- スクロール
 vim.keymap.set("n", "<C-j>", "20j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "20k", { noremap = true, silent = true })
