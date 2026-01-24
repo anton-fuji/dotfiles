@@ -12,6 +12,9 @@ local plugins = {
   require("extensions.mini-animate"),
   require("extensions.toggleterm"),
   require("extensions.oil"),
+  require("extensions.trouble"),
+  require("extensions.flash"),
+
 
   -- Telescope
   {
@@ -43,7 +46,7 @@ local plugins = {
   {
     "williamboman/mason.nvim",
     -- cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
-    envent = "VeryLazy",
+    event = "VeryLazy",
     config = function()
       require("extensions.mason")
     end,
