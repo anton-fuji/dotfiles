@@ -10,6 +10,7 @@ local plugins = {
   require("extensions.bufferline"),
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
+  require("extensions.mini-surround"),
   require("extensions.toggleterm"),
   require("extensions.oil"),
   require("extensions.trouble"),
