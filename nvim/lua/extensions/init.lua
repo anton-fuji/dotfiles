@@ -2,6 +2,7 @@ local plugins = {
   require("extensions.tokyonight"),
   require("extensions.nvim-web-devicons"),
   require("extensions.nvim-treesitter"),
+  require("extensions.nvim-hlslens"),
   require("extensions.gitsigns"),
   require("extensions.nvim-tree"),
   require("extensions.alpha"),
