@@ -6,6 +6,7 @@ return {
     { "<Tab>",      "<Cmd>BufferLineCycleNext<CR>", desc = "Next Tab" },
     { "<S-Tab>",    "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev Tab" },
     { "<leader>bd", "<Cmd>bdelete<CR>",             desc = "close current bufferline" },
+    { "<leader>bj", "<Cmd>BufferLinePick<CR>",      desc = "Buffer line pick" },
   },
   opts = {
     options = {
