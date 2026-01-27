@@ -10,6 +10,7 @@ require('lsp.servers.c')
 require('lsp.servers.markdown')
 require('lsp.servers.terraform')
 require('lsp.servers.nix')
+require('lsp.servers.astro')
 
 -- ハンドラーとDiagnostics設定
 require('lsp.handlers')
@@ -28,4 +29,5 @@ vim.lsp.enable({
   'clangd',
   'marksman',
   'nil_ls',
+  'astro-lsp',
 })
