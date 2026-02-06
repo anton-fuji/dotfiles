@@ -247,8 +247,6 @@ keybinds clear-defaults=true {
     }
 }
 
-// Plugin aliases - can be used to change the implementation of Zellij
-// changing these requires a restart to take effect
 plugins {
     about location="zellij:about"
     compact-bar location="zellij:compact-bar"
@@ -266,8 +264,6 @@ plugins {
     }
 }
 
-// eg. "file:/path/to/my-plugin.wasm"
-// eg. "https://example.com/my-plugin.wasm"
 load_plugins {
 }
 web_client {
