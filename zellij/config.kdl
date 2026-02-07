@@ -280,3 +280,13 @@ theme "ao"
 
 default_layout "compact"
 
+default_shell "zsh"
+
+mouse_mode true
+ 
+copy_clipboard "primary"
+
+scrollback_editor "nvim"
+ 
+show_startup_tips false
+ 
