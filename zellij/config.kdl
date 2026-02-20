@@ -276,7 +276,8 @@ ui {
   }
 }
 
-theme "ao"
+// theme "ao"
+theme "icebarg-dark"
 
 default_layout "compact"
 
