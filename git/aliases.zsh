@@ -2,7 +2,7 @@
 	ad = add
 	cm = commit -m
 	s = status
-	ss = status -s	
+	ss = status -s
 	rb = rebase
 	st = stash
 	sh = show
