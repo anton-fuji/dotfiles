@@ -31,7 +31,6 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 alias g='git'
 compdef g=git
 
-alias ll='ls -la'
 alias cp='cp -i'
 alias rm='rm -i'
 alias ls='ls --color=auto'
@@ -46,8 +45,6 @@ alias g++='g++-14'
 alias v='nvim'
 alias nvcnf='cd ~/.config/nvim'
 
-### terraform
-alias tf='terraform'
 
 ### docker
 alias d='docker'
