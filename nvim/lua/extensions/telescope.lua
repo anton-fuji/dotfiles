@@ -59,13 +59,13 @@ require("telescope").setup({
         },
       },
     },
-    project = {
-      base_dirs = {
-        { path = "~/work/workspace", max_depth = 2 },
-        { path = "~/.config/nvim",   max_depth = 2 },
-      },
-      hidden_files = true,
-      theme = "dropdown",
-    },
+    --    project = {
+    --      base_dirs = {
+    --        { path = "~/work/workspace", max_depth = 2 },
+    --        { path = "~/.config/nvim", max_depth = 2 },
+    --      },
+    --      hidden_files = true,
+    --      theme = "dropdown",
+    --    },
   },
 })
