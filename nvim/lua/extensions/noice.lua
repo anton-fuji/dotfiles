@@ -19,6 +19,12 @@ return {
         lsp_doc_border = false,
       },
       routes = {
+        -- info レベルの通知を非表示
+        -- info レベルの通知を非表示（kind はログレベルの文字列）
+        {
+          filter = { event = "notify", kind = "info" },
+          opts = { skip = true },
+        },
         -- 保存・編集系メッセージを非表示
         {
           filter = {
@@ -46,7 +52,14 @@ return {
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      {
+        "rcarriga/nvim-notify",
+        opts = {
+          timeout = 2000,              -- 表示時間を2秒に短縮（デフォルト5秒）
+          minimum_width = 10,
+          level = vim.log.levels.WARN, -- INFO未満は表示しない
+        },
+      },
     },
   },
 }
