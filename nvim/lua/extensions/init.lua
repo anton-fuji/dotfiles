@@ -9,7 +9,6 @@ local plugins = {
   require("extensions.autopairs"),
   require("extensions.markdown"),
   require("extensions.bufferline"),
-  require("extensions.close-buffers"),
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
   require("extensions.mini-surround"),
@@ -18,12 +17,13 @@ local plugins = {
   require("extensions.trouble"),
   require("extensions.flash"),
   require("extensions.noice"),
+  require("extensions.close-buffers"),
 
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    lazy = false,
+    cmd = { "Telescope" },
     config = function()
       require("extensions.telescope")
     end,
@@ -48,8 +48,8 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
-    -- cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
-    event = "VeryLazy",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
+    -- event = "VeryLazy",
     config = function()
       require("extensions.mason")
     end,
@@ -125,7 +125,7 @@ local plugins = {
   -- コーディング系
   {
     "numToStr/Comment.nvim",
-    lazy = false,
+    event = "BufReadPre",
     config = function()
       require("extensions.comments")
     end,
