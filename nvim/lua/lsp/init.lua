@@ -11,6 +11,7 @@ require('lsp.servers.markdown')
 require('lsp.servers.terraform')
 require('lsp.servers.nix')
 require('lsp.servers.astro')
+require('lsp.servers.zig')
 
 -- ハンドラーとDiagnostics設定
 require('lsp.handlers')
@@ -30,4 +31,5 @@ vim.lsp.enable({
   'marksman',
   'nil_ls',
   'astro-lsp',
+  'zls',
 })
