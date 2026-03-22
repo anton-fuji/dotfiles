@@ -40,6 +40,8 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
+-- バックスラッシュ
+vim.keymap.set('i', '¥', '\\', { noremap = true })
 
 -- スクロール
 vim.keymap.set("n", "<C-j>", "20j", { noremap = true, silent = true })
