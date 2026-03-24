@@ -236,7 +236,7 @@ ui {
 }
 
 theme        "iceberg-dark"
-default_layout "compact"
+default_layout "no-status"
 default_shell  "zsh"
 mouse_mode     true
 copy_clipboard "primary"
