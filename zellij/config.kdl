@@ -229,11 +229,14 @@ plugins {
     tab-bar        location="zellij:tab-bar"
 }
 
-ui {
-    pane_frames {
-        hide_session_name true
-    }
-}
+// ui {
+//     pane_frames {
+//         hide_session_name true
+//     }
+// }
+
+pane_frames false
+scroll_buffer_size 50000
 
 theme        "iceberg-dark"
 default_layout "no-status"
