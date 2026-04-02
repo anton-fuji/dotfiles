@@ -6,12 +6,6 @@
     }
   },
   {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      "j j": "vim::NormalBefore"
-    }
-  },
-  {
     "context": "Editor && vim_mode == normal && !menu",
     "bindings": {
       "x": [
