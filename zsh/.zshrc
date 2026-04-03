@@ -45,11 +45,6 @@ alias g++='g++-14'
 alias v='nvim'
 alias nvcnf='cd ~/.config/nvim'
 
-
-### docker
-alias d='docker'
-alias dc='docker compose'
-
 # Setup Yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
