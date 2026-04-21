@@ -19,16 +19,16 @@ local spaces = {}
 -- }
 
 local colors_spaces = {
-	[1] = colors.cmap_1,
-	[2] = colors.cmap_2,
-	[3] = colors.cmap_3,
-	[4] = colors.cmap_4,
-	[5] = colors.cmap_5,
-	[6] = colors.cmap_6,
-	[7] = colors.cmap_7,
-	[8] = colors.cmap_8,
-	[9] = colors.cmap_9,
-	[10] = colors.cmap_10,
+	[1] = colors.tn_blue,
+	[2] = colors.tn_skyblue,
+	[3] = colors.tn_magenta,
+	[4] = colors.tn_cyan,
+	[5] = colors.tn_blue,
+	[6] = colors.tn_skyblue,
+	[7] = colors.tn_magenta,
+	[8] = colors.tn_cyan,
+	[9] = colors.tn_blue,
+	[10] = colors.tn_skyblue,
 }
 
 for i = 1, 10, 1 do
