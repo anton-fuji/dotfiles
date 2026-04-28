@@ -37,7 +37,7 @@ sbar.add("item", "widgets.memory.padding", {
 })
 
 memory:subscribe("memory_update", function(env)
-	local pct = tonumber(env.used_percentage) or 0
+	local pct = math.floor(tonumber(env.used_percentage) or 0)
 	local color = colors.tn_blue
 	if pct > 60 then color = colors.tn_orange end
 	if pct > 80 then color = colors.tn_red end

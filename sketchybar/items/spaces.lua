@@ -109,9 +109,9 @@ for i = 1, 10, 1 do
 				corner_radius = selected and 6,
 			},
 		})
-		space_bracket:set({
-			-- background = { border_color = selected and colors.grey or colors.bg2 },
-		})
+		-- space_bracket:set({
+		-- 	-- background = { border_color = selected and colors.grey or colors.bg2 },
+		-- })
 	end)
 
 	space:subscribe("mouse.clicked", function(env)
