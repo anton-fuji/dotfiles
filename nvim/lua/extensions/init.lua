@@ -41,7 +41,6 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    lazy = false,
     config = function()
       require("lsp")
     end,
@@ -90,14 +89,14 @@ local plugins = {
   },
 
   -- Color Theme
-  {
-    'AlexvZyl/nordic.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme nordic')
-    end,
-  },
+  -- {
+  --   'AlexvZyl/nordic.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd('colorscheme nordic')
+  --   end,
+  -- },
 
   -- UI
   {
@@ -115,8 +114,7 @@ local plugins = {
   },
   {
     "folke/which-key.nvim",
-    lazy = false,
-    priority = 2000,
+    event = "VeryLazy",
     config = function()
       require("extensions.which-key")
     end,
