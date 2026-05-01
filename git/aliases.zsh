@@ -11,6 +11,7 @@
 
 	br = branch
 	brd = branch -d
+  sw = swith -c
 
 	co = checkout
 	cob = checkout -b
