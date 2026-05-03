@@ -4,7 +4,7 @@ local M = {}
 
 local is_transparent = false
 
-wezterm.on("toggle-transparency", function(window, pane)
+wezterm.on("toggle-transparency", function(window)
   if is_transparent then
     window:set_config_overrides({
       window_background_opacity = 0.55,
@@ -19,7 +19,6 @@ wezterm.on("toggle-transparency", function(window, pane)
   is_transparent = not is_transparent
 end)
 
--- キーバインドを返す
 M.key = {
   key = "S",
   mods = "CMD|SHIFT",
