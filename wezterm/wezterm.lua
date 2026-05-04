@@ -100,7 +100,6 @@ table.insert(keys, {
 })
 table.insert(keys, transparency.key)
 
--- CopyMode
 key_tables.copy_mode = {
   { key = 'Escape', mods = 'NONE',  action = act.CopyMode 'Close' },
   { key = 'q',      mods = 'NONE',  action = act.CopyMode 'Close' },
