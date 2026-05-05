@@ -116,8 +116,7 @@ return {
       action = act.ActivateKeyTable({ name = "activate_pane", timeout_milliseconds = 1000 }),
     },
   },
-  -- キーテーブル
-  -- https://wezfurlong.org/wezterm/config/key-tables.html
+
   key_tables = {
     -- Paneサイズ調整 leader + s
     resize_pane = {
