@@ -39,9 +39,5 @@
   },
   {
     "context": "Dock",
-    "bindings": {
-      "ctrl-g h": "workspace::ActivatePaneLeft",
-      "ctrl-g l": "workspace::ActivatePaneRight"
-    }
   }
 ]
