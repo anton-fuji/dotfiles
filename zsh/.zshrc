@@ -33,7 +33,6 @@ compdef g=git
 
 alias cp='cp -i'
 alias rm='rm -i'
-alias ls='ls --color=auto'
 alias src='source ~/.zshrc'
 alias path="echo $PATH | tr ':' '\n'"
 alias cat='bat'
