@@ -229,12 +229,6 @@ plugins {
     tab-bar        location="zellij:tab-bar"
 }
 
-// ui {
-//     pane_frames {
-//         hide_session_name true
-//     }
-// }
-
 pane_frames false
 scroll_buffer_size 50000
 
