@@ -16,6 +16,7 @@
 	co = checkout
 	cob = checkout -b
   sw = switch
+  swc = switch -c
 
 	l = log
 	l1 = log -1
