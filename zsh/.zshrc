@@ -1,6 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-#Setting zsh-autosuggestions
 plugins=(
     git
     zsh-autosuggestions
