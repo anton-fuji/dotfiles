@@ -84,7 +84,7 @@ local plugins = {
         build = "make install_jsregexp",
       },
       "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
+      "saadparwaiz1/cmp_luasnip", 
     },
   },
 
@@ -143,7 +143,6 @@ local plugins = {
   },
 }
 
--- Lazy.nvim オプション
 local opts = {
   defaults    = { lazy = true },
   checker     = { enabled = true },
