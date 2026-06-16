@@ -60,7 +60,6 @@ local plugins = {
     },
   },
 
-
   -- 補完
   {
     "hrsh7th/nvim-cmp",
@@ -87,16 +86,6 @@ local plugins = {
       "saadparwaiz1/cmp_luasnip", 
     },
   },
-
-  -- Color Theme
-  -- {
-  --   'AlexvZyl/nordic.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd('colorscheme nordic')
-  --   end,
-  -- },
 
   -- UI
   {
