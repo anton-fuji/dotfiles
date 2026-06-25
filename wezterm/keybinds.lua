@@ -179,7 +179,6 @@ return {
       -- コピー
       { key = "y", mods = "NONE", action = act.CopyTo("Clipboard") },
 
-      -- コピーモードを終了
       {
         key = "Enter",
         mods = "NONE",
