@@ -1,0 +1,69 @@
+model = "gpt-5.5"
+
+# Good default balance for implementation, debugging, and code review.
+model_reasoning_effort = "high"
+plan_mode_reasoning_effort = "high"
+model_reasoning_summary = "auto"
+model_verbosity = "medium"
+
+# Friendly keeps collaboration pleasant without changing security boundaries.
+personality = "friendly"
+
+# Let Codex work inside the workspace, but ask before crossing boundaries.
+approval_policy = "on-request"
+approvals_reviewer = "user"
+sandbox_mode = "workspace-write"
+
+# Cached search gives useful web context without granting spawned commands
+# unrestricted network access. Use "live" only when freshness matters.
+web_search = "cached"
+
+# Allow larger layered AGENTS.md instructions before truncation.
+project_doc_max_bytes = 65536
+
+# Treat the current directory as the root when no VCS marker is present.
+project_root_markers = [".git"]
+
+[sandbox_workspace_write]
+# Keep writes scoped to the active workspace by default.
+writable_roots = []
+
+# Keep command network disabled inside the sandbox unless a project needs it.
+network_access = false
+
+# Let Codex use temp directories for build/test scratch files.
+exclude_tmpdir_env_var = false
+exclude_slash_tmp = false
+
+[shell_environment_policy]
+# Pass only a practical baseline environment to subprocesses.
+inherit = "core"
+
+# Keep the built-in KEY/SECRET/TOKEN filtering active.
+ignore_default_excludes = false
+
+# Extra defense-in-depth exclusions for common secret-bearing variables.
+exclude = [
+  "AWS_*",
+  "AZURE_*",
+  "GITHUB_TOKEN",
+  "GH_TOKEN",
+  "NPM_TOKEN",
+  "OPENAI_API_KEY",
+  "ANTHROPIC_API_KEY",
+  "*_SECRET",
+  "*_TOKEN",
+  "*_KEY",
+]
+
+set = {}
+include_only = []
+
+[features]
+hooks = true
+multi_agent = true
+shell_snapshot = true
+fast_mode = true
+
+[tools]
+view_image = true
