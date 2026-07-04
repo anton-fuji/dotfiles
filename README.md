@@ -4,6 +4,11 @@
 
 **A macOS development environment tuned around Nix, Neovim, WezTerm, and fast terminal workflows.**
 
+<p>
+  <img src="https://img.shields.io/badge/Neovim-0f191f?style=for-the-badge&logo=neovim&logoColor=57A143" alt="Neovim">
+  <img src="https://img.shields.io/badge/Zellij-101820?style=for-the-badge&logo=windowsterminal&logoColor=white" alt="Zellij">
+</p>
+
 <img src="./img/nvim.png" alt="Neovim setup screenshot" width="900">
 
 </div>
