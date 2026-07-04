@@ -7,7 +7,7 @@
     settings = {
       user = {
         name = "Fuji";
-        email = "fujiji.entire1414@gmail.com";
+        email = "164746053+anton-fuji@users.noreply.github.com";
       };
 
       init.defaultBranch = "main";
