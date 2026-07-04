@@ -5,7 +5,9 @@
 **A macOS development environment tuned around Nix, Neovim, WezTerm, and fast terminal workflows.**
 
 <p>
+  <img src="https://img.shields.io/badge/Nix-0f172a?style=for-the-badge&logo=nixos&logoColor=7EBAE4" alt="Nix">
   <img src="https://img.shields.io/badge/Neovim-0f191f?style=for-the-badge&logo=neovim&logoColor=57A143" alt="Neovim">
+  <img src="https://img.shields.io/badge/WezTerm-111827?style=for-the-badge&logo=wezterm&logoColor=white" alt="WezTerm">
   <img src="https://img.shields.io/badge/Zellij-101820?style=for-the-badge&logo=windowsterminal&logoColor=white" alt="Zellij">
 </p>
 
