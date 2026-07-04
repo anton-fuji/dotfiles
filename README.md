@@ -1,6 +1,6 @@
 <div align="center">
 
-# Fuji's Dotfiles
+# Dotfiles
 
 **A macOS development environment tuned around Nix, Neovim, WezTerm, and fast terminal workflows.**
 
