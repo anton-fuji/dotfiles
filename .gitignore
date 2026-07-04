@@ -3,9 +3,13 @@
 *
 
 !.gitignore
+!README.md
 !flake.nix
 !flake.lock
 !starship.toml
+
+!img/
+!img/**
 
 !btop/
 !btop/btop.conf
