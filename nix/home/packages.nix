@@ -7,6 +7,7 @@
     git
     gh
     ghq
+    just
     lazygit
     devenv
     nil
@@ -27,7 +28,6 @@
     tig
 
     # terminal tools
-    wezterm
     zellij
 
     # runtime

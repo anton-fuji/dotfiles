@@ -4,6 +4,7 @@
 
 !.gitignore
 !README.md
+!justfile
 !flake.nix
 !flake.lock
 !starship.toml

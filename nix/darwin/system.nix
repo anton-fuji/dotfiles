@@ -19,7 +19,18 @@
     ];
 
     casks = [
+      "docker-desktop"
+      "google-chrome"
+      "obsidian"
+      "postman"
+      "raycast"
       "sf-symbols"
+      "slack"
+      "stats"
+      "visual-studio-code"
+      "wezterm"
+      "zed"
+      "zoom"
     ];
   };
 
