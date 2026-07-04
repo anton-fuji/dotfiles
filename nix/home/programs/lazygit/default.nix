@@ -1,8 +1,8 @@
 { pkgs, lib, ... }:
 
-let 
+let
   lazygitConfigYaml = builtins.readFile ./config.yml;
-  
+
   lazygitConfigWithDeltaPath =
     builtins.replaceStrings [ "pager: delta " ] [ "pager: ${lib.getExe pkgs.delta}" ]
       lazygitConfigYaml;
