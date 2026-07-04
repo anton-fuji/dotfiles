@@ -47,6 +47,7 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 ```text
 .
 ├── flake.nix
+├── justfile
 ├── nix/
 │   ├── darwin/
 │   └── home/
@@ -61,13 +62,36 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 └── img/
 ```
 
-## Apply
+## Bootstrap
 
 This repo is intended to live directly at `~/.config`.
+
+1. Install Nix with flakes enabled.
+2. Install nix-darwin.
+3. Clone this repository to `~/.config`.
+4. Apply the host configuration.
+
+```sh
+cd ~/.config
+just switch
+```
+
+Without `just`:
 
 ```sh
 cd ~/.config
 darwin-rebuild switch --flake .#fujimotoikkinoMacBook-Air-2
+```
+
+## Commands
+
+```sh
+just fmt      # format Nix files
+just check    # evaluate flake outputs without building
+just dry-run  # show what Nix would build/fetch
+just build    # build the darwin system closure
+just switch   # apply the darwin configuration
+just update   # update flake.lock
 ```
 
 ## Notes
