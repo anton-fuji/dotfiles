@@ -13,6 +13,8 @@
 
 <img src="./img/nvim.png" alt="Neovim setup screenshot" width="900">
 
+<sub>Terminal background artwork by <a href="https://x.com/avocadoneko">@avocadoneko</a>.</sub>
+
 </div>
 
 ## Overview
