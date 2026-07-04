@@ -5,7 +5,9 @@
 **A macOS development environment tuned around Nix, Neovim, WezTerm, and fast terminal workflows.**
 
 <p>
+  <img src="https://img.shields.io/badge/Nix-0f172a?style=for-the-badge&logo=nixos&logoColor=7EBAE4" alt="Nix">
   <img src="https://img.shields.io/badge/Neovim-0f191f?style=for-the-badge&logo=neovim&logoColor=57A143" alt="Neovim">
+  <img src="https://img.shields.io/badge/WezTerm-111827?style=for-the-badge&logo=wezterm&logoColor=white" alt="WezTerm">
   <img src="https://img.shields.io/badge/Zellij-101820?style=for-the-badge&logo=windowsterminal&logoColor=white" alt="Zellij">
 </p>
 
@@ -45,6 +47,7 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 ```text
 .
 ├── flake.nix
+├── justfile
 ├── nix/
 │   ├── darwin/
 │   └── home/
@@ -59,13 +62,36 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 └── img/
 ```
 
-## Apply
+## Bootstrap
 
 This repo is intended to live directly at `~/.config`.
+
+1. Install Nix with flakes enabled.
+2. Install nix-darwin.
+3. Clone this repository to `~/.config`.
+4. Apply the host configuration.
+
+```sh
+cd ~/.config
+just switch
+```
+
+Without `just`:
 
 ```sh
 cd ~/.config
 darwin-rebuild switch --flake .#fujimotoikkinoMacBook-Air-2
+```
+
+## Commands
+
+```sh
+just fmt      # format Nix files
+just check    # evaluate flake outputs without building
+just dry-run  # show what Nix would build/fetch
+just build    # build the darwin system closure
+just switch   # apply the darwin configuration
+just update   # update flake.lock
 ```
 
 ## Notes

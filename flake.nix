@@ -21,42 +21,43 @@
     };
   };
 
-  outputs = inputs@{
-    self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    neovim-nightly-overlay,
+  outputs =
+    inputs@{ self
+    , nixpkgs
+    , nix-darwin
+    , home-manager
+    , neovim-nightly-overlay
+    ,
     }:
-    let 
+    let
       username = "fujimotoikki";
-      hostname  = "fujimotoikkinoMacBook-Air-2";
+      hostname = "fujimotoikkinoMacBook-Air-2";
       system = "aarch64-darwin";
 
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [
-        neovim-nightly-overlay.overlays.default
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          neovim-nightly-overlay.overlays.default
         ];
       };
-    in 
+    in
     {
-    # macOS configuration
-    darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
-      inherit system;
-      specialArgs = { inherit username pkgs; };
-      modules = [
-        ./nix/darwin/system.nix
-        
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${username} = import ./nix/home/default.nix;
-          home-manager.extraSpecialArgs = { inherit username; };
-        }
-      ];
+      darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
+        inherit system;
+        specialArgs = { inherit username pkgs; };
+        modules = [
+          ./nix/darwin/system.nix
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-backup";
+            home-manager.users.${username} = import ./nix/home/default.nix;
+            home-manager.extraSpecialArgs = { inherit username; };
+          }
+        ];
+      };
     };
-  };
 }

@@ -2,14 +2,13 @@
 
 let
   homedir = "/Users/${username}";
-  dotfilesDir = "${homedir}/.config";  
 in
 {
   imports = [
     ./packages.nix
-    
+
     ./programs
-    
+
     (import ./dotfiles.nix {
       inherit pkgs lib config;
     })
@@ -20,6 +19,8 @@ in
     homeDirectory = homedir;
     stateVersion = "24.11";
   };
+
+  xdg.enable = true;
 
   programs.home-manager.enable = true;
 }
