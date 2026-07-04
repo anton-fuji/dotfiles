@@ -1,0 +1,17 @@
+[keymap]
+"g" = "go_to_top"
+"G" = "go_to_bottom"
+"Ctrl+f" = "search"
+"Ctrl+r" = "refresh"
+
+[mgr]
+prepend_keymap = [
+  { on = "a", run = "create", desc = "Create a file" },
+  { on = "A", run = "create --dir", desc = "Create a directory" },
+  { on = "S", run = "cd ~/Study_dir/rs-coding/practice/src/"},
+]
+
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
