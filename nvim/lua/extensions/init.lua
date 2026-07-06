@@ -15,6 +15,7 @@ local plugins = {
   require("extensions.toggleterm"),
   require("extensions.oil"),
   require("extensions.trouble"),
+  require("extensions.glance"),
   require("extensions.flash"),
   require("extensions.noice"),
   require("extensions.close-buffers"),
