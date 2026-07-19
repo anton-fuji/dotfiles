@@ -34,6 +34,11 @@ require("telescope").setup({
       preview_cutoff = 120,
     },
   },
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,
@@ -44,6 +49,7 @@ require("telescope").setup({
     file_browser = {
       theme = "dropdown",
       hijack_netrw = true,
+      hidden = true,
       mappings = {
         ["i"] = {
           ["<C-w>"] = function()
