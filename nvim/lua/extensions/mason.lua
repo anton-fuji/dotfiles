@@ -13,16 +13,17 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "rust-analyzer",
+    "rust_analyzer",
     "ts_ls",
+    "tailwindcss",
     "lua_ls",
     "gopls",
     "pyright",
-    "json-lsp",
+    "jsonls",
     "yamlls",
     "dockerls",
     "marksman",
     "ltex",
   },
-  automatic_installation = "auto",
+  automatic_enable = false,
 })

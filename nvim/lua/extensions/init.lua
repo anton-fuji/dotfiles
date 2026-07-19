@@ -49,8 +49,7 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
-    -- event = "VeryLazy",
+    lazy = false,
     config = function()
       require("extensions.mason")
     end,

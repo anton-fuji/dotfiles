@@ -5,6 +5,7 @@ require('lsp.servers.lua')
 require('lsp.servers.python')
 require('lsp.servers.docker')
 require('lsp.servers.typescript')
+require('lsp.servers.tailwindcss')
 require('lsp.servers.yaml')
 require('lsp.servers.c')
 require('lsp.servers.markdown')
@@ -24,12 +25,13 @@ vim.lsp.enable({
   'lua_ls',
   'pyright',
   'dockerls',
-  'tsserver',
+  'ts_ls',
+  'tailwindcss',
   'yamlls',
   'terraformls',
   'clangd',
   'marksman',
   'nil_ls',
-  'astro-ls',
+  'astro',
   'zls',
 })
