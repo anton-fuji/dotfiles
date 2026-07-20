@@ -8,6 +8,7 @@
 !flake.nix
 !flake.lock
 !starship.toml
+!cz.config.cjs
 
 !img/
 !img/**
@@ -32,6 +33,9 @@
 
 !hunk/
 !hunk/config.toml
+
+!lazygit/
+!lazygit/config.yml
 
 !nix/
 !nix/**
