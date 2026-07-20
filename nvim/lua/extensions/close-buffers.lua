@@ -1,6 +1,12 @@
 return {
   "kazhala/close-buffers.nvim",
-  lazy = false,
+  keys = {
+    { "<leader>bh", function() require("close_buffers").delete({ type = "hidden" }) end, desc = "Delete Hidden Buffers" },
+    { "<leader>bu", function() require("close_buffers").delete({ type = "nameless" }) end, desc = "Delete Nameless Buffers" },
+    { "<leader>bc", function() require("close_buffers").delete({ type = "this" }) end, desc = "Delete Current Buffer" },
+    { "<leader>bo", function() require("close_buffers").delete({ type = "other" }) end, desc = "Delete Other Buffers" },
+    { "<leader>ba", function() require("close_buffers").delete({ type = "all", force = true }) end, desc = "Delete All Buffers" },
+  },
   config = function()
     require("close_buffers").setup({
       filetype_ignore = {},                            -- 削除時に無視するファイルタイプ
@@ -9,23 +15,5 @@ return {
       preserve_window_layout = { "this", "nameless" }, -- ウィンドウレイアウトを保持する削除タイプ
       next_buffer_cmd = nil,                           -- ウィンドウレイアウト保持時の次のバッファ取得用カスタム関数
     })
-
-    local opts = { noremap = true, silent = true }
-
-    -- 非表示のバッファを全て削除
-    vim.keymap.set("n", "<leader>bh", [[<CMD>lua require('close_buffers').delete({type = 'hidden'})<CR>]], opts)
-
-    -- 名前のないバッファを全て削除
-    vim.keymap.set("n", "<leader>bu", [[<CMD>lua require('close_buffers').delete({type = 'nameless'})<CR>]], opts)
-
-    -- 現在のバッファを削除（ウィンドウレイアウトを保持）
-    vim.keymap.set("n", "<leader>bc", [[<CMD>lua require('close_buffers').delete({type = 'this'})<CR>]], opts)
-
-    -- 現在のバッファ以外を全て削除
-    vim.keymap.set("n", "<leader>bo", [[<CMD>lua require('close_buffers').delete({type = 'other'})<CR>]], opts)
-
-    -- 全てのバッファを削除
-    vim.keymap.set("n", "<leader>ba", [[<CMD>lua require('close_buffers').delete({type = 'all', force = true})<CR>]],
-      opts)
   end,
 }

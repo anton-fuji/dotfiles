@@ -115,8 +115,7 @@ local plugins = {
   },
   {
     "folke/which-key.nvim",
-    cmd = { "Template" },
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       require("extensions.which-key")
     end,
@@ -137,9 +136,8 @@ local plugins = {
   -- Sonictemplate
   {
     "mattn/vim-sonictemplate",
-    lazy = false,
-    config = function()
-      -- vim.g.sonictemplate_vim_template_dir = "~/.config/nvim/lua/template"
+    cmd = "Template",
+    init = function()
       vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config') .. '/lua/template'
     end,
   },
