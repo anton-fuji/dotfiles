@@ -49,7 +49,7 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       require("extensions.mason")
     end,

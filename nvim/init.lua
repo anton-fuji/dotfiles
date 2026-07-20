@@ -5,8 +5,5 @@ vim.loader.enable()
 require 'options'
 require 'extensions'
 require 'keybinds'
-require 'lsp'
-require 'template'
 
 vim.opt.timeoutlen = 500
-
