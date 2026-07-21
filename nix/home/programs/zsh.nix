@@ -61,6 +61,7 @@
     initContent = ''
       typeset -U path PATH
 
+      export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
       export CPLUS_INCLUDE_PATH="''${CPLUS_INCLUDE_PATH}:/opt/homebrew/include/"
 
       if [ -x /opt/homebrew/bin/brew ]; then
