@@ -44,6 +44,72 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 - `sketchybar/` drives the macOS status bar with Lua modules and helper binaries.
 - `yazi/` adds a fast terminal file manager with git-aware fetchers.
 
+## Neovim plugins
+
+<details>
+<summary><strong>UI and appearance</strong></summary>
+
+| Plugin | Purpose |
+| --- | --- |
+| `folke/tokyonight.nvim` | TokyoNight Storm color scheme with transparent editor background. |
+| `nvim-lualine/lualine.nvim` | Global status line. |
+| `akinsho/bufferline.nvim` | Buffer tabs and diagnostics. |
+| `goolord/alpha-nvim` | Start dashboard. |
+| `folke/noice.nvim` + `rcarriga/nvim-notify` | Command-line, messages, and notifications UI. |
+| `Bekaboo/dropbar.nvim` | File-path and symbol breadcrumbs in the winbar. |
+| `shellRaining/hlchunk.nvim` | Indent guides and scope highlighting. |
+| `echasnovski/mini.animate` | Small UI animations. |
+| `nvim-tree/nvim-web-devicons` | Filetype icons. |
+| `MeanderingProgrammer/render-markdown.nvim` | Rendered Markdown previews in-buffer. |
+</details>
+
+<details>
+<summary><strong>Navigation and files</strong></summary>
+
+| Plugin | Purpose |
+| --- | --- |
+| `nvim-telescope/telescope.nvim` | Fuzzy finding for files, text, buffers, and more. |
+| `nvim-telescope/telescope-file-browser.nvim` | File-browser picker for Telescope. |
+| `nvim-telescope/telescope-project.nvim` | Project picker for Telescope. |
+| `tom-anders/telescope-vim-bookmarks.nvim` + `MattesGroeger/vim-bookmarks` | Bookmark search and management. |
+| `nvim-tree/nvim-tree.lua` | Sidebar file explorer. |
+| `stevearc/oil.nvim` | Edit directories like regular buffers. |
+| `folke/flash.nvim` | Fast jump navigation. |
+| `kevinhwang91/nvim-hlslens` | Search match count and navigation lens. |
+| `dnlhc/glance.nvim` | Definitions, references, and implementations picker. |
+</details>
+
+<details>
+<summary><strong>Coding and language support</strong></summary>
+
+| Plugin | Purpose |
+| --- | --- |
+| `neovim/nvim-lspconfig` | Language Server Protocol configuration. |
+| `williamboman/mason.nvim` + `williamboman/mason-lspconfig.nvim` | Install and connect language servers. |
+| `nvimtools/none-ls.nvim` + `jay-babu/mason-null-ls.nvim` | External formatters and linters through LSP. |
+| `nvim-treesitter/nvim-treesitter` + textobjects | Syntax highlighting, structural selection, and text objects. |
+| `hrsh7th/nvim-cmp` | Completion menu. |
+| `L3MON4D3/LuaSnip` + `rafamadriz/friendly-snippets` | Snippet engine and snippet collection. |
+| `onsails/lspkind-nvim` | Icons and labels in completion items. |
+| `windwp/nvim-autopairs` | Automatic bracket and quote pairs. |
+| `numToStr/Comment.nvim` | Line and block comments. |
+| `echasnovski/mini.surround` | Add, delete, and replace surrounding pairs. |
+| `mattn/vim-sonictemplate` | Template insertion. |
+</details>
+
+<details>
+<summary><strong>Git, terminal, and tasks</strong></summary>
+
+| Plugin | Purpose |
+| --- | --- |
+| `lewis6991/gitsigns.nvim` | Git change signs, hunk staging, and previews. |
+| `sindrets/diffview.nvim` | Side-by-side Git diff and file-history views. |
+| `stevearc/overseer.nvim` | Project task runner and job manager. |
+| `akinsho/toggleterm.nvim` | Toggleable terminal windows. |
+| `kazhala/close-buffers.nvim` | Close buffers while preserving window layout. |
+| `folke/trouble.nvim` | Diagnostics, quickfix, and location-list UI. |
+</details>
+
 ## Layout
 
 ```text
