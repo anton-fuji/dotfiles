@@ -18,6 +18,14 @@ return {
         inc_rename = false,
         lsp_doc_border = false,
       },
+      views = {
+        confirm = {
+          position = {
+            row = 8,
+            col = "50%",
+          },
+        },
+      },
       routes = {
         -- info レベルの通知を非表示
         -- info レベルの通知を非表示（kind はログレベルの文字列）
