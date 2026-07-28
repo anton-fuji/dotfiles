@@ -43,9 +43,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 -- バックスラッシュ
 vim.keymap.set('i', '¥', '\\', { noremap = true })
 
--- スクロール
-vim.keymap.set("n", "<C-j>", "20j", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-k>", "20k", { noremap = true, silent = true })
 
 -- 新規タブでterminalを開く
 vim.keymap.set("n", "tt", function()
