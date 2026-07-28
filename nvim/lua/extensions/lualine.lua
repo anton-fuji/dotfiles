@@ -1,10 +1,10 @@
 local colors = {
-  bg = "#011627",
-  fg = "#c3ccdc",
-  green = "#7fdbca",
-  blue = "#82aaff",
-  purple = "#c792ea",
-  black = "#1f2430",
+  bg = "#1a1b26",
+  fg = "#c0caf5",
+  cyan = "#7dcfff",
+  blue = "#7aa2f7",
+  purple = "#bb9af7",
+  black = "#16161e",
 }
 
 -- Inform. git diff
@@ -34,13 +34,13 @@ end
 
 -- buffer tub ( active / inactive )
 local switch_color = {
-  active = { fg = colors.bg, bg = colors.green },
+  active = { fg = colors.bg, bg = colors.blue },
   inactive = { fg = colors.fg, bg = colors.black },
 }
 
 require("lualine").setup({
   options = {
-    theme = "nightfly",
+    theme = "tokyonight",
     icons_enabled = true,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
@@ -76,7 +76,7 @@ require("lualine").setup({
         source = diff_source,
         symbols = { added = " ", modified = "󰁨 ", removed = " " },
         diff_color = {
-          added = { fg = colors.green },
+          added = { fg = colors.cyan },
           modified = { fg = colors.blue },
           removed = { fg = "#f78c6c" },
         },
@@ -144,7 +144,7 @@ require("lualine").setup({
           mac = "", -- e711
         },
         --
-        color = { bg = colors.green, fg = colors.bg },
+        color = { bg = colors.blue, fg = colors.bg },
         padding = { left = 2, right = 2 },
       },
     },

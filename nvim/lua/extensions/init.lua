@@ -9,6 +9,9 @@ local plugins = {
   require("extensions.autopairs"),
   require("extensions.markdown"),
   require("extensions.bufferline"),
+  require("extensions.dropbar"),
+  require("extensions.diffview"),
+  require("extensions.overseer"),
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
   require("extensions.mini-surround"),
@@ -108,7 +111,6 @@ local plugins = {
     end,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "bluz71/vim-nightfly-colors",
       "lewis6991/gitsigns.nvim",
       --  "SmiteshP/nvim-navic"
     },

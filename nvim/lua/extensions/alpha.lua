@@ -46,9 +46,12 @@ return {
     end
 
     dashboard.section.footer.val = footer()
-    dashboard.section.header.opts.hl = "Type"
-    dashboard.section.buttons.opts.hl = "Keyword"
-    dashboard.section.footer.opts.hl = "Type"
+    vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#7aa2f7" })
+    vim.api.nvim_set_hl(0, "DashboardButton", { fg = "#a9b1d6" })
+    vim.api.nvim_set_hl(0, "DashboardFooter", { fg = "#565f89", italic = true })
+    dashboard.section.header.opts.hl = "DashboardHeader"
+    dashboard.section.buttons.opts.hl = "DashboardButton"
+    dashboard.section.footer.opts.hl = "DashboardFooter"
 
     dashboard.opts.opts.noautocmd = true
 

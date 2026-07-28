@@ -9,6 +9,15 @@ return {
     { "<leader>bj", "<Cmd>BufferLinePick<CR>",      desc = "Buffer line pick" },
   },
   opts = {
+    highlights = {
+      fill = { bg = "#16161e" },
+      background = { bg = "#16161e", fg = "#565f89" },
+      buffer_selected = { bg = "#1a1b26", fg = "#c0caf5", bold = true },
+      indicator_selected = { fg = "#7aa2f7", bg = "#1a1b26" },
+      separator = { fg = "#16161e", bg = "#16161e" },
+      separator_selected = { fg = "#16161e", bg = "#1a1b26" },
+      modified_selected = { fg = "#7dcfff", bg = "#1a1b26" },
+    },
     options = {
       mode = "buffers",
       -- separator_style = "slope",

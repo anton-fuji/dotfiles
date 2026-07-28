@@ -44,6 +44,8 @@ local mappings = {
     desc = "Preview Hunk",
     mode = "n"
   },
+  -- ■ タスク (Overseer)
+  { "<leader>o", group = "+task", mode = "n" },
   -- ■ 検索 (Telescope)
   { "<leader>s",  group = "+search",               mode = "n" },
   { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files", mode = "n" },
