@@ -2,6 +2,7 @@ vim.opt.completeopt = { "menuone", "noselect" }
 
 local cmp           = require("cmp")
 local luasnip       = require("luasnip")
+local lspkind       = require("lspkind")
 
 luasnip.config.setup({
   enable_autosnippets = true,
@@ -38,6 +39,20 @@ cmp.setup({
       end
     end, { 'i', 's' })
   }),
+
+  formatting = {
+    -- 候補の種類をアイコンと短いラベルで示す。候補名が途中で切れにくい。
+    format = lspkind.cmp_format({
+      mode = "symbol_text",
+      maxwidth = 50,
+      ellipsis_char = "…",
+      menu = {
+        nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+      },
+    }),
+  },
 
   sources = {
     { name = "nvim_lsp" },
