@@ -77,6 +77,7 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 | `folke/flash.nvim` | Fast jump navigation. |
 | `kevinhwang91/nvim-hlslens` | Search match count and navigation lens. |
 | `dnlhc/glance.nvim` | Definitions, references, and implementations picker. |
+| `rmagatti/auto-session` | Saves and restores files, tabs, splits, and terminals per project and Git branch. Session picker: `<leader>ps`. |
 </details>
 
 <details>
