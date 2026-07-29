@@ -12,6 +12,7 @@ local plugins = {
   require("extensions.dropbar"),
   require("extensions.diffview"),
   require("extensions.overseer"),
+  require("extensions.auto-session"),
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
   require("extensions.mini-surround"),

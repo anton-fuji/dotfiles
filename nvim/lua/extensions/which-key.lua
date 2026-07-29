@@ -51,6 +51,8 @@ local mappings = {
   },
   -- ■ タスク (Overseer)
   { "<leader>o", group = "+task", mode = "n" },
+  -- ■ プロジェクト
+  { "<leader>p", group = "+project", mode = "n" },
   -- ■ 検索 (Telescope)
   { "<leader>s",  group = "+search",               mode = "n" },
   {
