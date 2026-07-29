@@ -1,15 +1,15 @@
 local colors = {
-  bg = "#16161e",
-  surface = "#1f2335",
-  surface_alt = "#292e42",
-  fg = "#c0caf5",
-  muted = "#565f89",
-  cyan = "#7dcfff",
-  blue = "#7aa2f7",
-  purple = "#bb9af7",
-  green = "#9ece6a",
-  yellow = "#e0af68",
-  red = "#f7768e",
+  bg = "#0f1117",
+  surface = "#161821",
+  surface_alt = "#1e2132",
+  fg = "#9a9ca5",
+  muted = "#6b7089",
+  cyan = "#89b8c2",
+  blue = "#84a0c6",
+  purple = "#a093c7",
+  green = "#8bbf9f",
+  yellow = "#d9a576",
+  red = "#cc7a8b",
 }
 
 -- Inform. git diff

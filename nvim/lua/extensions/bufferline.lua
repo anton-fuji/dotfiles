@@ -10,13 +10,15 @@ return {
   },
   opts = {
     highlights = {
-      fill = { bg = "#16161e" },
-      background = { bg = "#16161e", fg = "#565f89" },
-      buffer_selected = { bg = "#1a1b26", fg = "#c0caf5", bold = true },
-      indicator_selected = { fg = "#7aa2f7", bg = "#1a1b26" },
-      separator = { fg = "#16161e", bg = "#16161e" },
-      separator_selected = { fg = "#16161e", bg = "#1a1b26" },
-      modified_selected = { fg = "#7dcfff", bg = "#1a1b26" },
+      fill = { bg = "#0f1117" },
+      background = { bg = "#0f1117", fg = "#6b7089" },
+      buffer_selected = { bg = "#161821", fg = "#d4d9e1", bold = true },
+      indicator_selected = { fg = "#84a0c6", bg = "#161821" },
+      separator = { fg = "#0f1117", bg = "#0f1117" },
+      separator_selected = { fg = "#0f1117", bg = "#161821" },
+      modified = { fg = "#84a0c6", bg = "#0f1117" },
+      modified_visible = { fg = "#84a0c6", bg = "#0f1117" },
+      modified_selected = { fg = "#84a0c6", bg = "#161821" },
     },
     options = {
       mode = "buffers",
