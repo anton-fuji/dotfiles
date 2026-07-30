@@ -1,13 +1,13 @@
 return {
   "stevearc/overseer.nvim",
-  cmd = { "OverseerRun", "OverseerToggle", "OverseerRestartLast" },
+  cmd = { "OverseerRun", "OverseerOpen", "OverseerToggle", "OverseerRestartLast" },
   keys = {
     {
       "<leader>or",
       function() require("utils.project").run_task() end,
       desc = "Run project task",
     },
-    { "<leader>ot", "<cmd>OverseerToggle<cr>", desc = "Toggle task list" },
+    { "<leader>ot", "<cmd>OverseerOpen<cr>", desc = "Focus task list" },
     { "<leader>oR", "<cmd>OverseerRestartLast<cr>", desc = "Restart last task" },
   },
   opts = {
