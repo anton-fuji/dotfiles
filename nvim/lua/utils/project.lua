@@ -46,17 +46,59 @@ function M.telescope(picker)
   require("telescope.builtin")[picker]({ cwd = M.root() })
 end
 
----Open the Overseer task picker with the current project's directory as its cwd.
+---Open a searchable Telescope picker for the current project's Overseer templates.
 function M.run_task()
   local root = M.root()
+  local search_params = {
+    dir = root,
+    filetype = vim.bo.filetype,
+  }
+  local template = require("overseer.template")
 
-  require("overseer").run_template({
-    cwd = root,
-    search_params = {
-      dir = root,
-      filetype = vim.bo.filetype,
-    },
-  })
+  template.list(search_params, function(templates)
+    templates = vim.tbl_filter(function(item)
+      return not item.hide
+    end, templates)
+
+    if #templates == 0 then
+      vim.notify("No task templates found for this project", vim.log.levels.WARN)
+      return
+    end
+
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
+    local conf = require("telescope.config").values
+
+    pickers.new({}, {
+      prompt_title = "Run task: " .. vim.fn.fnamemodify(root, ":t"),
+      finder = finders.new_table({
+        results = templates,
+        entry_maker = function(item)
+          return {
+            value = item,
+            display = item.desc and (item.name .. " — " .. item.desc) or item.name,
+            ordinal = item.name .. " " .. (item.desc or ""),
+          }
+        end,
+      }),
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          local selected = action_state.get_selected_entry().value
+          actions.close(prompt_bufnr)
+
+          require("overseer").run_template({
+            name = selected.name,
+            cwd = root,
+            search_params = search_params,
+          })
+        end)
+        return true
+      end,
+    }):find()
+  end)
 end
 
 return M
