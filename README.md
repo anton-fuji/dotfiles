@@ -56,6 +56,7 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 | `akinsho/bufferline.nvim` | Buffer tabs and diagnostics. |
 | `goolord/alpha-nvim` | Start dashboard. |
 | `folke/noice.nvim` + `rcarriga/nvim-notify` | Command-line, messages, and notifications UI. |
+| `j-hui/fidget.nvim` | Compact LSP progress indicators and notification history. |
 | `Bekaboo/dropbar.nvim` | File-path and symbol breadcrumbs in the winbar. |
 | `shellRaining/hlchunk.nvim` | Indent guides and scope highlighting. |
 | `echasnovski/mini.animate` | Small UI animations. |

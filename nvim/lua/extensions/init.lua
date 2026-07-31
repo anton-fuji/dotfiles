@@ -21,6 +21,7 @@ local plugins = {
   require("extensions.trouble"),
   require("extensions.glance"),
   require("extensions.flash"),
+  require("extensions.fidget"),
   require("extensions.noice"),
   require("extensions.close-buffers"),
 
