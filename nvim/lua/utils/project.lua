@@ -85,15 +85,53 @@ function M.run_task()
       }),
       sorter = conf.generic_sorter({}),
       attach_mappings = function(prompt_bufnr)
+        local function toggle_selection()
+          actions.toggle_selection(prompt_bufnr)
+        end
+
+        -- Keep these mappings local to the task picker: Tab/j/k move through
+        -- the task list and Space marks any number of tasks to run together.
+        for _, mode in ipairs({ "i", "n" }) do
+          vim.keymap.set(mode, "<Tab>", function()
+            actions.move_selection_next(prompt_bufnr)
+            vim.cmd("stopinsert")
+          end, {
+            buffer = prompt_bufnr,
+            nowait = true,
+          })
+          vim.keymap.set(mode, "j", function()
+            actions.move_selection_next(prompt_bufnr)
+          end, {
+            buffer = prompt_bufnr,
+            nowait = true,
+          })
+          vim.keymap.set(mode, "k", function()
+            actions.move_selection_previous(prompt_bufnr)
+          end, {
+            buffer = prompt_bufnr,
+            nowait = true,
+          })
+          vim.keymap.set(mode, "<Space>", toggle_selection, {
+            buffer = prompt_bufnr,
+            nowait = true,
+          })
+        end
+
         actions.select_default:replace(function()
-          local selected = action_state.get_selected_entry().value
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          local selected = picker:get_multi_selection()
+          if #selected == 0 then
+            selected = { action_state.get_selected_entry() }
+          end
           actions.close(prompt_bufnr)
 
-          require("overseer").run_template({
-            name = selected.name,
-            cwd = root,
-            search_params = search_params,
-          })
+          for _, entry in ipairs(selected) do
+            require("overseer").run_template({
+              name = entry.value.name,
+              cwd = root,
+              search_params = search_params,
+            })
+          end
         end)
         return true
       end,
