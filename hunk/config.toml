@@ -1,4 +1,4 @@
-theme = "midnight"   
+theme = "tokyo-night"
 mode = "split"       
 exclude_untracked = false
 line_numbers = true

@@ -10,7 +10,7 @@ return {
     require("nvim-treesitter.configs").setup {
       ensure_installed = {
         "bash", "comment", "css", "csv", "dockerfile", "go", "graphql",
-        "html", "javascript", "jsdoc", "json", "lua", "markdown", "mermaid",
+        "astro", "html", "javascript", "jsdoc", "json", "lua", "markdown", "mermaid",
         "prisma", "python", "ruby", "rust", "sql", "ssh_config",
         "tsx", "typescript", "vim", "vimdoc",
       },
@@ -18,6 +18,11 @@ return {
       auto_install = true,
       highlight = {
         enable = true,
+        -- Avoid an error while a parser is being installed asynchronously or
+        -- needs to be rebuilt after a Neovim/Tree-sitter update.
+        disable = function(lang)
+          return not pcall(vim.treesitter.get_parser, 0, lang)
+        end,
       },
       incremental_selection = {
         enable = true,
