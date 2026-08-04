@@ -84,11 +84,7 @@ function M.run_task()
         end,
       }),
       sorter = conf.generic_sorter({}),
-      attach_mappings = function(prompt_bufnr)
-        local function toggle_selection()
-          actions.toggle_selection(prompt_bufnr)
-        end
-
+      attach_mappings = function(prompt_bufnr, map)
         -- Keep these mappings local to the task picker: Tab/j/k move through
         -- the task list and Space marks any number of tasks to run together.
         for _, mode in ipairs({ "i", "n" }) do
@@ -99,23 +95,8 @@ function M.run_task()
             buffer = prompt_bufnr,
             nowait = true,
           })
-          vim.keymap.set(mode, "j", function()
-            actions.move_selection_next(prompt_bufnr)
-          end, {
-            buffer = prompt_bufnr,
-            nowait = true,
-          })
-          vim.keymap.set(mode, "k", function()
-            actions.move_selection_previous(prompt_bufnr)
-          end, {
-            buffer = prompt_bufnr,
-            nowait = true,
-          })
-          vim.keymap.set(mode, "<Space>", toggle_selection, {
-            buffer = prompt_bufnr,
-            nowait = true,
-          })
         end
+        require("utils.telescope").apply_picker_navigation_mappings(map, "toggle_selection")
 
         actions.select_default:replace(function()
           local picker = action_state.get_current_picker(prompt_bufnr)
