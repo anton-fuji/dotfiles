@@ -57,7 +57,7 @@ module.exports = {
   emptyScopesAlias: "empty",
   useEmoji: false,
   emojiAlign: "center",
-  upperCaseSubject: false,
+  upperCaseSubject: null,
   allowBreakingChanges: ["feat", "fix"],
   breaklineNumber: 100,
   breaklineChar: "|",
