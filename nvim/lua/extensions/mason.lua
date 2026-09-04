@@ -27,3 +27,14 @@ require("mason-lspconfig").setup({
   },
   automatic_enable = false,
 })
+
+require("mason-null-ls").setup({
+  ensure_installed = {
+    "prettierd",
+    "eslint_d",
+    "stylua",
+  },
+  automatic_installation = false,
+})
+
+require("extensions.none-ls")

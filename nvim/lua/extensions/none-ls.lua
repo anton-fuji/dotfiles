@@ -1,4 +1,4 @@
-local nls = require("none-ls")
+local nls = require("null-ls")
 nls.setup({
   sources = {
     nls.builtins.formatting.prettierd,
@@ -6,4 +6,3 @@ nls.setup({
     nls.builtins.formatting.stylua,
   },
 })
-
