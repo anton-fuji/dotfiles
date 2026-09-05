@@ -62,6 +62,7 @@ local plugins = {
       "williamboman/mason-lspconfig.nvim",
       "jay-babu/mason-null-ls.nvim",
       "nvimtools/none-ls.nvim",
+      "nvimtools/none-ls-extras.nvim",
       "neovim/nvim-lspconfig",
     },
   },

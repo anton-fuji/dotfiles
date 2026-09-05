@@ -30,3 +30,10 @@ git:
     pager: delta --dark --paging=never --side-by-side
   allBranchesLogCmds:
     - git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+
+customCommands:
+  - key: "G"
+    context: "files"
+    description: "Commit with czg"
+    command: "czg --config=$HOME/.config/cz.config.cjs"
+    output: terminal

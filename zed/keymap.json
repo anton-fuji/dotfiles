@@ -10,7 +10,7 @@
     "bindings": {
       "x": ["workspace::SendKeystrokes", "\" _ x"],
       "d": ["workspace::SendKeystrokes", "\" _ d"],
-      "ctrl-l": ["workspace::SendKeystrokes", "escase : nohlsearch enter"]
+      "ctrl-l": ["workspace::SendKeystrokes", "escape : nohlsearch enter"]
     }
   },
   {
