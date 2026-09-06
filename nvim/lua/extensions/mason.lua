@@ -13,17 +13,20 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
   ensure_installed = {
+    "gopls",
     "rust_analyzer",
+    "lua_ls",
+    "pyright",
+    "dockerls",
     "ts_ls",
     "tailwindcss",
-    "lua_ls",
-    "gopls",
-    "pyright",
-    "jsonls",
     "yamlls",
-    "dockerls",
+    "terraformls",
+    "clangd",
     "marksman",
-    "ltex",
+    "nil_ls",
+    "astro",
+    "zls",
   },
   automatic_enable = false,
 })
