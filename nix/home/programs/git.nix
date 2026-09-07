@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.git = {
@@ -15,7 +15,7 @@
       pull.ff = "only";
       core.editor = "nvim";
 
-      ghq.root = "/Users/fujimotoikki/MyDev";
+      ghq.root = "${config.home.homeDirectory}/MyDev";
 
       alias = {
         ad = "add";
