@@ -103,7 +103,7 @@
 
       function gitmain() {
         git config --global user.name "Fuji"
-        git config --global user.email "fujiji.entire1414@gmail.com"
+        git config --global user.email "164746053+anton-fuji@users.noreply.github.com"
       }
 
       zs() {
