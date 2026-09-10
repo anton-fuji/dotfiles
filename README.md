@@ -30,7 +30,7 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 | System | Nix, nix-darwin, Home Manager |
 | Editor | Neovim nightly, Lua, LSP, Treesitter, Telescope |
 | Terminal | WezTerm, Zellij, Starship, Fish |
-| UI | SketchyBar, Fastfetch |
+| UI | Fastfetch |
 | CLI | GitHub CLI, lazygit, ghq, ripgrep, fd, fzf, eza, bat, zoxide |
 | Files | Yazi, htop, btop |
 | Dev | Go, Node.js, Rust, Terraform, Docker-adjacent tooling |
@@ -41,7 +41,6 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 - `nvim/` contains the editor configuration, split into options, keybinds, extensions, LSP, and templates.
 - `wezterm/` keeps terminal appearance, keymaps, transparency, and background behavior isolated.
 - `zellij/` provides modal terminal multiplexing with explicit pane/tab workflows.
-- `sketchybar/` drives the macOS status bar with Lua modules and helper binaries.
 - `yazi/` adds a fast terminal file manager with git-aware fetchers.
 
 ## Neovim plugins
@@ -124,7 +123,6 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 ├── nvim/
 ├── wezterm/
 ├── zellij/
-├── sketchybar/
 ├── yazi/
 ├── fish/
 ├── btop/

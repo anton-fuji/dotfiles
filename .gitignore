@@ -43,11 +43,6 @@
 !nvim/
 !nvim/**
 
-!sketchybar/
-!sketchybar/**
-sketchybar/noice.log
-sketchybar/helpers/event_providers/**/bin/
-
 !wezterm/
 !wezterm/**
 

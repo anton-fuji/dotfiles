@@ -48,7 +48,6 @@
       clip = "pbcopy";
       gcc = "gcc-14";
       "g++" = "g++-14";
-      sketchybar = "/opt/homebrew/bin/sketchybar";
       v = "nvim";
       nvcnf = "cd ~/.config/nvim";
       tf = "terraform";

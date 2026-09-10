@@ -14,7 +14,6 @@
       "nowplaying-cli"
       "rbenv"
       "ruby-build"
-      "sketchybar"
       "switchaudio-osx"
     ];
 
