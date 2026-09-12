@@ -15,6 +15,8 @@
 
 !btop/
 !btop/btop.conf
+!btop/themes/
+!btop/themes/kyli0x.theme
 
 !eza/
 !eza/theme.yml
