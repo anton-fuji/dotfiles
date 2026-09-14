@@ -52,7 +52,9 @@ config.colors = {
     inactive_tab_edge = "none",
   },
 
-  cursor_bg = "#F1009A",
+  cursor_bg = "#1F4B66",
+  cursor_fg = "#B7E3E0",
+  cursor_border = "#5C9BB3",
 }
 
 -- タブの形をカスタマイズ
