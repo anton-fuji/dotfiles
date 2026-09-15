@@ -1,14 +1,14 @@
 gui:
   theme:
     activeBorderColor:
-      - "#89b4fa"
+      - "#5C9BB3"
       - bold
     inactiveBorderColor:
       - "#a6adc8"
     optionsTextColor:
       - "#89b4fa"
     selectedLineBgColor:
-      - "#313244"
+      - "#1F4B66"
     cherryPickedCommitBgColor:
       - "#45475a"
     cherryPickedCommitFgColor:
