@@ -37,7 +37,7 @@ config.window_frame = {
 
 -- タブバーを背景色に合わせる
 config.window_background_gradient = {
-  colors = { "#0a0a0a" },
+  colors = { "#001829" },
 }
 
 -- タブの追加ボタンを非表示
@@ -68,8 +68,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local foreground = "#8FBFBB"
   local edge_background = "none"
   if tab.is_active then
-    background = "#175DAF"
-    foreground = "#FFFFFF"
+    background = "#1F4B66"
+    foreground = "#B7E3E0"
   end
   local edge_foreground = background
   local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
