@@ -125,12 +125,12 @@ style = "bg:surface"
 format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
 
 [terraform]
-symbol = "󰆧 "
+symbol = " "
 style = "bg:surface"
 format = '[[ $symbol$workspace ](fg:purple bg:surface)]($style)'
 
 [zig]
-symbol = "↯ "
+symbol = " "
 style = "bg:surface"
 format = '[[ $symbol$version ](fg:blue bg:surface)]($style)'
 
@@ -174,7 +174,7 @@ format = "[󰑮 $duration]($style) "
 disabled = false
 time_format = "%R" # Hour:Minute Format
 style = "fg:muted"
-format = "[ $time]($style)"
+format = "[󱦟 $time]($style)"
 
 [jobs]
 symbol = "✦ "
