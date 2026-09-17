@@ -1,17 +1,17 @@
-# format="""$directory $git_branch$git_status$fill$cmd_duration$username$time\n$character
-# """
+"$schema" = 'https://starship.rs/config-schema.json'
+palette = "fuji_dark"
 
 format = """
 $directory\
-[󰣇 ](fg:#88C0D0)\
+[󰣇 ](fg:blue)\
 $git_branch\
 $git_status\
-$fill \
-[ ](fg:#1d2230)\
+$fill\
 \n$character
 """
 
 right_format = """
+$status\
 $cmd_duration\
 $username\
 $time
@@ -20,11 +20,25 @@ $time
 # コマンドラインに1行分のスペースを入れる
 add_newline = true
 
+[palettes.fuji_dark]
+base = "#001829"
+surface = "#123047"
+accent = "#4C8FA9"
+accent_bright = "#5C9BB3"
+blue = "#84A0C6"
+purple = "#A093C7"
+text = "#8FBFBB"
+cyan = "#89B8C2"
+muted = "#7A9BAD"
+success = "#8BBF9F"
+error = "#CC7A8B"
+
 [username]
-style_user = "white bold"
-style_root = "black bold"
-format = "user: [$user]($style) "
+style_user = "fg:text bold"
+style_root = "fg:error bold"
+format = "[$user]($style) "
 disabled = false
+show_always = false
 
 
 # left_promptとright_promptの間を何で埋めるか設定
@@ -32,17 +46,17 @@ disabled = false
 symbol = ' '
 
 [directory]
-style = "fg:#88C0D0"
+style = "fg:text"
 # format = "[ $path ]($style)"
-truncation_length = 10
+truncation_length = 4
 truncate_to_repo = false
 truncation_symbol = "…/"
 # truncation_symbol = ' ' # nf-fa-folder_open
 # truncate_to_repo = false
 # style = 'fg:#7aa2f7 bg:#1a1b26'
 read_only = ' 󰌾 ' # nf-md-lock
-read_only_style = 'fg:#f7768e bg:#0a0a0a'
-format = '[ $path ]($style)[$read_only]($read_only_style)'
+read_only_style = 'fg:error'
+format = '[$path]($style)[$read_only]($read_only_style) '
 
 
 [directory.substitutions]
@@ -58,41 +72,59 @@ disabled = true
 
 [nodejs]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:surface"
+format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:surface"
+format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:surface"
+format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
 
 [git_branch]
-symbol = ""
-style = "fg:#1d2230"
-format = '[[ $symbol $branch ](fg:#769ff0)]($style)'
+symbol = " "
+style = "fg:blue"
+format = '[$symbol$branch]($style) '
+truncation_length = 24
+truncation_symbol = "…"
 
 [git_status]
-style = "fg:#1d2230"
-format = '[[($all_status$ahead_behind )](fg:#769ff0)]($style)'
+style = "fg:cyan"
+format = '([$all_status$ahead_behind]($style)) '
+conflicted = "[=${count}](fg:error)"
+ahead = "[⇡${count}](fg:blue)"
+behind = "[⇣${count}](fg:blue)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](fg:purple)"
+untracked = "[?${count}](fg:purple)"
+stashed = "[≡${count}](fg:purple)"
+modified = "[!${count}](fg:purple)"
+staged = "[+${count}](fg:success)"
+renamed = "[»${count}](fg:cyan)"
+deleted = "[✘${count}](fg:error)"
+typechanged = "[~${count}](fg:purple)"
 
 [cmd_duration]
-min_time = 1
-style = 'fg:#f594ff'
-format = "[ 󰑮 $duration]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
+min_time = 2000
+style = "fg:purple"
+format = "[󰑮 $duration]($style) "
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "fg:#a0a9cb"
-format = '[[   $time ](fg:#94eeff)]($style)'
+style = "fg:muted"
+format = "[ $time]($style)"
+
+[status]
+disabled = false
+symbol = "✗ "
+style = "fg:error bold"
+format = "[$symbol$status]($style) "
 
 [character]
-success_symbol = "[❯](bold fg:#88C0D0)" # Nordの明るい青
-error_symbol = "[❯](bold fg:#BF616A)" # Nordの赤
-vimcmd_symbol = '[V](bold green) '
-
+success_symbol = "[❯](bold fg:blue)"
+error_symbol = "[❯](bold fg:error)"
+vimcmd_symbol = '[V](bold fg:purple) '

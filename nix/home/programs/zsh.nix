@@ -59,6 +59,8 @@
 
     initContent = ''
       typeset -U path PATH
+      # Starshipのright_formatとfillの位置ずれを防ぐ
+      export ZLE_RPROMPT_INDENT=0
 
       export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
       export CPLUS_INCLUDE_PATH="''${CPLUS_INCLUDE_PATH}:/opt/homebrew/include/"
