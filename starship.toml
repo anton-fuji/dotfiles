@@ -85,18 +85,18 @@ disabled = true
 [nix_shell]
 symbol = "󱄅 "
 style = "bg:surface"
-format = '[[ $symbol$state ](fg:blue bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol$state ](fg:blue bg:surface)[](fg:surface) '
 
 [python]
 symbol = " "
 style = "bg:surface"
-format = '[[ $symbol$version $virtualenv ](fg:cyan bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol$version $virtualenv ](fg:cyan bg:surface)[](fg:surface) '
 
 [nodejs]
 symbol = ""
 style = "bg:surface"
 detect_extensions = []
-format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol ($version) ](fg:cyan bg:surface)[](fg:surface) '
 
 [custom.nextjs]
 command = "jq -r '(.dependencies.next // .devDependencies.next) // empty' package.json"
@@ -104,7 +104,7 @@ when = "jq -e '(.dependencies.next // .devDependencies.next) != null' package.js
 detect_files = ["package.json"]
 symbol = " "
 style = "fg:purple"
-format = "[$symbol$output]($style) "
+format = "[](fg:surface)[ $symbol$output ](fg:purple bg:surface)[](fg:surface) "
 
 [custom.react]
 command = "jq -r '(.dependencies.react // .devDependencies.react) // empty' package.json"
@@ -112,32 +112,32 @@ when = "jq -e '((.dependencies.react // .devDependencies.react) != null) and ((.
 detect_files = ["package.json"]
 symbol = " "
 style = "fg:cyan"
-format = "[$symbol$output]($style) "
+format = "[](fg:surface)[ $symbol$output ](fg:cyan bg:surface)[](fg:surface) "
 
 [rust]
 symbol = ""
 style = "bg:surface"
-format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol ($version) ](fg:cyan bg:surface)[](fg:surface) '
 
 [golang]
 symbol = ""
 style = "bg:surface"
-format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol ($version) ](fg:cyan bg:surface)[](fg:surface) '
 
 [terraform]
 symbol = " "
 style = "bg:surface"
-format = '[[ $symbol$workspace ](fg:purple bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol$workspace ](fg:purple bg:surface)[](fg:surface) '
 
 [zig]
 symbol = " "
 style = "bg:surface"
-format = '[[ $symbol$version ](fg:blue bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol$version ](fg:blue bg:surface)[](fg:surface) '
 
 [lua]
 symbol = " "
 style = "bg:surface"
-format = '[[ $symbol$version ](fg:purple bg:surface)]($style)'
+format = '[](fg:surface)[ $symbol$version ](fg:purple bg:surface)[](fg:surface) '
 
 [git_branch]
 symbol = " "
