@@ -4,7 +4,18 @@ palette = "fuji_dark"
 format = """
 $directory\
 [󰣇 ](fg:blue)\
+$nix_shell\
+$python\
+$nodejs\
+${custom.nextjs}\
+${custom.react}\
+$rust\
+$golang\
+$terraform\
+$zig\
+$lua\
 $git_branch\
+$git_state\
 $git_status\
 $fill\
 \n$character
@@ -12,6 +23,7 @@ $fill\
 
 right_format = """
 $status\
+$jobs\
 $cmd_duration\
 $username\
 $time
@@ -70,10 +82,37 @@ disabled = true
 [gcloud]
 disabled = true
 
+[nix_shell]
+symbol = "󱄅 "
+style = "bg:surface"
+format = '[[ $symbol$state ](fg:blue bg:surface)]($style)'
+
+[python]
+symbol = " "
+style = "bg:surface"
+format = '[[ $symbol$version $virtualenv ](fg:cyan bg:surface)]($style)'
+
 [nodejs]
 symbol = ""
 style = "bg:surface"
+detect_extensions = []
 format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
+
+[custom.nextjs]
+command = "jq -r '(.dependencies.next // .devDependencies.next) // empty' package.json"
+when = "jq -e '(.dependencies.next // .devDependencies.next) != null' package.json >/dev/null 2>&1"
+detect_files = ["package.json"]
+symbol = " "
+style = "fg:purple"
+format = "[$symbol$output]($style) "
+
+[custom.react]
+command = "jq -r '(.dependencies.react // .devDependencies.react) // empty' package.json"
+when = "jq -e '((.dependencies.react // .devDependencies.react) != null) and ((.dependencies.next // .devDependencies.next) == null)' package.json >/dev/null 2>&1"
+detect_files = ["package.json"]
+symbol = " "
+style = "fg:cyan"
+format = "[$symbol$output]($style) "
 
 [rust]
 symbol = ""
@@ -85,12 +124,31 @@ symbol = ""
 style = "bg:surface"
 format = '[[ $symbol ($version) ](fg:cyan bg:surface)]($style)'
 
+[terraform]
+symbol = "󰆧 "
+style = "bg:surface"
+format = '[[ $symbol$workspace ](fg:purple bg:surface)]($style)'
+
+[zig]
+symbol = "↯ "
+style = "bg:surface"
+format = '[[ $symbol$version ](fg:blue bg:surface)]($style)'
+
+[lua]
+symbol = " "
+style = "bg:surface"
+format = '[[ $symbol$version ](fg:purple bg:surface)]($style)'
+
 [git_branch]
 symbol = " "
 style = "fg:blue"
 format = '[$symbol$branch]($style) '
 truncation_length = 24
 truncation_symbol = "…"
+
+[git_state]
+style = "fg:purple"
+format = "[$state( $progress_current/$progress_total)]($style) "
 
 [git_status]
 style = "fg:cyan"
@@ -117,6 +175,13 @@ disabled = false
 time_format = "%R" # Hour:Minute Format
 style = "fg:muted"
 format = "[ $time]($style)"
+
+[jobs]
+symbol = "✦ "
+number_threshold = 1
+symbol_threshold = 1
+style = "fg:blue"
+format = "[$symbol$number]($style) "
 
 [status]
 disabled = false
