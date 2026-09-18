@@ -4,16 +4,6 @@ palette = "fuji_dark"
 format = """
 $directory\
 [󰣇 ](fg:blue)\
-$nix_shell\
-$python\
-$nodejs\
-${custom.nextjs}\
-${custom.react}\
-$rust\
-$golang\
-$terraform\
-$zig\
-$lua\
 $git_branch\
 $git_state\
 $git_status\
@@ -24,8 +14,8 @@ $fill\
 right_format = """
 $status\
 $jobs\
-$cmd_duration\
 $username\
+${custom.language_stack}\
 $time
 """
 
@@ -82,62 +72,11 @@ disabled = true
 [gcloud]
 disabled = true
 
-[nix_shell]
-symbol = "󱄅 "
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol$state ](fg:blue bg:surface)[](fg:surface) '
-
-[python]
-symbol = " "
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol$version $virtualenv ](fg:cyan bg:surface)[](fg:surface) '
-
-[nodejs]
-symbol = ""
-style = "bg:surface"
-detect_extensions = []
-format = '[](fg:surface)[ $symbol ($version) ](fg:cyan bg:surface)[](fg:surface) '
-
-[custom.nextjs]
-command = "jq -r '(.dependencies.next // .devDependencies.next) // empty' package.json"
-when = "jq -e '(.dependencies.next // .devDependencies.next) != null' package.json >/dev/null 2>&1"
-detect_files = ["package.json"]
-symbol = " "
-style = "fg:purple"
-format = "[](fg:surface)[ $symbol$output ](fg:purple bg:surface)[](fg:surface) "
-
-[custom.react]
-command = "jq -r '(.dependencies.react // .devDependencies.react) // empty' package.json"
-when = "jq -e '((.dependencies.react // .devDependencies.react) != null) and ((.dependencies.next // .devDependencies.next) == null)' package.json >/dev/null 2>&1"
-detect_files = ["package.json"]
-symbol = " "
+[custom.language_stack]
+command = "~/.config/scripts/starship-language-context"
+when = "~/.config/scripts/starship-language-context --check"
 style = "fg:cyan"
-format = "[](fg:surface)[ $symbol$output ](fg:cyan bg:surface)[](fg:surface) "
-
-[rust]
-symbol = ""
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol ($version) ](fg:cyan bg:surface)[](fg:surface) '
-
-[golang]
-symbol = ""
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol ($version) ](fg:cyan bg:surface)[](fg:surface) '
-
-[terraform]
-symbol = " "
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol$workspace ](fg:purple bg:surface)[](fg:surface) '
-
-[zig]
-symbol = " "
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol$version ](fg:blue bg:surface)[](fg:surface) '
-
-[lua]
-symbol = " "
-style = "bg:surface"
-format = '[](fg:surface)[ $symbol$version ](fg:purple bg:surface)[](fg:surface) '
+format = "[](fg:surface)[ $output ](fg:cyan bg:surface)[](fg:surface) "
 
 [git_branch]
 symbol = " "

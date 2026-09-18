@@ -9,6 +9,8 @@
 !flake.lock
 !starship.toml
 !cz.config.cjs
+!scripts/
+!scripts/**
 
 !img/
 !img/**

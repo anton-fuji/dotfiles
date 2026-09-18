@@ -1,0 +1,145 @@
+#!/bin/sh
+
+project_dir=$PWD
+while [ "$project_dir" != "/" ]; do
+  if [ -f "$project_dir/package.json" ] || \
+    [ -f "$project_dir/pyproject.toml" ] || \
+    [ -f "$project_dir/Cargo.toml" ] || \
+    [ -f "$project_dir/go.mod" ] || \
+    [ -f "$project_dir/main.tf" ] || \
+    [ -f "$project_dir/build.zig" ]; then
+    break
+  fi
+
+  parent_dir=${project_dir%/*}
+  [ "$parent_dir" = "$project_dir" ] && break
+  project_dir=$parent_dir
+done
+
+has_file() {
+  for filename in "$@"; do
+    [ -e "$project_dir/$filename" ] && return 0
+  done
+  return 1
+}
+
+has_python_files() {
+  find "$project_dir" -maxdepth 1 -type f \
+    \( -name '*.py' -o -name '*.pyi' \) -print -quit 2>/dev/null | grep -q .
+}
+
+has_rust_files() {
+  find "$project_dir" -maxdepth 1 -type f -name '*.rs' -print -quit 2>/dev/null | grep -q .
+}
+
+has_go_files() {
+  find "$project_dir" -maxdepth 1 -type f -name '*.go' -print -quit 2>/dev/null | grep -q .
+}
+
+has_terraform_files() {
+  find "$project_dir" -maxdepth 1 -type f \
+    \( -name '*.tf' -o -name '*.tfvars' \) -print -quit 2>/dev/null | grep -q .
+}
+
+has_zig_files() {
+  find "$project_dir" -maxdepth 1 -type f -name '*.zig' -print -quit 2>/dev/null | grep -q .
+}
+
+has_lua_files() {
+  find "$project_dir" -maxdepth 1 -type f \
+    \( -name '*.lua' -o -name '*.rockspec' \) -print -quit 2>/dev/null | grep -q .
+}
+
+stack=
+append() {
+  if [ -n "$stack" ]; then
+    stack="$stack / "
+  fi
+  stack="$stack$1"
+}
+
+if [ -n "${IN_NIX_SHELL:-}" ]; then
+  append "󱄅 ${IN_NIX_SHELL}"
+fi
+
+if has_file pyproject.toml requirements.txt requirements-dev.txt Pipfile setup.py .python-version || has_python_files; then
+  python_bin=python
+  command -v "$python_bin" >/dev/null 2>&1 || python_bin=python3
+  python_version=$($python_bin --version 2>&1 | awk '{print $2}')
+  python_label=""
+  [ -n "$python_version" ] && python_label="$python_label v$python_version"
+  if [ -n "${VIRTUAL_ENV:-}" ]; then
+    python_label="$python_label $(basename "$VIRTUAL_ENV")"
+  fi
+  append "$python_label"
+fi
+
+if has_file package.json package-lock.json pnpm-lock.yaml yarn.lock bun.lockb bun.lock; then
+  node_version=$(node --version 2>/dev/null | sed 's/^v//')
+  node_label=""
+  [ -n "$node_version" ] && node_label="$node_label v$node_version"
+  append "$node_label"
+
+  if [ -f "$project_dir/package.json" ] && command -v jq >/dev/null 2>&1; then
+    next_version=$(jq -r '(.dependencies.next // .devDependencies.next) // empty' "$project_dir/package.json" 2>/dev/null)
+    react_version=$(jq -r '(.dependencies.react // .devDependencies.react) // empty' "$project_dir/package.json" 2>/dev/null)
+    typescript_version=$(jq -r '(.dependencies.typescript // .devDependencies.typescript) // empty' "$project_dir/package.json" 2>/dev/null)
+
+    if [ -n "$next_version" ]; then
+      append " $next_version"
+    elif [ -n "$react_version" ]; then
+      append " $react_version"
+    fi
+
+    if [ -n "$typescript_version" ]; then
+      typescript_display=$typescript_version
+      case "$typescript_display" in
+        npm:*) typescript_display=${typescript_display##*@} ;;
+      esac
+      typescript_display=$(printf '%s' "$typescript_display" | sed -E 's/^[~^<>= ]+//')
+      [ -n "$typescript_display" ] && append " $typescript_display"
+    fi
+  fi
+fi
+
+if has_file Cargo.toml || has_rust_files; then
+  rust_version=$(rustc --version 2>/dev/null | awk '{print $2}')
+  rust_label=""
+  [ -n "$rust_version" ] && rust_label="$rust_label v$rust_version"
+  append "$rust_label"
+fi
+
+if has_file go.mod go.sum go.work || has_go_files; then
+  go_version=$(go version 2>/dev/null | awk '{print $3}')
+  go_label=""
+  [ -n "$go_version" ] && go_label="$go_label $go_version"
+  append "$go_label"
+fi
+
+if has_file main.tf || has_terraform_files; then
+  terraform_version=$(terraform version 2>/dev/null | sed -n '1p' | awk '{print $2}')
+  terraform_label=""
+  [ -n "$terraform_version" ] && terraform_label="$terraform_label $terraform_version"
+  append "$terraform_label"
+fi
+
+if has_file build.zig || has_zig_files; then
+  zig_version=$(zig version 2>/dev/null)
+  zig_label=""
+  [ -n "$zig_version" ] && zig_label="$zig_label $zig_version"
+  append "$zig_label"
+fi
+
+if has_lua_files; then
+  lua_version=$(lua -v 2>&1 | awk '{print $2}')
+  lua_label=""
+  [ -n "$lua_version" ] && lua_label="$lua_label $lua_version"
+  append "$lua_label"
+fi
+
+if [ "${1:-}" = "--check" ]; then
+  [ -n "$stack" ]
+  exit $?
+fi
+
+[ -n "$stack" ] && printf '%s' "$stack"
