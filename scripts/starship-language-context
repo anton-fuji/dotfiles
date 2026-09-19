@@ -50,6 +50,21 @@ has_lua_files() {
     \( -name '*.lua' -o -name '*.rockspec' \) -print -quit 2>/dev/null | grep -q .
 }
 
+if [ "${1:-}" = "--check" ]; then
+  if [ -n "${IN_NIX_SHELL:-}" ] || \
+    has_file pyproject.toml requirements.txt requirements-dev.txt Pipfile setup.py .python-version || \
+    has_python_files || \
+    has_file package.json package-lock.json pnpm-lock.yaml yarn.lock bun.lockb bun.lock || \
+    has_file Cargo.toml || has_rust_files || \
+    has_file go.mod go.sum go.work || has_go_files || \
+    has_file main.tf || has_terraform_files || \
+    has_file build.zig || has_zig_files || \
+    has_lua_files; then
+    exit 0
+  fi
+  exit 1
+fi
+
 stack=
 append() {
   if [ -n "$stack" ]; then
@@ -135,11 +150,6 @@ if has_lua_files; then
   lua_label=""
   [ -n "$lua_version" ] && lua_label="$lua_label $lua_version"
   append "$lua_label"
-fi
-
-if [ "${1:-}" = "--check" ]; then
-  [ -n "$stack" ]
-  exit $?
 fi
 
 [ -n "$stack" ] && printf '%s' "$stack"
