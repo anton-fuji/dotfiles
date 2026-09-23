@@ -74,9 +74,9 @@ disabled = true
 
 [custom.language_stack]
 command = "~/.config/scripts/starship-language-context"
-when = "~/.config/scripts/starship-language-context --check"
+when = true
 style = "fg:cyan"
-format = "[](fg:surface)[ $output ](fg:cyan bg:surface)[](fg:surface) "
+format = "([](fg:surface)[ $output ](fg:cyan bg:surface)[](fg:surface) )"
 
 [git_branch]
 symbol = " "
@@ -91,7 +91,7 @@ format = "[$state( $progress_current/$progress_total)]($style) "
 
 [git_status]
 style = "fg:cyan"
-format = '([$all_status$ahead_behind]($style)) '
+format = '([$all_status$ahead_behind]($style) )'
 conflicted = "[=${count}](fg:error)"
 ahead = "[⇡${count}](fg:blue)"
 behind = "[⇣${count}](fg:blue)"
