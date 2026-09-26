@@ -1,27 +1,28 @@
 gui:
   theme:
     activeBorderColor:
-      - "#5C9BB3"
+      - "#7AA2F7"
       - bold
     inactiveBorderColor:
-      - "#a6adc8"
+      - "#565F89"
     optionsTextColor:
-      - "#89b4fa"
+      - "#E0AF68"
     selectedLineBgColor:
-      - "#1F4B66"
+      - "#292E42"
     cherryPickedCommitBgColor:
-      - "#45475a"
+      - "#3D59A1"
     cherryPickedCommitFgColor:
-      - "#89b4fa"
+      - "#BB9AF7"
     unstagedChangesColor:
-      - "#f38ba8"
+      - "#F7768E"
     defaultFgColor:
-      - "#cdd6f4"
+      - "#C0CAF5"
     searchingActiveBorderColor:
-      - "#f9e2af"
+      - "#7DCFFF"
+      - bold
 
   authorColors:
-    "*": "#b4befe"
+    "*": "#BB9AF7"
 git:
   # git log
   branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' {{branchName}} --"

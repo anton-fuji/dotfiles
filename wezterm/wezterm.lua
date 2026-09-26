@@ -4,6 +4,27 @@ local transparency = require("transparency")
 
 local config = wezterm.config_builder()
 local act = wezterm.action
+local terminal_colors = wezterm.color.get_default_colors()
+
+-- Tokyo NightのANSIパレット。Lazygitのステータス表示にも使われる。
+-- get_default_colors()をベースにして、背景などの既存設定は維持する。
+terminal_colors.ansi[1] = "#15161E"
+terminal_colors.ansi[2] = "#F7768E"
+terminal_colors.ansi[3] = "#9ECE6A"
+terminal_colors.ansi[4] = "#E0AF68"
+terminal_colors.ansi[5] = "#7AA2F7"
+terminal_colors.ansi[6] = "#BB9AF7"
+terminal_colors.ansi[7] = "#7DCFFF"
+terminal_colors.ansi[8] = "#A9B1D6"
+
+terminal_colors.brights[1] = "#414868"
+terminal_colors.brights[2] = "#FF899D"
+terminal_colors.brights[3] = "#9FE044"
+terminal_colors.brights[4] = "#FABA4A"
+terminal_colors.brights[5] = "#8DB0FF"
+terminal_colors.brights[6] = "#C7A9FF"
+terminal_colors.brights[7] = "#A4DAFF"
+terminal_colors.brights[8] = "#C0CAF5"
 
 config.automatically_reload_config = true
 config.font_size = 13.7
@@ -48,6 +69,8 @@ config.show_close_tab_button_in_tabs = false
 
 -- タブ同士の境界線を非表示
 config.colors = {
+  ansi = terminal_colors.ansi,
+  brights = terminal_colors.brights,
   tab_bar = {
     inactive_tab_edge = "none",
   },
