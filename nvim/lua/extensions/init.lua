@@ -24,6 +24,7 @@ local plugins = {
   require("extensions.fidget"),
   require("extensions.noice"),
   require("extensions.close-buffers"),
+  require("extensions.blink-cmp"),
 
   -- Telescope
   {
@@ -47,6 +48,7 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    dependencies = { "saghen/blink.cmp" },
     -- lazy = false,
     config = function()
       require("lsp")
@@ -67,33 +69,6 @@ local plugins = {
     },
   },
 
-
-  -- 補完
-  {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
-    config = function()
-      require("extensions.nvim-cmp")
-      require("extensions.snippets")
-    end,
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "onsails/lspkind-nvim",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
-      {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        build = "make install_jsregexp",
-      },
-      "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
-    },
-  },
 
   -- UI
   {
