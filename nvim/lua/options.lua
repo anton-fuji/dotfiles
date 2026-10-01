@@ -44,6 +44,7 @@ vim.opt.fillchars = {
 
 -- buffer
 vim.opt.swapfile = true
+vim.opt.undofile = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 0
 vim.opt.expandtab = true
