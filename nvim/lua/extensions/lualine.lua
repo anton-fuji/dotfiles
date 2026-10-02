@@ -28,7 +28,7 @@ end
 local function lsp_client()
   local clients = vim.lsp.get_clients({ bufnr = 0 })
   if #clients == 0 then
-    return "No LSP"
+    return ""
   end
   local client_names = {}
   for _, client in ipairs(clients) do
@@ -177,21 +177,6 @@ require("lualine").setup({
         color = { fg = colors.fg, gui = "bold" },
       },
       {
-        "diagnostics",
-        sources = { "nvim_diagnostic", "nvim_lsp" },
-        sections = { "error", "warn", "info", "hint" },
-        symbols = {
-          error = " ",
-          warn = " ",
-          info = " ",
-          hint = " ",
-        },
-        colored = true,
-        always_visible = false,
-        update_in_insert = true,
-        padding = { left = 2, right = 2 },
-      },
-      {
         "searchcount",
         maxcount = 999,
         timeout = 200,
@@ -228,6 +213,9 @@ require("lualine").setup({
       },
       {
         lsp_client,
+        cond = function()
+          return #vim.lsp.get_clients({ bufnr = 0 }) > 0
+        end,
         icon = "",
         color = { fg = colors.cyan, gui = "bold" },
         padding = { left = 1, right = 1 },
