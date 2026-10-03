@@ -17,6 +17,16 @@ return {
 		keymap = {
 			preset = "default",
 			["<CR>"] = { "select_and_accept", "fallback" },
+			["<C-k>"] = {
+				function()
+					if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/signatureHelp" }) == 0 then
+						return
+					end
+					vim.lsp.buf.signature_help()
+					return true
+				end,
+				"fallback",
+			},
 			["<Tab>"] = {
 				"select_next",
 				function()

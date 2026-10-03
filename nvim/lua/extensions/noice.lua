@@ -5,10 +5,10 @@ return {
     opts = {
       lsp = {
         progress = { enabled = false },
-        -- 引数ヘルプの自動表示は Noice に集約する。
+        -- 引数ヘルプは必要なときだけ手動表示する。
         signature = {
           enabled = true,
-          auto_open = { enabled = true },
+          auto_open = { enabled = false },
         },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
