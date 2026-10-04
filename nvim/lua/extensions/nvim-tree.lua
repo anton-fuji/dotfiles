@@ -4,7 +4,7 @@ return {
   cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeRefresh" },
   keys = {
     { "<C-n>",    "<cmd>NvimTreeToggle<CR>",    desc = "Toggle NvimTree" },
-    { "<leader>r","<cmd>NvimTreeRefresh<CR>",   desc = "Refresh NvimTree" },
+    { "<leader>fr","<cmd>NvimTreeRefresh<CR>",   desc = "Refresh NvimTree" },
     { "<leader>n","<cmd>NvimTreeFindFile<CR>",  desc = "Find File in NvimTree" },
   },
   config = function()
@@ -38,4 +38,3 @@ return {
     }
   end,
 }
-

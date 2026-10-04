@@ -68,7 +68,7 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 vim.keymap.set("n", "<leader>-", "<CMD>Oil .<CR>", { desc = "Open cwd" })
 
 -- Window Resize
-vim.keymap.set("n", "<C-n>", function()
+vim.keymap.set("n", "<leader>wr", function()
   print("Resize: h/l (ESC to exit)")
   while true do
     local key = vim.fn.getchar()
@@ -83,4 +83,4 @@ vim.keymap.set("n", "<C-n>", function()
       break
     end
   end
-end, { desc = "Resize mode" })
+end, { desc = "Resize window" })
