@@ -175,7 +175,7 @@ keybinds clear-defaults=true {
         bind "Ctrl p" { SwitchToMode "pane"; }
     }
     shared_except "locked" "resize" {
-        bind "Ctrl n" { SwitchToMode "resize"; }
+        bind "Alt r" { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
@@ -241,6 +241,6 @@ theme        "iceberg-dark"
 default_layout "no-status"
 default_shell  "zsh"
 mouse_mode     true
-copy_clipboard "primary"
+copy_clipboard "system"
 scrollback_editor "nvim"
 show_startup_tips false
