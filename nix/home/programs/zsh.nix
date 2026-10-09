@@ -63,7 +63,17 @@
       export ZLE_RPROMPT_INDENT=0
 
       export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
-      export CPLUS_INCLUDE_PATH="''${CPLUS_INCLUDE_PATH}:/opt/homebrew/include/"
+      _configure_cplus_include_path() {
+        local -U -a include_paths=()
+        local include_path
+        for include_path in "''${(@s.:.)CPLUS_INCLUDE_PATH}"; do
+          [[ -n "$include_path" ]] && include_paths+=("$include_path")
+        done
+        include_paths+=(/opt/homebrew/include/)
+        export CPLUS_INCLUDE_PATH="''${(j.:.)include_paths}"
+      }
+      _configure_cplus_include_path
+      unfunction _configure_cplus_include_path
 
       if [ -x /opt/homebrew/bin/brew ]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
