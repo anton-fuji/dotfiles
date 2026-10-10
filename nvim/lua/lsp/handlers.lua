@@ -26,6 +26,27 @@ local function formatter(bufnr)
   end
 end
 
+-- gopls exposes import cleanup as a code action, separate from formatting.
+local function organize_go_imports(bufnr)
+  if vim.bo[bufnr].filetype ~= 'go' then return end
+
+  local params = vim.lsp.util.make_range_params()
+  params.context = {
+    only = { 'source.organizeImports' },
+    diagnostics = {},
+  }
+
+  local responses = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', params, 1000)
+  for client_id, response in pairs(responses or {}) do
+    for _, action in ipairs(response.result or {}) do
+      if action.edit then
+        local client = vim.lsp.get_client_by_id(client_id)
+        vim.lsp.util.apply_workspace_edit(action.edit, client and client.offset_encoding or 'utf-16')
+      end
+    end
+  end
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = group,
   callback = function(ev)
@@ -49,8 +70,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = format_group,
       buffer = ev.buf,
-      desc = 'Format with the preferred available client',
+      desc = 'Organize Go imports and format',
       callback = function()
+        organize_go_imports(ev.buf)
         local selected = formatter(ev.buf)
         if selected then
           vim.lsp.buf.format({ bufnr = ev.buf, id = selected.id, timeout_ms = 1000 })
