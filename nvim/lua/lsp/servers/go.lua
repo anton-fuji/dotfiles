@@ -6,6 +6,7 @@ vim.lsp.config['gopls'] = {
     gopls = {
       analyses = { unusedparams = true },
       staticcheck = true,
+      usePlaceholders = true,
     },
   },
 }
