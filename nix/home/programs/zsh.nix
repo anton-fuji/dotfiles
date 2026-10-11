@@ -131,18 +131,42 @@
           local full_path=$PWD
           local path_with_tilde=''${full_path/#$HOME/"~"}
           local dir_name=''${full_path##*/}
+          local branch_name
+          local tab_title
+          local pane_title
+
+          typeset -g _zellij_names_last_tab _zellij_names_last_pane
 
           if [[ $full_path == $HOME ]]; then
             dir_name="~"
           fi
 
-          command nohup zellij action rename-tab -- "$dir_name" >/dev/null 2>&1
-          command nohup zellij action rename-pane -- "$path_with_tilde" >/dev/null 2>&1
+          branch_name=$(command git symbolic-ref --quiet --short HEAD 2>/dev/null)
+          if [[ -z $branch_name ]] && command git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+            branch_name="@$(command git rev-parse --short HEAD 2>/dev/null)"
+          fi
+
+          tab_title=$dir_name
+          pane_title=$path_with_tilde
+          if [[ -n $branch_name ]]; then
+            tab_title="$branch_name · $dir_name"
+            pane_title="$branch_name · $path_with_tilde"
+          fi
+
+          if [[ $tab_title != $_zellij_names_last_tab ]]; then
+            command nohup zellij action rename-tab -- "$tab_title" >/dev/null 2>&1
+            _zellij_names_last_tab=$tab_title
+          fi
+          if [[ $pane_title != $_zellij_names_last_pane ]]; then
+            command nohup zellij action rename-pane -- "$pane_title" >/dev/null 2>&1
+            _zellij_names_last_pane=$pane_title
+          fi
         fi
       }
 
       zellij_names_update
-      chpwd_functions+=(zellij_names_update)
+      autoload -Uz add-zsh-hook
+      add-zsh-hook precmd zellij_names_update
 
       fzf-file-edit() {
         local file
