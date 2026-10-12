@@ -16,6 +16,7 @@ return {
     },
     session_lens = {
       picker = "telescope",
+      load_on_setup = false,
       previewer = "summary",
       picker_opts = {
         attach_mappings = function(prompt_bufnr, map)
