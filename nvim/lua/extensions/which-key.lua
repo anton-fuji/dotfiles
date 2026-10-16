@@ -50,6 +50,7 @@ local mappings = {
     mode = "n"
   },
   -- ■ タスク (Overseer)
+  { "<leader>a", group = "+ai", mode = { "n", "x" } },
   { "<leader>o", group = "+task", mode = "n" },
   -- ■ プロジェクト
   { "<leader>p", group = "+project", mode = "n" },

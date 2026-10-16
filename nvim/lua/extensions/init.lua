@@ -25,6 +25,7 @@ local plugins = {
   require("extensions.noice"),
   require("extensions.close-buffers"),
   require("extensions.blink-cmp"),
+  require("extensions.sidekick"),
 
   -- Telescope
   {
