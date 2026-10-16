@@ -60,6 +60,7 @@ in
     google-cloud-sdk
     mise
     nodejs
+    python3
     rustup
     uv
     zig

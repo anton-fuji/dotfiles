@@ -29,6 +29,22 @@ keybinds clear-defaults=true {
         bind "Ctrl p" { SwitchToMode "normal"; }
     }
     tab {
+        bind "w" {
+            Run "sh" "-c" "exec python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/scripts/worktree\" pick" {
+                floating true
+                close_on_exit true
+                name "Worktree search"
+            }
+            SwitchToMode "normal"
+        }
+        bind "c" {
+            Run "sh" "-c" "exec python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/scripts/worktree\" new" {
+                floating true
+                close_on_exit true
+                name "Create worktree"
+            }
+            SwitchToMode "normal"
+        }
         bind "left"  { GoToPreviousTab; }
         bind "right" { GoToNextTab; }
         bind "h" { GoToPreviousTab; }

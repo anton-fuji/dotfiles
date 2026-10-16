@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""Project sessions and worktree navigation for WezTerm + Zellij."""
+
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+
+CONFIG = Path(__file__).resolve().parent.parent
+
+
+def run(args, cwd=None):
+    return subprocess.run(args, cwd=cwd, check=True, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE).stdout.decode("utf-8", "surrogateescape")
+
+
+def git(*args, cwd=None):
+    return run(["git", *args], cwd=cwd)
+
+
+def worktrees(cwd):
+    records, record = [], {}
+    for field in git("worktree", "list", "--porcelain", "-z", cwd=cwd).split("\0"):
+        if not field:
+            if record:
+                records.append(record)
+                record = {}
+            continue
+        key, _, value = field.partition(" ")
+        record[key] = value
+    return [r for r in records if "bare" not in r and "prunable" not in r
+            and Path(r["worktree"]).is_dir()]
+
+
+def branch_label(record):
+    return record.get("branch", "").removeprefix("refs/heads/") or (
+        "detached@" + record.get("HEAD", "unknown")[:8])
+
+
+def identity(cwd):
+    common = Path(git("rev-parse", "--path-format=absolute", "--git-common-dir", cwd=cwd).strip()).resolve()
+    return hashlib.sha256(os.fsencode(common)).hexdigest()[:10]
+
+
+def owner(cwd, records):
+    """Longest matching root: nested worktrees must win over their parent."""
+    if not cwd:
+        return None
+    path = Path(cwd).resolve()
+    for record in sorted(records, key=lambda r: len(r["worktree"]), reverse=True):
+        root = Path(record["worktree"]).resolve()
+        if path == root or root in path.parents:
+            return record["worktree"]
+    return None
+
+
+def tabs_for_worktrees(records):
+    panes = json.loads(run(["zellij", "action", "list-panes", "--json"]))
+    tabs = {}
+    for pane in panes:
+        # The floating picker itself must never be considered a worktree tab.
+        if pane.get("is_plugin") or pane.get("is_floating") or pane.get("exited"):
+            continue
+        root = owner(pane.get("pane_cwd"), records)
+        if root and root not in tabs:
+            tabs[root] = pane["tab_id"]
+    return tabs
+
+
+def open_worktree(record, records):
+    tabs = tabs_for_worktrees(records)
+    path = record["worktree"]
+    if path in tabs:
+        run(["zellij", "action", "go-to-tab-by-id", str(tabs[path])])
+    else:
+        run(["zellij", "action", "new-tab", "--name", branch_label(record),
+             "--cwd", path, "--layout", str(CONFIG / "zellij/layouts/worktree.kdl")])
+
+
+def pick(cwd):
+    records = worktrees(cwd)
+    if not records:
+        raise ValueError("利用可能なworktreeがありません。")
+    tabs = tabs_for_worktrees(records)
+    # Select by index, never by a shell-parsed path or a display label.
+    rows = [f"{i}\t{'open' if r['worktree'] in tabs else '    '}  {branch_label(r)}  {r['worktree']}"
+            for i, r in enumerate(records)]
+    env = dict(os.environ, FZF_DEFAULT_OPTS="", FZF_DEFAULT_OPTS_FILE="")
+    result = subprocess.run([
+        "fzf", "--read0", "--print0", "--delimiter=\t", "--with-nth=2..",
+        "--layout=reverse", "--border=rounded", "--prompt=Worktree > ",
+        "--header=Enter: switch/open worktree · Esc: cancel", "--no-multi",
+    ], input=("\0".join(rows) + "\0").encode("utf-8", "surrogateescape"),
+       stdout=subprocess.PIPE, env=env)
+    if result.returncode in (1, 130):
+        return
+    result.check_returncode()
+    index = int(result.stdout.split(b"\t", 1)[0])
+    open_worktree(records[index], records)
+
+
+def create(cwd, branch=None, base=None):
+    records = worktrees(cwd)
+    branch = branch or input("新しい作業のブランチ名（空欄で中止）: ").strip()
+    if not branch:
+        return
+    # Reject options and Git's special @{-n} shorthand for predictable paths.
+    if branch.startswith("-") or git("check-ref-format", "--branch", branch, cwd=cwd).strip() != branch:
+        raise ValueError("通常のブランチ名を指定してください。")
+    for record in records:
+        if record.get("branch") == "refs/heads/" + branch:
+            open_worktree(record, records)
+            return
+    if not records:
+        raise ValueError("利用可能なworktreeがありません。")
+    main = Path(records[0]["worktree"]).resolve()
+    directory = main.parent / ".worktrees" / (main.name + "-" + identity(cwd))
+    target = directory / branch
+    if directory.resolve() not in target.resolve().parents:
+        raise ValueError("worktree保存先の外を指すブランチ名です。")
+    if target.exists():
+        raise ValueError(f"保存先がすでに存在します: {target}")
+    exists = subprocess.run(["git", "show-ref", "--verify", "--quiet", "refs/heads/" + branch],
+                            cwd=cwd).returncode
+    if exists not in (0, 1):
+        raise ValueError("ブランチの確認に失敗しました。")
+    if exists == 0:
+        command = ["worktree", "add", str(target), branch]
+    else:
+        base = base or input("分岐元 [HEAD（現在のコミット）]: ").strip() or "HEAD"
+        commit = git("rev-parse", "--verify", "--end-of-options", base + "^{commit}", cwd=cwd).strip()
+        command = ["worktree", "add", "-b", branch, str(target), commit]
+    git(*command, cwd=cwd)
+    print(f"作成しました: {target}")
+    updated = worktrees(cwd)
+    try:
+        open_worktree(next(r for r in updated if Path(r["worktree"]).resolve() == target.resolve()), updated)
+    except (subprocess.CalledProcessError, ValueError):
+        print("worktreeの作成は完了しています。タブ起動だけを再試行してください。", file=sys.stderr)
+        raise
+
+
+def project(path):
+    records = worktrees(path)
+    if not records:
+        raise ValueError("利用可能なworktreeがありません。")
+    root = Path(records[0]["worktree"]).resolve()
+    # macOS Unix socket paths have a short limit; display names live in WezTerm.
+    session = "p-" + identity(path)
+    quote = lambda value: json.dumps(str(value), ensure_ascii=False)
+    layout = ('layout {\n  tab name=' + quote(branch_label(records[0])) + ' {\n'
+              '    pane size=1 borderless=true { plugin location="zellij:tab-bar"; }\n'
+              '    pane command="nvim"\n  }\n}\n')
+    # A fresh WezTerm tab must not attach as a nested Zellij client.
+    env = {k: v for k, v in os.environ.items()
+           if not k.startswith("ZELLIJ") and k not in ("NVIM", "NVIM_LISTEN_ADDRESS")}
+    env["DOTFILES_PROJECT_ROOT"] = str(root)
+    os.chdir(root)
+    os.execvpe("zellij", ["zellij", "--layout-string", layout, "attach", "--create", session], env)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest="action", required=True)
+    commands.add_parser("pick", help="Search worktrees and reuse/open their Zellij tab")
+    new = commands.add_parser("new", help="Create a branch/worktree and open Neovim")
+    new.add_argument("branch", nargs="?")
+    new.add_argument("--base", help="Starting commit for a new branch (default: current HEAD)")
+    launch = commands.add_parser("project", help="Attach/create the project's Zellij session")
+    launch.add_argument("path")
+    args = parser.parse_args()
+    for program in ("git", "zellij", "nvim") + (("fzf",) if args.action == "pick" else ()):
+        if not shutil.which(program):
+            raise ValueError(f"必要なコマンドが見つかりません: {program}")
+    if args.action == "project":
+        project(args.path)
+        return
+    if not os.environ.get("ZELLIJ"):
+        raise ValueError("Zellij内で実行してください。WezTermのCmd+Shift+Pからプロジェクトを開けます。")
+    cwd = os.getcwd()
+    try:
+        git("rev-parse", "--git-common-dir", cwd=cwd)
+    except subprocess.CalledProcessError:
+        cwd = os.environ.get("DOTFILES_PROJECT_ROOT", cwd)
+    if args.action == "pick":
+        pick(cwd)
+    else:
+        create(cwd, args.branch, args.base)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (KeyboardInterrupt, EOFError):
+        pass
+    except (OSError, ValueError, subprocess.CalledProcessError) as error:
+        message = error.stderr if isinstance(error, subprocess.CalledProcessError) else str(error)
+        if isinstance(message, bytes):
+            message = message.decode("utf-8", "replace")
+        print(f"worktree: {message or error}", file=sys.stderr)
+        if sys.stdin.isatty():
+            try:
+                input("Enterで閉じる")
+            except (EOFError, KeyboardInterrupt):
+                pass
+        sys.exit(1)
