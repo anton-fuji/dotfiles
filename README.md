@@ -43,6 +43,46 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 - `zellij/` provides modal terminal multiplexing with explicit pane/tab workflows.
 - `yazi/` adds a fast terminal file manager with git-aware fetchers.
 
+## Project / worktree navigation
+
+WezTerm tabs represent projects; each project has a dedicated Zellij session,
+with one Zellij tab per worktree and Neovim + Sidekick inside it.
+
+| Key | Action |
+| --- | --- |
+| `Cmd+Shift+P` (WezTerm) | Search repositories from `ghq list -p`; focus the existing project tab in the current window or open one. |
+| `Cmd+1` … `Cmd+9` | Switch WezTerm project tabs. |
+| `Ctrl+T`, then `w` (Zellij) | Search worktrees by branch/path; reuse an open tab or start Neovim in a new tab. |
+| `Ctrl+T`, then `c` | Enter a branch name to create/open its worktree. New branches prompt for a base (default: current `HEAD`). |
+| `Ctrl+T`, then `Tab` | Return to the previous Zellij tab. |
+| `Space a c` (Neovim) | Open/hide Codex through Sidekick. |
+
+Reload WezTerm (`Ctrl+Shift+R`) and open a project using `Cmd+Shift+P` to start
+this workflow. Existing terminal tabs remain available. Worktree commands can
+also be run from a Zellij shell:
+
+```sh
+python3 ~/.config/scripts/worktree pick
+python3 ~/.config/scripts/worktree new feature/login --base main
+```
+
+New worktrees live outside the main checkout under
+`<repository-parent>/.worktrees/<repository-name>-<id>/<branch>`.
+An already checked-out branch reuses its worktree; an existing local branch
+gets a worktree without being reset. Nothing is fetched, copied from the dirty
+working tree, deleted, or dependency-installed automatically. Install project
+dependencies and configure local environment files in the new worktree as needed.
+
+Tab reuse matches pane working directories to Git worktree paths, including
+subdirectories, so renaming a tab does not break navigation. Project session names
+include a hash of the shared Git directory to distinguish repositories with the
+same name. Closing a WezTerm tab and reopening the project attaches to its Zellij
+session; exiting a Neovim command pane leaves Zellij's rerun prompt.
+
+Requires Zellij 0.44.3+, Python 3.9+, Git, fzf, ghq and Neovim. Python is declared
+in the Nix package list. Test the Git/worktree helper with
+`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -v`.
+
 ## Neovim plugins
 
 <details>

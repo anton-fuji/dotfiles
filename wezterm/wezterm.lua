@@ -95,7 +95,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     foreground = "#B7E3E0"
   end
   local edge_foreground = background
-  local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+  local label = tab.tab_title ~= "" and tab.tab_title or tab.active_pane.title
+  local project_path = label:match("^project:(.+)")
+  if project_path then
+    label = project_path:match("([^/]+)$") or project_path
+  end
+  local title = "   " .. wezterm.truncate_right(label, math.max(1, max_width - 8)) .. "   "
   return {
     { Background = { Color = edge_background } },
     { Foreground = { Color = edge_foreground } },
