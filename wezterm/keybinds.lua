@@ -1,15 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
--- Show which key table is active in the status area
-wezterm.on("update-right-status", function(window, pane)
-  local name = window:active_key_table()
-  if name then
-    name = "TABLE: " .. name
-  end
-  window:set_right_status(name or "")
-end)
-
 return {
   keys = {
     {
@@ -24,8 +15,21 @@ return {
       action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }),
     },
     {
-      --workspaceの名前変更
+      -- アクティブなタブの名前変更
       key = "$",
+      mods = "LEADER",
+      action = act.PromptInputLine({
+        description = "(wezterm) Set tab title:",
+        action = wezterm.action_callback(function(win, pane, line)
+          if line then
+            win:active_tab():set_title(line)
+          end
+        end),
+      }),
+    },
+    {
+      -- ワークスペースの名前変更
+      key = "e",
       mods = "LEADER",
       action = act.PromptInputLine({
         description = "(wezterm) Set workspace title:",

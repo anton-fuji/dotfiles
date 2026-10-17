@@ -39,7 +39,8 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 
 - `flake.nix` defines the macOS/Home Manager entrypoint.
 - `nvim/` contains the editor configuration, split into options, keybinds, extensions, LSP, and templates.
-- `wezterm/` keeps terminal appearance, keymaps, transparency, and background behavior isolated.
+- `wezterm/` keeps terminal appearance, keymaps, transparency, and background
+  behavior isolated; `bar.wezterm` renders the themed tab and status bars.
 - `zellij/` provides modal terminal multiplexing with explicit pane/tab workflows.
 - `yazi/` adds a fast terminal file manager with git-aware fetchers.
 

@@ -45,8 +45,8 @@ config.window_decorations = "RESIZE"
 -- タブバーの表示
 config.show_tabs_in_tab_bar = true
 config.tab_bar_at_bottom = true
--- タブが一つの時は非表示
-config.hide_tab_bar_if_only_one_tab = true
+-- タブが一つの時も、プロジェクトアイコンを確認できるよう表示する。
+config.hide_tab_bar_if_only_one_tab = false
 -- falseにするとタブバーの透過が効かなくなる
 -- config.use_fancy_tab_bar = false
 
@@ -72,6 +72,7 @@ config.colors = {
   ansi = terminal_colors.ansi,
   brights = terminal_colors.brights,
   tab_bar = {
+    background = "#001829",
     inactive_tab_edge = "none",
   },
 
@@ -80,39 +81,8 @@ config.colors = {
   cursor_border = "#5C9BB3",
 }
 
--- タブの形をカスタマイズ
--- タブの左側の装飾
-local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
--- タブの右側の装飾
-local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
-
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local background = "#00152B"
-  local foreground = "#8FBFBB"
-  local edge_background = "none"
-  if tab.is_active then
-    background = "#1F4B66"
-    foreground = "#B7E3E0"
-  end
-  local edge_foreground = background
-  local label = tab.tab_title ~= "" and tab.tab_title or tab.active_pane.title
-  local project_path = label:match("^project:(.+)")
-  if project_path then
-    label = project_path:match("([^/]+)$") or project_path
-  end
-  local title = "   " .. wezterm.truncate_right(label, math.max(1, max_width - 8)) .. "   "
-  return {
-    { Background = { Color = edge_background } },
-    { Foreground = { Color = edge_foreground } },
-    { Text = SOLID_LEFT_ARROW },
-    { Background = { Color = background } },
-    { Foreground = { Color = foreground } },
-    { Text = title },
-    { Background = { Color = edge_background } },
-    { Foreground = { Color = edge_foreground } },
-    { Text = SOLID_RIGHT_ARROW },
-  }
-end)
+-- bar.wezterm を設定する前にタブ描画を登録し、番号 + アイコン + 下線のUIにする。
+require("tabbar").apply_to_config(config)
 
 ----------------------------------------------------
 -- Keybindings & CopyMode
