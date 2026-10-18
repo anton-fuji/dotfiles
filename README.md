@@ -51,16 +51,13 @@ with one Zellij tab per worktree and Neovim + Sidekick inside it.
 
 | Key | Action |
 | --- | --- |
-| `Cmd+Shift+P` (WezTerm) | Search repositories from `ghq list -p`; focus the existing project tab in the current window or open one. |
 | `Cmd+1` … `Cmd+9` | Switch WezTerm project tabs. |
 | `Ctrl+T`, then `w` (Zellij) | Search worktrees by branch/path; reuse an open tab or start Neovim in a new tab. |
 | `Ctrl+T`, then `c` | Enter a branch name to create/open its worktree. New branches prompt for a base (default: current `HEAD`). |
 | `Ctrl+T`, then `Tab` | Return to the previous Zellij tab. |
 | `Space a c` (Neovim) | Open/hide Codex through Sidekick. |
 
-Reload WezTerm (`Ctrl+Shift+R`) and open a project using `Cmd+Shift+P` to start
-this workflow. Existing terminal tabs remain available. Worktree commands can
-also be run from a Zellij shell:
+Worktree commands can be run from a Zellij shell:
 
 ```sh
 python3 ~/.config/scripts/worktree pick

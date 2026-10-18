@@ -4,11 +4,6 @@ local act = wezterm.action
 return {
   keys = {
     {
-      key = "p",
-      mods = "SUPER|SHIFT",
-      action = wezterm.action_callback(require("projects").select),
-    },
-    {
       -- workspaceの切り替え
       key = "w",
       mods = "LEADER",
