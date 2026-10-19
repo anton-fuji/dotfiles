@@ -2,13 +2,42 @@ local wezterm = require("wezterm")
 local M = {}
 
 -- Keep the full path as the selection ID; presentation never affects routing.
+local function path_contains(root, path)
+  root = root:gsub("/+$", "")
+  path = path:gsub("/+$", "")
+  return path == root or path:sub(1, #root + 1) == root .. "/"
+end
+
+local function pane_path(pane)
+  local ok, cwd = pcall(function() return pane:get_current_working_dir() end)
+  if not ok or not cwd then return nil end
+  if type(cwd) == "userdata" or type(cwd) == "table" then
+    return cwd.file_path
+  end
+  if type(cwd) == "string" then
+    local path = cwd:match("^file://[^/]*(/.*)$") or cwd
+    return path:gsub("%%(%x%x)", function(hex) return string.char(tonumber(hex, 16)) end)
+  end
+  return nil
+end
+
+local function tab_project_path(tab)
+  local title = tab:get_title()
+  local project = title and title:match("^project:(.+)$")
+  if project then return project end
+  if type(tab.panes) ~= "function" then return nil end
+  for _, pane in ipairs(tab:panes()) do
+    local path = pane_path(pane)
+    if path then return path end
+  end
+  return nil
+end
+
 local function project_choices(window, stdout)
   local opened = {}
   for _, tab in ipairs(window:mux_window():tabs()) do
-    local path = tab:get_title():match("^project:(.+)")
-    if path then
-      opened[path] = true
-    end
+    local path = tab_project_path(tab)
+    if path then table.insert(opened, path) end
   end
   local entries, seen = {}, {}
   local name_width = 0
@@ -23,7 +52,14 @@ local function project_choices(window, stdout)
         parent = "~" .. parent:sub(#wezterm.home_dir + 1)
       end
       name_width = math.max(name_width, wezterm.column_width(name))
-      table.insert(entries, { path = path, name = name, parent = parent, opened = opened[path] or false })
+      local is_open = false
+      for _, open_path in ipairs(opened) do
+        if path_contains(path, open_path) then
+          is_open = true
+          break
+        end
+      end
+      table.insert(entries, { path = path, name = name, parent = parent, opened = is_open })
     end
   end
   table.sort(entries, function(a, b)
@@ -73,23 +109,43 @@ function M.select(window, pane)
     description = "Enter: open / switch   Esc: cancel   /: search",
     fuzzy_description = "Search projects  (↑↓ select · Enter open · Esc cancel): ",
     choices = choices,
-    action = wezterm.action_callback(function(win, _, path)
+    action = wezterm.action_callback(function(win, callback_pane, path)
       if not path then
         return
       end
       local title = "project:" .. path
-      for _, tab in ipairs(win:mux_window():tabs()) do
-        if tab:get_title() == title then
-          tab:activate()
-          return
+      local mux_window = win:mux_window()
+      local function activate_project_tab()
+        for index, tab in ipairs(mux_window:tabs()) do
+          local current_path = tab_project_path(tab)
+          if current_path and path_contains(path, current_path) then
+            tab:set_title(title)
+            if type(tab.activate) == "function" then
+              tab:activate()
+            else
+              win:perform_action(wezterm.action.ActivateTab(index - 1), callback_pane)
+            end
+            return true
+          end
         end
+        return false
       end
-      local tab = win:mux_window():spawn_tab({
+
+      if activate_project_tab() then
+        return
+      end
+
+      local tab = mux_window:spawn_tab({
         cwd = path,
         args = { "/bin/zsh", "-lc", 'exec python3 "$1" project "$2"', "worktree-launch",
           wezterm.config_dir .. "/../scripts/worktree", path },
       })
       tab:set_title(title)
+      if type(tab.activate) == "function" then
+        tab:activate()
+      else
+        win:perform_action(wezterm.action.ActivateTab(#mux_window:tabs() - 1), callback_pane)
+      end
     end),
   }), pane)
 end
