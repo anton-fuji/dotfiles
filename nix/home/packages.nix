@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 let
+  nodejs = pkgs.callPackage ../nodejs.nix { };
   czg = pkgs.stdenvNoCC.mkDerivation rec {
     pname = "czg";
     version = "1.13.1";
@@ -18,7 +19,7 @@ let
     installPhase = ''
       mkdir -p "$out/lib/node_modules/czg" "$out/bin"
       cp -R . "$out/lib/node_modules/czg/"
-      makeWrapper "${pkgs.nodejs}/bin/node" "$out/bin/czg" \
+      makeWrapper "${nodejs}/bin/node" "$out/bin/czg" \
         --add-flags "$out/lib/node_modules/czg/bin/index.js"
       ln -s "$out/bin/czg" "$out/bin/git-czg"
     '';
@@ -59,7 +60,6 @@ in
     go
     google-cloud-sdk
     mise
-    nodejs
     python3
     rustup
     uv
@@ -88,5 +88,5 @@ in
     typos
     gibo
     nkf
-  ] ++ [ czg ];
+  ] ++ [ nodejs czg ];
 }
