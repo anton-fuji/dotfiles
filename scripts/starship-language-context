@@ -1,19 +1,22 @@
 #!/bin/sh
 
 project_dir=$PWD
-while [ "$project_dir" != "/" ]; do
-  if [ -f "$project_dir/package.json" ] || \
-    [ -f "$project_dir/pyproject.toml" ] || \
-    [ -f "$project_dir/Cargo.toml" ] || \
-    [ -f "$project_dir/go.mod" ] || \
-    [ -f "$project_dir/main.tf" ] || \
-    [ -f "$project_dir/build.zig" ]; then
+# Keep the current directory as a fallback when no project marker is found.
+search_dir=$project_dir
+while :; do
+  if [ -f "$search_dir/package.json" ] || \
+    [ -f "$search_dir/pyproject.toml" ] || \
+    [ -f "$search_dir/Cargo.toml" ] || \
+    [ -f "$search_dir/go.mod" ] || \
+    [ -f "$search_dir/main.tf" ] || \
+    [ -f "$search_dir/build.zig" ]; then
+    project_dir=$search_dir
     break
   fi
 
-  parent_dir=${project_dir%/*}
-  [ "$parent_dir" = "$project_dir" ] && break
-  project_dir=$parent_dir
+  [ "$search_dir" = "/" ] && break
+  search_dir=${search_dir%/*}
+  search_dir=${search_dir:-/}
 done
 
 has_file() {
