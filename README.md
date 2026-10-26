@@ -42,7 +42,7 @@ It is built for a keyboard-first macOS setup: reproducible packages through Nix,
 - `wezterm/` keeps terminal appearance, keymaps, transparency, and background
   behavior isolated; `bar.wezterm` renders the themed tab and status bars.
 - `zellij/` provides modal terminal multiplexing with explicit pane/tab workflows.
-- `yazi/` adds a fast terminal file manager with git-aware fetchers.
+- `yazi/` configures the terminal file manager's keybindings and theme.
 
 ## Project / worktree navigation
 
