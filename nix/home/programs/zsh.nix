@@ -59,6 +59,11 @@
 
     initContent = ''
       typeset -U path PATH
+      # Use the eza theme instead of Oh My Zsh's LS_COLORS.
+      eza() {
+        LS_COLORS= command eza "$@"
+      }
+
       # Starshipのright_formatとfillの位置ずれを防ぐ
       export ZLE_RPROMPT_INDENT=0
 
@@ -154,11 +159,11 @@
           fi
 
           if [[ $tab_title != $_zellij_names_last_tab ]]; then
-            command nohup zellij action rename-tab -- "$tab_title" >/dev/null 2>&1
+            command zellij action rename-tab -- "$tab_title" </dev/null >/dev/null 2>&1 &
             _zellij_names_last_tab=$tab_title
           fi
           if [[ $pane_title != $_zellij_names_last_pane ]]; then
-            command nohup zellij action rename-pane -- "$pane_title" >/dev/null 2>&1
+            command zellij action rename-pane -- "$pane_title" </dev/null >/dev/null 2>&1 &
             _zellij_names_last_pane=$pane_title
           fi
         fi
