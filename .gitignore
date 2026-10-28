@@ -67,3 +67,10 @@
 *.bak
 *.log
 result
+
+# Local ASCII Motion export artifacts
+**/.ascii-motion/
+
+# Optional local build of the Gopher authoring tool
+fastfetch/gopher/gopher-art
+fastfetch/gopher/gopher-art.exe
