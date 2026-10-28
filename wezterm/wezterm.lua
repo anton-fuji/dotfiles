@@ -55,13 +55,13 @@ config.hide_tab_bar_if_only_one_tab = false
 
 -- タブバーの透過
 config.window_frame = {
-  inactive_titlebar_bg = "none",
-  active_titlebar_bg = "none",
+	inactive_titlebar_bg = "none",
+	active_titlebar_bg = "none",
 }
 
 -- タブバーを背景色に合わせる
 config.window_background_gradient = {
-  colors = { "#001829" },
+	colors = { "#001829" },
 }
 
 -- タブの追加ボタンを非表示
@@ -72,16 +72,16 @@ config.show_close_tab_button_in_tabs = false
 
 -- タブ同士の境界線を非表示
 config.colors = {
-  ansi = terminal_colors.ansi,
-  brights = terminal_colors.brights,
-  tab_bar = {
-    background = "#001829",
-    inactive_tab_edge = "none",
-  },
+	ansi = terminal_colors.ansi,
+	brights = terminal_colors.brights,
+	tab_bar = {
+		background = "#001829",
+		inactive_tab_edge = "none",
+	},
 
-  cursor_bg = "#1F4B66",
-  cursor_fg = "#B7E3E0",
-  cursor_border = "#5C9BB3",
+	cursor_bg = "#1F4B66",
+	cursor_fg = "#B7E3E0",
+	cursor_border = "#5C9BB3",
 }
 
 -- bar.wezterm を設定する前にタブ描画を登録し、番号 + アイコン + 下線のUIにする。
@@ -97,44 +97,44 @@ local keys = require("keybinds").keys or {}
 local key_tables = require("keybinds").key_tables or {}
 
 table.insert(keys, {
-  key = 'X',
-  mods = 'CTRL|SHIFT',
-  action = act.ActivateCopyMode,
+	key = "X",
+	mods = "CTRL|SHIFT",
+	action = act.ActivateCopyMode,
 })
 table.insert(keys, transparency.key)
 
 -- CopyMode
 key_tables.copy_mode = {
-  { key = 'Escape', mods = 'NONE',  action = act.CopyMode 'Close' },
-  { key = 'q',      mods = 'NONE',  action = act.CopyMode 'Close' },
+	{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
+	{ key = "q", mods = "NONE", action = act.CopyMode("Close") },
 
-  { key = 'h',      mods = 'NONE',  action = act.CopyMode 'MoveLeft' },
-  { key = 'j',      mods = 'NONE',  action = act.CopyMode 'MoveDown' },
-  { key = 'k',      mods = 'NONE',  action = act.CopyMode 'MoveUp' },
-  { key = 'l',      mods = 'NONE',  action = act.CopyMode 'MoveRight' },
-  { key = 'w',      mods = 'NONE',  action = act.CopyMode 'MoveForwardWord' },
-  { key = 'b',      mods = 'NONE',  action = act.CopyMode 'MoveBackwardWord' },
-  { key = 'e',      mods = 'NONE',  action = act.CopyMode 'MoveForwardWordEnd' },
-  { key = '0',      mods = 'NONE',  action = act.CopyMode 'MoveToStartOfLine' },
-  { key = '$',      mods = 'NONE',  action = act.CopyMode 'MoveToEndOfLineContent' },
-  { key = '^',      mods = 'NONE',  action = act.CopyMode 'MoveToStartOfLineContent' },
-  { key = 'g',      mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackTop' },
-  { key = 'G',      mods = 'SHIFT', action = act.CopyMode 'MoveToScrollbackBottom' },
-  { key = 'd',      mods = 'CTRL',  action = act.CopyMode { MoveByPage = 0.5 } },
-  { key = 'u',      mods = 'CTRL',  action = act.CopyMode { MoveByPage = -0.5 } },
-  { key = 'v',      mods = 'NONE',  action = act.CopyMode { SetSelectionMode = 'Cell' } },
-  { key = 'V',      mods = 'NONE',  action = act.CopyMode { SetSelectionMode = 'Line' } },
-  { key = 'v',      mods = 'CTRL',  action = act.CopyMode { SetSelectionMode = 'Block' } },
+	{ key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
+	{ key = "j", mods = "NONE", action = act.CopyMode("MoveDown") },
+	{ key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
+	{ key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
+	{ key = "w", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
+	{ key = "b", mods = "NONE", action = act.CopyMode("MoveBackwardWord") },
+	{ key = "e", mods = "NONE", action = act.CopyMode("MoveForwardWordEnd") },
+	{ key = "0", mods = "NONE", action = act.CopyMode("MoveToStartOfLine") },
+	{ key = "$", mods = "NONE", action = act.CopyMode("MoveToEndOfLineContent") },
+	{ key = "^", mods = "NONE", action = act.CopyMode("MoveToStartOfLineContent") },
+	{ key = "g", mods = "NONE", action = act.CopyMode("MoveToScrollbackTop") },
+	{ key = "G", mods = "SHIFT", action = act.CopyMode("MoveToScrollbackBottom") },
+	{ key = "d", mods = "CTRL", action = act.CopyMode({ MoveByPage = 0.5 }) },
+	{ key = "u", mods = "CTRL", action = act.CopyMode({ MoveByPage = -0.5 }) },
+	{ key = "v", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
+	{ key = "V", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Line" }) },
+	{ key = "v", mods = "CTRL", action = act.CopyMode({ SetSelectionMode = "Block" }) },
 
-  {
-    key = 'y',
-    mods = 'NONE',
-    action = act.Multiple {
-      { CopyTo = 'ClipboardAndPrimarySelection' },
-      { CopyMode = 'Close' },
-    }
-  },
-  { key = 'Enter', mods = 'NONE', action = act.CopyMode 'ClearSelectionMode' },
+	{
+		key = "y",
+		mods = "NONE",
+		action = act.Multiple({
+			{ CopyTo = "ClipboardAndPrimarySelection" },
+			{ CopyMode = "Close" },
+		}),
+	},
+	{ key = "Enter", mods = "NONE", action = act.CopyMode("ClearSelectionMode") },
 }
 
 config.keys = keys
