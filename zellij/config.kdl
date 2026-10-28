@@ -27,7 +27,7 @@ keybinds clear-defaults=true {
     }
     tab {
         bind "w" {
-            Run "sh" "-c" "exec python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/scripts/worktree\" pick" {
+            Run "sh" "-c" "exec \"${XDG_CONFIG_HOME:-$HOME/.config}/scripts/worktree.sh\" pick" {
                 floating true
                 close_on_exit true
                 name "Worktree search"
@@ -35,7 +35,7 @@ keybinds clear-defaults=true {
             SwitchToMode "normal"
         }
         bind "c" {
-            Run "sh" "-c" "exec python3 \"${XDG_CONFIG_HOME:-$HOME/.config}/scripts/worktree\" new" {
+            Run "sh" "-c" "exec \"${XDG_CONFIG_HOME:-$HOME/.config}/scripts/worktree.sh\" new" {
                 floating true
                 close_on_exit true
                 name "Create worktree"

@@ -60,8 +60,8 @@ with one Zellij tab per worktree and Neovim + Sidekick inside it.
 Worktree commands can be run from a Zellij shell:
 
 ```sh
-python3 ~/.config/scripts/worktree pick
-python3 ~/.config/scripts/worktree new feature/login --base main
+~/.config/scripts/worktree.sh pick
+~/.config/scripts/worktree.sh new feature/login --base main
 ```
 
 New worktrees live outside the main checkout under
@@ -77,8 +77,8 @@ include a hash of the shared Git directory to distinguish repositories with the
 same name. Closing a WezTerm tab and reopening the project attaches to its Zellij
 session; exiting a Neovim command pane leaves Zellij's rerun prompt.
 
-Requires Zellij 0.44.3+, Python 3.9+, Git, fzf, ghq and Neovim. Python is declared
-in the Nix package list.
+Requires Zellij 0.44.3+, Go 1.27.3, Git, fzf, ghq and Neovim. The worktree
+helper is built on first use and cached under `${XDG_CACHE_HOME:-$HOME/.cache}/dotfiles-worktree`.
 
 ## Neovim plugins
 

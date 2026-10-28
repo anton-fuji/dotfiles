@@ -137,8 +137,8 @@ function M.select(window, pane)
 
       local tab = mux_window:spawn_tab({
         cwd = path,
-        args = { "/bin/zsh", "-lc", 'exec python3 "$1" project "$2"', "worktree-launch",
-          wezterm.config_dir .. "/../scripts/worktree", path },
+        args = { "/bin/zsh", "-lc", 'exec "$1" project "$2"', "worktree-launch",
+          wezterm.config_dir .. "/../scripts/worktree.sh", path },
       })
       tab:set_title(title)
       if type(tab.activate) == "function" then
