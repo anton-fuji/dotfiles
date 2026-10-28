@@ -32,9 +32,6 @@ go -C fastfetch/gopher run . build
 
 # 保存済みプロジェクトからANSIフレームだけを書き出す
 go -C fastfetch/gopher run . export
-
-# 制作ツールのテスト
-go -C fastfetch/gopher test ./...
 ```
 
 `project.go`がImageMagickの画像データを受け取り、背景除去・5色化・Braille変換・ポーズ生成を行う。
