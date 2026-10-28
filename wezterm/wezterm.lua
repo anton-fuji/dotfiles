@@ -33,6 +33,9 @@ config.window_background_opacity = 0.55
 config.macos_window_background_blur = 20
 config.background = background
 
+-- 新規タブ・ペインでGopherの衝突アニメーションを一度再生し、Fastfetchへ渡す
+config.default_prog = { "/bin/sh", wezterm.home_dir .. "/.config/wezterm/gopher-startup.sh" }
+
 -- ウィンドウサイズ
 config.initial_rows = 90
 config.initial_cols = 220
