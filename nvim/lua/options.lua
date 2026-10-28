@@ -1,4 +1,6 @@
 -- global
+vim.filetype.add({ extension = { goose = 'goose' } })
+
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8

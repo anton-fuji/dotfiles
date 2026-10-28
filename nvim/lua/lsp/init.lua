@@ -1,6 +1,7 @@
 -- Keep each configuration module paired with its Neovim LSP name.
 local servers = {
   { module = 'go', name = 'gopls' },
+  { module = 'goose', name = 'goose' },
   { module = 'rust', name = 'rust_analyzer' },
   { module = 'lua', name = 'lua_ls' },
   { module = 'python', name = 'pyright' },
