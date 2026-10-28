@@ -78,8 +78,7 @@ same name. Closing a WezTerm tab and reopening the project attaches to its Zelli
 session; exiting a Neovim command pane leaves Zellij's rerun prompt.
 
 Requires Zellij 0.44.3+, Python 3.9+, Git, fzf, ghq and Neovim. Python is declared
-in the Nix package list. Test the Git/worktree helper with
-`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -v`.
+in the Nix package list.
 
 ## Neovim plugins
 
