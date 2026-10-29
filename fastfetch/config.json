@@ -27,18 +27,6 @@
 
   "modules": [
     "break",
-
-    {
-      "type": "title",
-      "color": {
-        "user": "#89B4FA",
-        "at": "#A6ADC8",
-        "host": "#74C7EC"
-      }
-    },
-
-    "break",
-
     {
       "type": "os",
       "key": "",
