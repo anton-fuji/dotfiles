@@ -23,6 +23,21 @@ This repository is the source of truth for my `~/.config`.
 
 It is built for a keyboard-first macOS setup: reproducible packages through Nix, a Lua-based Neovim IDE, a highly customized terminal stack, and small CLI tools wired together for day-to-day engineering work.
 
+## Gopher startup animation
+
+WezTerm plays a short Gopher animation when a tab or pane opens, then displays Fastfetch.
+
+<p align="center"><img src="./img/gopher-startup.gif" alt="Gopher startup animation in WezTerm" width="900"></p>
+
+The animation frames, editable ASCII Motion project, and Fastfetch logo live in
+[`fastfetch/gopher/`](./fastfetch/gopher/). To regenerate them from the source
+images, run `go -C fastfetch/gopher run . all` (Go 1.27.3, ImageMagick, and
+ASCII Motion MCP required). Run `go -C fastfetch/gopher run . export` to export
+the frames from an edited project without rebuilding it.
+
+Gopher design by Renée French. Reference wallpaper by
+[@avocadoneko](https://x.com/avocadoneko).
+
 ## Stack
 
 | Area | Tools |
