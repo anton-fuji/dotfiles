@@ -1,7 +1,11 @@
 theme = "tokyo-night"
-mode = "split"       
+mode = "split"
 exclude_untracked = false
-line_numbers = true
+line_numbers = false
 wrap_lines = false
 agent_notes = false
 watch = true
+hunk_headers = true
+menu_bar = true
+copy_decorations = false
+cursor_line = "row"
