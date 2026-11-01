@@ -54,6 +54,8 @@ in
 
     # terminal tools
     zellij
+    fastfetch
+    imagemagick
 
     # runtime
     bun
