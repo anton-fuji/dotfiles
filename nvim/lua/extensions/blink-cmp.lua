@@ -2,17 +2,6 @@ return {
 	"saghen/blink.cmp",
 	version = "1.*",
 	event = { "InsertEnter", "CmdlineEnter" },
-	dependencies = {
-		{
-			"L3MON4D3/LuaSnip",
-			version = "v2.*",
-			build = "make install_jsregexp",
-			dependencies = { "rafamadriz/friendly-snippets" },
-			config = function()
-				require("extensions.snippets")
-			end,
-		},
-	},
 	opts = {
 		keymap = {
 			preset = "default",
