@@ -9,6 +9,9 @@ gui:
       - "#E0AF68"
     selectedLineBgColor:
       - "#292E42"
+    # フォーカスしていないパネルの選択行(未設定だと既定の色になる)
+    inactiveViewSelectedLineBgColor:
+      - "#283457"
     cherryPickedCommitBgColor:
       - "#3D59A1"
     cherryPickedCommitFgColor:
