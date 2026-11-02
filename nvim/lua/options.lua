@@ -7,7 +7,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = 'split'
-vim.opt.clipboard = 'unnamedplus'
+require('utils.clipboard').setup()
 require('utils.bigfile').setup()
 vim.opt.sessionoptions = {
   "blank",
