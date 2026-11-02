@@ -117,7 +117,7 @@ local plugins = {
 -- Lazy.nvim オプション
 local opts = {
   defaults    = { lazy = true },
-  checker     = { enabled = true },
+  checker     = { enabled = true, frequency = 86400 }, -- 1日1回
   performance = {
     cache = { enabled = true },
     reset_packpath = true,
