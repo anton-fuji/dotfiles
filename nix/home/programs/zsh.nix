@@ -1,10 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
   home.sessionPath = [
     "$HOME/.cargo/bin"
     "$HOME/.bun/bin"
-    "$HOME/tools/zig"
     "$HOME/.local/bin"
   ];
 
@@ -15,6 +14,8 @@
 
   programs.zsh = {
     enable = true;
+    # ~/.zshrc の場所を維持する(stateVersion 26.05 以降の既定は XDG 配下)。
+    dotDir = config.home.homeDirectory;
     enableCompletion = true;
     autosuggestion.enable = true;
 
@@ -84,24 +85,12 @@
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
 
-      if [ -f "$HOME/.cargo/env" ]; then
-        . "$HOME/.cargo/env"
-      fi
-
       if [ -d "$(go env GOPATH 2>/dev/null)/bin" ]; then
         path+=("$(go env GOPATH)/bin")
       fi
 
       if [ -s "$BUN_INSTALL/_bun" ]; then
         source "$BUN_INSTALL/_bun"
-      fi
-
-      if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
-        . "$HOME/google-cloud-sdk/path.zsh.inc"
-      fi
-
-      if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
-        . "$HOME/google-cloud-sdk/completion.zsh.inc"
       fi
 
       if command -v mise >/dev/null 2>&1; then

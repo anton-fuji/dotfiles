@@ -200,7 +200,7 @@ Without `just`:
 
 ```sh
 cd ~/.config
-darwin-rebuild switch --flake .#fujimotoikkinoMacBook-Air-2
+darwin-rebuild switch --impure --flake .#macbook
 ```
 
 ## Commands

@@ -74,7 +74,16 @@ disabled = true
 
 [custom.language_stack]
 command = "~/.config/scripts/starship-language-context"
-when = true
+# 毎プロンプトでスクリプトを起動しないよう、starship のファイル検出で表示を判定する。
+detect_files = [
+  "package.json", "package-lock.json", "pnpm-lock.yaml", "yarn.lock", "bun.lockb", "bun.lock",
+  "pyproject.toml", "requirements.txt", "requirements-dev.txt", "Pipfile", "setup.py", ".python-version",
+  "Cargo.toml", "go.mod", "go.sum", "go.work", "main.tf", "build.zig",
+  # nix develop / devenv で入るシェル(IN_NIX_SHELL)用
+  "flake.nix", "shell.nix", "devenv.nix",
+]
+detect_extensions = ["py", "pyi", "rs", "go", "tf", "tfvars", "zig", "lua", "rockspec"]
+shell = ["/bin/sh"]
 style = "fg:cyan"
 format = "([](fg:surface)[ $output ](fg:cyan bg:surface)[](fg:surface) )"
 

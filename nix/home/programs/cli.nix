@@ -44,14 +44,14 @@
       "--preview-window='right:50%:border-left'"
     ];
 
-    fileWidgetOptions = [
+    fileWidget.options = [
       "--walker-skip .git,node_modules,target,.cache"
       "--preview 'bat --color=always --style=numbers --line-range=:500 {} 2>/dev/null || tree -C {} 2>/dev/null || cat {}'"
       "--header 'CTRL-T: Files & Directories | CTRL-/: Toggle Preview'"
       "--bind 'ctrl-u:clear-query'"
     ];
 
-    historyWidgetOptions = [
+    historyWidget.options = [
       "--preview 'echo {2..}'"
       "--preview-window down:3:wrap"
       "--header 'CTRL-R: Command History | CTRL-/: Toggle Preview'"
