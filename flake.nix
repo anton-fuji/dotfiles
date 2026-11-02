@@ -30,8 +30,17 @@
     ,
     }:
     let
-      username = "fujimotoikki";
-      hostname = "fujimotoikkinoMacBook-Air-2";
+      # ユーザー名はリポジトリに書かず、実行時の環境変数から読む(要 --impure)。
+      # root 権限で darwin-rebuild を実行すると USER が root になるため SUDO_USER を優先する。
+      username =
+        let
+          sudoUser = builtins.getEnv "SUDO_USER";
+          user = builtins.getEnv "USER";
+        in
+        if sudoUser != "" then sudoUser
+        else if user != "" && user != "root" then user
+        else throw "username を取得できません。--impure を付けて実行してください。";
+      hostname = "macbook";
       system = "aarch64-darwin";
     in
     {
