@@ -2,6 +2,7 @@ set shell := ["zsh", "-cu"]
 
 host := "fujimotoikkinoMacBook-Air-2"
 flake := ".#" + host
+system := ".#darwinConfigurations." + host
 
 default:
     @just --list
@@ -13,13 +14,13 @@ check:
     nix flake check --no-build --no-write-lock-file
 
 eval:
-    nix eval --no-write-lock-file {{flake}}.config.system.build.toplevel.drvPath
+    nix eval --no-write-lock-file {{system}}.config.system.build.toplevel.drvPath
 
 dry-run:
-    nix build --dry-run --no-write-lock-file {{flake}}.config.system.build.toplevel
+    nix build --dry-run --no-write-lock-file {{system}}.config.system.build.toplevel
 
 build:
-    nix build {{flake}}.config.system.build.toplevel
+    nix build {{system}}.config.system.build.toplevel
 
 switch:
     darwin-rebuild switch --flake {{flake}}

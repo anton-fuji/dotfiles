@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   home.sessionPath = [
@@ -14,6 +14,8 @@
 
   programs.zsh = {
     enable = true;
+    # ~/.zshrc の場所を維持する(stateVersion 26.05 以降の既定は XDG 配下)。
+    dotDir = config.home.homeDirectory;
     enableCompletion = true;
     autosuggestion.enable = true;
 
