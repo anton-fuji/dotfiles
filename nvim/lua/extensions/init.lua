@@ -25,6 +25,18 @@ local plugins = {
   require("extensions.noice"),
   require("extensions.close-buffers"),
   require("extensions.blink-cmp"),
+  -- blink.cmp は LSP の capabilities 用に BufReadPre で読まれるため、
+  -- LuaSnip は依存から外し、挿入モードに入るか require されたときに読み込む。
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
+    event = "InsertEnter",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require("extensions.snippets")
+    end,
+  },
   require("extensions.sidekick"),
 
   -- Telescope
@@ -117,7 +129,7 @@ local plugins = {
 -- Lazy.nvim オプション
 local opts = {
   defaults    = { lazy = true },
-  checker     = { enabled = true },
+  checker     = { enabled = true, frequency = 86400 }, -- 1日1回
   performance = {
     cache = { enabled = true },
     reset_packpath = true,
