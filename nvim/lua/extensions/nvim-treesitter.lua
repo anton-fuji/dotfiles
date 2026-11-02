@@ -20,8 +20,9 @@ return {
         enable = true,
         -- Avoid an error while a parser is being installed asynchronously or
         -- needs to be rebuilt after a Neovim/Tree-sitter update.
-        disable = function(lang)
-          return not pcall(vim.treesitter.get_parser, 0, lang)
+        disable = function(lang, buf)
+          return require("utils.bigfile").is_big(buf)
+            or not pcall(vim.treesitter.get_parser, buf, lang)
         end,
       },
       incremental_selection = {
@@ -35,6 +36,9 @@ return {
       },
       indent = {
         enable = true,
+        disable = function(_, buf)
+          return require("utils.bigfile").is_big(buf)
+        end,
       },
     }
   end,

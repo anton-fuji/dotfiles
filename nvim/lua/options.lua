@@ -8,6 +8,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = 'split'
 vim.opt.clipboard = 'unnamedplus'
+require('utils.bigfile').setup()
 vim.opt.sessionoptions = {
   "blank",
   "buffers",
