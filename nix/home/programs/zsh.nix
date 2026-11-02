@@ -47,8 +47,6 @@
       path = "echo $PATH | tr ':' '\\n'";
       cat = "bat";
       clip = "pbcopy";
-      gcc = "gcc-14";
-      "g++" = "g++-14";
       v = "nvim";
       nvcnf = "cd ~/.config/nvim";
       tf = "terraform";
@@ -67,6 +65,16 @@
 
       # Starshipのright_formatとfillの位置ずれを防ぐ
       export ZLE_RPROMPT_INDENT=0
+
+      # 競プロ(C++)用: bits/stdc++.h が使える Homebrew の GNU gcc を優先する。
+      # gcc-16 のようにバージョン付きで入るので、入っている中で一番新しいものを使う。
+      for _gcc_version in {30..10}; do
+        if (( $+commands[g++-$_gcc_version] )); then
+          alias gcc="gcc-$_gcc_version" g++="g++-$_gcc_version"
+          break
+        fi
+      done
+      unset _gcc_version
 
       export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
       _configure_cplus_include_path() {
