@@ -252,13 +252,12 @@ require("lualine").setup({
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
+    -- padding はセクションではなく各コンポーネントの中に書く(外に書くと lualine が警告する)。
     lualine_c = {
-      "filename",
-      padding = { left = 2, right = 2 },
+      { "filename", padding = { left = 2, right = 2 } },
     },
     lualine_x = {
-      "location",
-      padding = { left = 2, right = 2 },
+      { "location", padding = { left = 2, right = 2 } },
     },
     lualine_y = {},
     lualine_z = {},

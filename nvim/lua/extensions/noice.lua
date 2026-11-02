@@ -70,6 +70,9 @@ return {
           timeout = 2000,              -- 表示時間を2秒に短縮（デフォルト5秒）
           minimum_width = 10,
           level = vim.log.levels.WARN, -- INFO未満は表示しない
+          -- tokyonight の transparent = true で Normal の背景色が無くなり、
+          -- 起動時に「NotifyBackground has no background highlight」と警告されるため明示する。
+          background_colour = "#000000",
         },
       },
     },
