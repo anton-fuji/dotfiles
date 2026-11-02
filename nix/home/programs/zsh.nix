@@ -4,7 +4,6 @@
   home.sessionPath = [
     "$HOME/.cargo/bin"
     "$HOME/.bun/bin"
-    "$HOME/tools/zig"
     "$HOME/.local/bin"
   ];
 
@@ -84,24 +83,12 @@
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
 
-      if [ -f "$HOME/.cargo/env" ]; then
-        . "$HOME/.cargo/env"
-      fi
-
       if [ -d "$(go env GOPATH 2>/dev/null)/bin" ]; then
         path+=("$(go env GOPATH)/bin")
       fi
 
       if [ -s "$BUN_INSTALL/_bun" ]; then
         source "$BUN_INSTALL/_bun"
-      fi
-
-      if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
-        . "$HOME/google-cloud-sdk/path.zsh.inc"
-      fi
-
-      if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
-        . "$HOME/google-cloud-sdk/completion.zsh.inc"
       fi
 
       if command -v mise >/dev/null 2>&1; then

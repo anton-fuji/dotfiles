@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, username, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -88,4 +88,7 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    inputs.neovim-nightly-overlay.overlays.default
+  ];
 }

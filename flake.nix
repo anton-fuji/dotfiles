@@ -33,19 +33,11 @@
       username = "fujimotoikki";
       hostname = "fujimotoikkinoMacBook-Air-2";
       system = "aarch64-darwin";
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          neovim-nightly-overlay.overlays.default
-        ];
-      };
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = { inherit username pkgs; };
+        specialArgs = { inherit username inputs; };
         modules = [
           ./nix/darwin/system.nix
 
