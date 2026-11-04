@@ -70,14 +70,10 @@ config.show_new_tab_button_in_tab_bar = false
 -- タブの閉じるボタンを非表示
 config.show_close_tab_button_in_tabs = false
 
--- タブ同士の境界線を非表示
+-- タブバーの色は tabbar.lua の apply_to_config で設定する。
 config.colors = {
 	ansi = terminal_colors.ansi,
 	brights = terminal_colors.brights,
-	tab_bar = {
-		background = "#001829",
-		inactive_tab_edge = "none",
-	},
 
 	cursor_bg = "#1F4B66",
 	cursor_fg = "#B7E3E0",
