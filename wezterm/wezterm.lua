@@ -50,14 +50,8 @@ config.show_tabs_in_tab_bar = true
 config.tab_bar_at_bottom = true
 -- タブが一つの時も、プロジェクトアイコンを確認できるよう表示する。
 config.hide_tab_bar_if_only_one_tab = false
--- falseにするとタブバーの透過が効かなくなる
--- config.use_fancy_tab_bar = false
-
--- タブバーの透過
-config.window_frame = {
-	inactive_titlebar_bg = "none",
-	active_titlebar_bg = "none",
-}
+-- タブバーは tabbar.lua で use_fancy_tab_bar = false(レトロ表示)にしている。
+-- そのため fancy tab bar 用の window_frame は設定しない。
 
 -- タブバーを背景色に合わせる
 config.window_background_gradient = {
