@@ -10,8 +10,8 @@ import { run, props, closeOverlay, openOverlay, focused, theme } from "herdr";
 const go = (direction) => () => run("pane.go", { direction });
 const swap = (direction) => () => run("pane.swap", { direction });
 const scroll = (args) => (at) => run("terminal.scroll", { ...args, terminal: at?.terminal ?? undefined });
-const worktree = (action, width, height) => (at) =>
-  openOverlay({ mod: "worktree", kind: "dialog", width, height, props: { space: at?.space, folder: at?.cwd, action } });
+const worktree = (action, width, height, extra = {}) => (at) =>
+  openOverlay({ mod: "worktree", kind: "dialog", width, height, props: { space: at?.space, folder: at?.cwd, action, ...extra } });
 
 const MODES = {
   pane: {
@@ -40,6 +40,7 @@ const MODES = {
       { on: ["x"], show: "x", label: "タブを閉じる", run: () => run("tab.close", {}) },
       { on: ["w"], show: "w", label: "worktree を開く", run: worktree("open", 560, 480) },
       { on: ["c"], show: "c", label: "worktree を作る", run: worktree("new", 460, 280) },
+      { on: ["a"], show: "a", label: "worktree + Claude", run: worktree("new", 460, 280, { argv: ["claude"] }) },
     ],
   },
   move: {
