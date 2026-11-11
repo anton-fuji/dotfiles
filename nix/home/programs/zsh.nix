@@ -196,7 +196,8 @@
       zle -N fzf-sd
       bindkey '^]' fzf-sd
 
-      if [[ -z "$WEZTERM_EXECUTING" ]] && command -v fastfetch >/dev/null 2>&1; then
+      # Keep project panes quiet; show startup artwork only at home.
+      if [[ "$PWD" == "$HOME" && -z "$ZSH_EXECUTION_STRING" && -z "$WEZTERM_EXECUTING" ]] && command -v fastfetch >/dev/null 2>&1; then
         export WEZTERM_EXECUTING=1
         fastfetch --config "$HOME/.config/fastfetch/config.json"
       fi
