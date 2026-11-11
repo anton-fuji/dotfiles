@@ -179,6 +179,6 @@
   "terminal_opacity": 0.4,
   "theme": {
     "light": "paper",
-    "dark": "ink"
+    "dark": "gopher-night"
   }
 }
