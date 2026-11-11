@@ -1,0 +1,1 @@
+{ "place": "none", "title": "Jump to waiting agent", "overlay": { "kind": "popup", "at": "top", "offset": 40, "width": 1, "height": 1, "frame": "none" } }

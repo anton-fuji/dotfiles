@@ -70,7 +70,17 @@
     "alt-down": "pane.go:down",
     "alt-up": "pane.go:up",
     "alt-right": "pane.go:right",
-    "alt-n": "pane.split:right"
+    "alt-n": "pane.split:right",
+    "cmd-shift-t": {
+      "command": "tab.new",
+      "args": {
+        "argv": [
+          "claude"
+        ]
+      }
+    },
+    "cmd-e": "layout.toggle:panel",
+    "cmd-j": "mod.open:jump-attention"
   },
   "terminal": {
     "cmd-f": "terminal.search",

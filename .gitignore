@@ -44,6 +44,13 @@
 !herdr-app/mods/zj-*/main.js
 !herdr-app/mods/zj-*/mod.json
 !herdr-app/mods/zj-*/mode.js
+!herdr-app/mods/jump-attention/
+!herdr-app/mods/jump-attention/main.js
+!herdr-app/mods/jump-attention/mod.json
+!herdr-app/mods/my-changes/
+!herdr-app/mods/my-changes/main.js
+!herdr-app/mods/my-changes/mod.json
+!herdr-app/mods/my-changes/changes.svg
 
 !htop/
 !htop/htoprc
