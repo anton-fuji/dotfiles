@@ -32,6 +32,19 @@
 !gh-dash/
 !gh-dash/config.yml
 
+!herdr-app/
+!herdr-app/keys.json
+!herdr-app/settings.json
+!herdr-app/layouts/
+!herdr-app/layouts/my-main.json
+!herdr-app/backgrounds/
+!herdr-app/backgrounds/**
+!herdr-app/mods/
+!herdr-app/mods/zj-*/
+!herdr-app/mods/zj-*/main.js
+!herdr-app/mods/zj-*/mod.json
+!herdr-app/mods/zj-*/mode.js
+
 !htop/
 !htop/htoprc
 
