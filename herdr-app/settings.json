@@ -1,9 +1,9 @@
 {
-  "zoom": 0.9,
+  "zoom": 0.8,
   "sounds": {
     "enabled": true
   },
   "font_ligatures": false,
-  "minimum_contrast": 1,
+  "minimum_contrast": 1.0,
   "appearance": "dark"
 }
