@@ -51,6 +51,9 @@
 !herdr-app/mods/my-changes/main.js
 !herdr-app/mods/my-changes/mod.json
 !herdr-app/mods/my-changes/changes.svg
+!herdr-app/mods/my-agents/
+!herdr-app/mods/my-agents/main.js
+!herdr-app/mods/my-agents/mod.json
 
 !htop/
 !htop/htoprc
