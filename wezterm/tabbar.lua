@@ -17,18 +17,11 @@ local tab_colors = {
 }
 
 local function display_title(tab)
-  -- Prefer the explicit title assigned by the project picker. Zellij can
-  -- change the active pane title, but that should not hide the project icon.
   local title = tab.tab_title
   if not title or title == "" then
     title = require("bar.tabs").get_title(tab)
   end
-  title = title or ""
-  local project_path = title:match("^project:(.+)$")
-  if project_path then
-    return project_path:match("([^/]+)$") or project_path
-  end
-  return title
+  return title or ""
 end
 
 local function format_tab_title(tab, _, _, config, hover)
