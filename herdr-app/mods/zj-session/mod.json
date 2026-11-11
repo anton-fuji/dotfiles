@@ -1,0 +1,1 @@
+{ "place": "none", "title": "Zellij session mode", "overlay": { "kind": "popup", "at": "top", "offset": 40, "width": 340 } }

@@ -1,0 +1,1 @@
+{ "place": "none", "title": "Zellij move mode", "overlay": { "kind": "popup", "at": "top", "offset": 40, "width": 340 } }
