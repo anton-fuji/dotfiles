@@ -4,6 +4,7 @@
     "enabled": true
   },
   "font_ligatures": false,
-  "minimum_contrast": 1.0,
-  "appearance": "dark"
+  "minimum_contrast": 1,
+  "appearance": "dark",
+  "font_size": 13
 }
