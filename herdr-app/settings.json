@@ -1,7 +1,9 @@
 {
   "zoom": 0.8,
   "sounds": {
-    "enabled": true
+    "enabled": true,
+    "done": "sounds/done-blow.mp3",
+    "blocked": "sounds/blocked-glass.mp3"
   },
   "font_ligatures": false,
   "minimum_contrast": 1,

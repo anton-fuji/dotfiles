@@ -56,6 +56,8 @@
 !herdr-app/mods/inbox/mod.json
 !herdr-app/themes/
 !herdr-app/themes/gopher-night.json
+!herdr-app/sounds/
+!herdr-app/sounds/*.mp3
 
 !htop/
 !htop/htoprc
