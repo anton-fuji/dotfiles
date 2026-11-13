@@ -3,7 +3,7 @@
   "sounds": {
     "enabled": true,
     "done": "sounds/done-blow.mp3",
-    "blocked": "sounds/blocked-glass.mp3"
+    "blocked": "sounds/blocked-hero.mp3"
   },
   "font_ligatures": false,
   "minimum_contrast": 1,
