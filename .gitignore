@@ -54,6 +54,10 @@
 !herdr-app/mods/inbox/
 !herdr-app/mods/inbox/main.js
 !herdr-app/mods/inbox/mod.json
+!herdr-app/mods/my-pane/
+!herdr-app/mods/my-pane/main.js
+!herdr-app/mods/my-pane/mod.json
+!herdr-app/mods/my-pane/*.svg
 !herdr-app/themes/
 !herdr-app/themes/gopher-night.json
 !herdr-app/sounds/

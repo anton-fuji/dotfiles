@@ -5,9 +5,29 @@
 // このファイルは zj-* の 5 フォルダに同じ内容で置いてある。直すときは 5 つとも揃える。
 import { View, div } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { run, props, closeOverlay, openOverlay, focused, theme } from "herdr";
+import { run, props, closeOverlay, openOverlay, focused, theme, shared, setShared, panes } from "herdr";
 
 const go = (direction) => () => run("pane.go", { direction });
+// 端まで: pane.go は端で止まるので、ペインの数より多めに繰り返せば一番端に着く。
+const edge = (direction) => () => {
+  for (let i = 0; i < 12; i++) run("pane.go", { direction });
+};
+// 直前のペイン: shared "zj.focus" = { prev, cur }。モードを開いたときと動いた後に記録する。
+function remember() {
+  const p = focused()?.pane;
+  const s = shared("zj.focus") ?? {};
+  if (p && p !== s.cur) setShared("zj.focus", { prev: s.cur ?? null, cur: p });
+}
+// 番号のペインへ: my-pane のヘッダーに出ている番号と同じ数え方(同じタブを panes() の順)。
+const toNumber = (at, key) => {
+  const tab = focused()?.tab ?? at?.tab;
+  const target = panes().filter((p) => p.tab === tab)[Number(key) - 1];
+  if (target) run("pane.focus", { pane: target.pane });
+};
+const back = () => {
+  const prev = shared("zj.focus")?.prev;
+  if (prev) run("pane.focus", { pane: prev });
+};
 const swap = (direction) => () => run("pane.swap", { direction });
 const scroll = (args) => (at) => run("terminal.scroll", { ...args, terminal: at?.terminal ?? undefined });
 const worktree = (action, width, height, extra = {}) => (at) =>
@@ -22,6 +42,12 @@ const MODES = {
       { on: ["j", "down"], show: "j ↓", label: "下のペインへ", stay: true, run: go("down") },
       { on: ["k", "up"], show: "k ↑", label: "上のペインへ", stay: true, run: go("up") },
       { on: ["l", "right"], show: "l →", label: "右のペインへ", stay: true, run: go("right") },
+      { on: ["shift-h", "shift-left"], show: "H", label: "一番左のペインへ", stay: true, run: edge("left") },
+      { on: ["shift-j", "shift-down"], show: "J", label: "一番下のペインへ", stay: true, run: edge("down") },
+      { on: ["shift-k", "shift-up"], show: "K", label: "一番上のペインへ", stay: true, run: edge("up") },
+      { on: ["shift-l", "shift-right"], show: "L", label: "一番右のペインへ", stay: true, run: edge("right") },
+      { on: ["-", "minus"], show: "-", label: "直前のペインへ戻る", run: back },
+      { on: ["1", "2", "3", "4", "5", "6", "7", "8", "9"], show: "1-9", label: "番号のペインへ", run: toNumber },
       { on: ["r", "n"], show: "r n", label: "右に分割", run: () => run("pane.split", { direction: "right" }) },
       { on: ["d"], show: "d", label: "下に分割", run: () => run("pane.split", { direction: "down" }) },
       { on: ["f"], show: "f", label: "ズーム切り替え", run: () => run("pane.zoom", {}) },
@@ -83,26 +109,36 @@ export function modeView(name) {
     init(_props, cx) {
       // 開いた時点でキーボードを持っていたペイン。以後このオーバーレイがキーボードを持つ。
       this.at = focused();
+      remember();
+      // PANE モード中はペインヘッダー(my-pane)の番号を目立たせる。
+      if (name === "pane") setShared("zj.paneMode", true);
       this.handle = cx.focus_handle();
       this.handle.focus();
       cx.timer.after(60, () => this.handle.focus());
     }
 
-    close() {
+    leave() {
       closeOverlay(props().overlay);
+    }
+
+    // オーバーレイが閉じたとき(Esc・同じ ctrl キー・実行後)に Herdr が呼ぶ。
+    async close() {
+      if (name === "pane") setShared("zj.paneMode", false);
     }
 
     key(e, cx) {
       const k = e.keystroke;
       if (k === "escape" || k === "enter") {
         cx.stop_propagation();
-        return this.close();
+        return this.leave();
       }
       const row = mode.rows.find((r) => r.on.includes(k));
       if (!row) return;
       cx.stop_propagation();
-      if (!row.stay) this.close();
+      if (!row.stay) this.leave();
       row.run(this.at, k);
+      // フォーカスの移動は少し遅れて反映されるので、落ち着いてから記録する。
+      if (row.stay) cx.timer.after(80, () => remember());
     }
 
     render() {
