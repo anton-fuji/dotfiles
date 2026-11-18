@@ -37,6 +37,7 @@
 !herdr-app/settings.json
 !herdr-app/layouts/
 !herdr-app/layouts/my-main.json
+!herdr-app/layouts/my-main-glass.json
 !herdr-app/backgrounds/
 !herdr-app/backgrounds/**
 !herdr-app/mods/

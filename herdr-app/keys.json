@@ -91,5 +91,11 @@
     "cmd-left": "send:\u0001",
     "cmd-right": "send:\u0005",
     "cmd-backspace": "send:\u0015"
+  },
+  "layout:my-main": {
+    "cmd-shift-s": "layout.switch:my-main-glass"
+  },
+  "layout:my-main-glass": {
+    "cmd-shift-s": "layout.switch:my-main"
   }
 }

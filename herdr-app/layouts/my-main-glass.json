@@ -1,0 +1,193 @@
+{
+  "id": "root",
+  "type": "row",
+  "titlebar": "none",
+  "traffic_lights": [12, 16],
+  "window_blur": true,
+  "background": "canvas",
+  "colors": {
+    "background": "#070F2400",
+    "canvas": "#00182914",
+    "chrome": "#00182900",
+    "border": "#A9B8E020",
+    "raised": "#A9B8E014",
+    "hover": "#A9B8E018",
+    "selected": "#7AA2F726"
+  },
+  "terminal_padding": [14, 12],
+  "divider": {
+    "width": 1,
+    "color": "border"
+  },
+  "children": [
+    {
+      "id": "sidebar",
+      "type": "column",
+      "size": {
+        "px": 192
+      },
+      "min": 44,
+      "max": 480,
+      "background": "#00000000",
+      "resizable": false,
+      "children": [
+        {
+          "id": "brand",
+          "type": "block",
+          "size": {
+            "px": 46
+          },
+          "window_drag": true,
+          "content": {
+            "mod": "workspace-chrome"
+          }
+        },
+        {
+          "id": "sidebar-lists",
+          "type": "column",
+          "children": [
+            {
+              "id": "spaces",
+              "type": "block",
+              "size": {
+                "weight": 1
+              },
+              "min": 90,
+              "content": {
+                "mod": "spaces"
+              }
+            },
+            {
+              "id": "agents",
+              "type": "block",
+              "size": {
+                "weight": 1
+              },
+              "min": 90,
+              "content": {
+                "mod": "inbox"
+              }
+            }
+          ]
+        },
+        {
+          "id": "sidebar-footer",
+          "type": "block",
+          "size": {
+            "px": 69
+          },
+          "content": {
+            "mod": "workspace-chrome",
+            "props": {
+              "footer": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "type": "column",
+      "background": "#00000000",
+      "resizable": false,
+      "children": [
+        {
+          "id": "tabs",
+          "type": "block",
+          "size": {
+            "px": 42
+          },
+          "window_drag": true,
+          "content": {
+            "mod": "tabs"
+          }
+        },
+        {
+          "id": "work-body",
+          "type": "row",
+          "padding": 10,
+          "gap": 10,
+          "children": [
+            {
+              "id": "main",
+              "type": "block",
+              "content": {
+                "tab": "active",
+                "pane": {
+                  "gap": 10,
+                  "radius": 8,
+                  "lone": true,
+                  "border": {
+                    "width": 1,
+                    "color": "#A9B8E020"
+                  },
+                  "focus": {
+                    "width": 1,
+                    "color": "#7AA2F766"
+                  },
+                  "header": {
+                    "content": {
+                      "mod": "my-pane"
+                    },
+                    "height": 26,
+                    "position": "top",
+                    "reveal": "always"
+                  },
+                  "background": "#00000000"
+                }
+              }
+            },
+            {
+              "id": "panel",
+              "type": "column",
+              "hidden": true,
+              "size": {
+                "px": 368
+              },
+              "min": 280,
+              "max": 900,
+              "children": [
+                {
+                  "id": "panel-body",
+                  "type": "stack",
+                  "active": "files",
+                  "children": [
+                    {
+                      "id": "files",
+                      "type": "block",
+                      "content": {
+                        "mod": "files"
+                      }
+                    },
+                    {
+                      "id": "changes",
+                      "type": "block",
+                      "content": {
+                        "mod": "my-changes"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "status",
+          "type": "block",
+          "size": {
+            "px": 28
+          },
+          "content": {
+            "mod": "workspace-status"
+          }
+        }
+      ]
+    }
+  ],
+  "terminal_opacity": 0,
+  "theme": {
+    "light": "paper",
+    "dark": "gopher-night"
+  }
+}
