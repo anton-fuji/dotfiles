@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Claude Code status line (Tokyo Night storm)
+# Claude Code status line (Tokyo Night Night)
 # (model)(session)  dir · branch● · ctx ▰▰▱▱ % · $cost · +add -del
 input=$(cat)
 j() { printf '%s' "$input" | jq -r "$1 // empty" 2>/dev/null; }
@@ -20,11 +20,12 @@ if [ -z "$session" ] && [ -f "$transcript" ]; then
 fi
 [ ${#session} -gt 32 ] && session="${session:0:31}…"
 
-# Tokyo Night storm palette
-BG_DARK='31;35;53'      # #1f2335
+# Tokyo Night Night palette
+BG='26;27;38'           # #1a1b26
 BG_HL='41;46;66'        # #292e42
 FG='192;202;245'        # #c0caf5
-COMMENT='86;95;137'     # #565f89
+MUTED='115;122;162'    # #737aa2
+GUTTER='59;66;97'      # #3b4261
 BLUE='122;162;247'      # #7aa2f7
 CYAN='125;207;255'      # #7dcfff
 PURPLE='187;154;247'    # #bb9af7
@@ -41,14 +42,14 @@ CAP_R=$'\xee\x82\xb4'   # U+E0B4
 ARROW=$'\xee\x82\xb0'   # U+E0B0
 I_DIR=$'\xef\x81\xbc'   # U+F07C
 I_GIT=$'\xee\x82\xa0'   # U+E0A0
-SEP=" $(fg "$COMMENT")·$R "
+SEP=" $(fg "$MUTED")·$R "
 
 # ── 左のピル: model → session ──
-out="$(fg "$BLUE")${CAP_L}$R$(bg "$BLUE")$(fg "$BG_DARK")\033[1m 󰚩 ${model:-?} $R"
+out="$(fg "$BG")${CAP_L}$R$(bg "$BG")$(fg "$BLUE")\033[1m 󰚩 ${model:-?} $R"
 if [ -n "$session" ]; then
-  out+="$(bg "$PURPLE")$(fg "$BLUE")${ARROW}$R$(bg "$PURPLE")$(fg "$BG_DARK") 󰆍 ${session} $R$(fg "$PURPLE")${CAP_R}$R"
+  out+="$(bg "$BG_HL")$(fg "$BG")${ARROW}$R$(bg "$BG_HL")$(fg "$PURPLE") 󰆍 ${session} $R$(fg "$BG_HL")${CAP_R}$R"
 else
-  out+="$(fg "$BLUE")${CAP_R}$R"
+  out+="$(fg "$BG")${CAP_R}$R"
 fi
 
 # ── ディレクトリ ──
@@ -68,7 +69,7 @@ if [ -n "$ctx" ]; then
   color=$GREEN; [ "$pct" -ge 50 ] && color=$YELLOW; [ "$pct" -ge 80 ] && color=$RED
   filled=$(( (pct + 5) / 10 )); [ "$filled" -gt 10 ] && filled=10
   bar=""; for ((i = 0; i < 10; i++)); do
-    if [ "$i" -lt "$filled" ]; then bar+="$(fg "$color")▰"; else bar+="$(fg "$BG_HL")▰"; fi
+    if [ "$i" -lt "$filled" ]; then bar+="$(fg "$color")▰"; else bar+="$(fg "$GUTTER")▰"; fi
   done
   out+="${SEP}${bar} $(fg "$color")${pct}%$R"
 fi
