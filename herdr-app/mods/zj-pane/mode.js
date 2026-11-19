@@ -2,7 +2,8 @@
 // それぞれ zj-pane / zj-tab / zj-move / zj-scroll / zj-session を開き、次の 1 キーを受け取る。
 // stay: true の行は押してもモードに留まる(Esc / Enter / 同じ ctrl キーで抜ける)。
 // 元の割り当ては ~/.config/zellij/config.kdl。Herdr に相当機能が無いものは載せていない。
-// 実体はこの zj-pane/mode.js だけ。他の zj-*/mode.js はここへのシンボリックリンク。
+// Herdr は mod 外への import を拒否するため、各 zj-* に同じ実ファイルを置く。
+// 共有処理を変更するときは、全 zj-*/mode.js を同期する。
 import { View, div } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
 import { run, props, closeOverlay, openOverlay, focused, theme, shared, setShared, panes } from "herdr";
